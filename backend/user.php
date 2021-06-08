@@ -8,7 +8,7 @@ class User extends DB{
     public function userExists($user, $pass){
 
 
-        $query = $this->conexion()->prepare('SELECT * FROM usuarios WHERE username = :user AND password = :pass');
+        $query = $this->conexion()->prepare('SELECT * FROM usuarios WHERE correo = :user AND clave = :pass');
         $query->execute(['user' => $user, 'pass' => $pass]);
 
         if($query->rowCount()){
@@ -19,7 +19,7 @@ class User extends DB{
     }
 
     public function setUser($user){
-        $query = $this->conexion()->prepare('SELECT * FROM usuarios WHERE username = :user');
+        $query = $this->conexion()->prepare('SELECT * FROM usuarios WHERE correo = :user');
         $query ->execute(['user' => $user]);
 
         foreach ($query as $currentUser) {

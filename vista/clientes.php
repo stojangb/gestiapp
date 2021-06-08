@@ -76,22 +76,24 @@
                     <div class="form-group" style="display: none">
                       <!--  ID solo para uso BD -->
                       <input type="text" name="id" class="form-control" id="idId" placeholder="Nombre">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Nombre Empresa</label>
-                      <input type="text" required name="nombre" class="form-control" id="idNombreEmpresa" placeholder="Nombre">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Rut Empresa</label>
-                      <input type="text" placeholder="Ingrese RUT" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
-                    </div>
-                    <div class="form-group">
+                    </div> 
+                     <div class="form-group">
                       <label for="exampleFormControlInput1">Nombre Contacto</label>
                       <input type="text" required name="nombre" class="form-control" id="idNombreContacto" placeholder="Nombre Completo">
                     </div>
+                   
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Rut</label>
+                      <input type="text" placeholder="Ingrese RUT" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
+                    </div>
+                  
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Correo electrónico</label>
                       <input type="text" name="correo" class="form-control" id="idCorreo" placeholder="nombre@ejemplo.com">
+                    </div> 
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Dirección</label>
+                      <input type="text" required name="direccion" class="form-control" id="idDireccion" placeholder="Dirección">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Teléfono</label>

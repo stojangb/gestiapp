@@ -1,6 +1,6 @@
-# ScanService 📋
+# GestiApp 📋
 
-_Es una plataforma de conteo de materiales de desinfección🧼, barcazas y camiones, permite agregar y buscar todo tipo de objetos para luego generar un cobro personalizado, dependiendo de los trabajos💼 realizados en el mes._
+_Es una plataforma para gestionar una o varias empresas, permite agregar clientes, recordatorios, ventas, productos, entre otras cosas._
 
 -Se pueden obtener estadísticas anuales y mensuales. 📈📊
 
