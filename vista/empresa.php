@@ -10,12 +10,12 @@
         <?php include('estructura/barraSuperior.php'); ?>
         <div class="container-fluid">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Servicios</h1>
+            <h1 class="h3 mb-0 text-gray-800">Empresas</h1>
           </div>
           <div class="row">
             <div class="col-lg-3">
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Detalles del servicio</label>
+                <label for="exampleFormControlTextarea1">Detalles de la empresa</label>
                 <textarea class="form-control" id="idDetalles" name="nameDetallesServicio" rows="3"></textarea>
               </div>
             </div>
@@ -89,7 +89,7 @@
                   </tfoot>
                   <tbody>
                     <?php
-                    $matrizServicios = ControllerServicios::listarServicios();
+                    $matrizServicios = ControllerEmpresas::listarEmpresas();
                     foreach ($matrizServicios as $registro) {
                     ?>
                       <tr>

@@ -2,164 +2,164 @@
 Class ControllerServicios{ 
     //Insertar
     public static function CrearServicios($datos) {
-		$respuesta = ModeloServicios::CrearServicio($datos);
+		$respuesta = ModeloEmpresas::CrearServicio($datos);
     	return $respuesta;
     }
     public static function InsertarMaritimos($datos) {
-		$respuesta = ModeloServicios::InsertarMaritimo($datos);
+		$respuesta = ModeloEmpresas::InsertarMaritimo($datos);
     	return $respuesta;
     }
     public static function InsertarTerrestre($datos) {
-		$respuesta = ModeloServicios::InsertarTerrestre($datos);
+		$respuesta = ModeloEmpresas::InsertarTerrestre($datos);
     	return $respuesta;
     }
     public static function InsertarOtro($datos) {
-		$respuesta = ModeloServicios::InsertarOtro($datos);
+		$respuesta = ModeloEmpresas::InsertarOtro($datos);
     	return $respuesta;
     }
     //Listar
     public static function listarServicios(){
-        $respuesta = ModeloServicios::listarServicio();
+        $respuesta = ModeloEmpresas::listarEmpresa();
         return $respuesta;
     }
     public static function listarServiciosPorAñoPanel(){
-        $respuesta = ModeloServicios::listarServicioPorAñoPanel();
+        $respuesta = ModeloEmpresas::listarServicioPorAñoPanel();
         return $respuesta;
     }
     public static function listarMaritimoSelect($id){
-        $respuesta = ModeloServicios::listarMaritimoSelect($id);
+        $respuesta = ModeloEmpresas::listarMaritimoSelect($id);
         return $respuesta;
     }
 
     public static function listarBusquedaCertificado($certificado){
-        $respuesta = ModeloServicios::listarBusquedaCertificado($certificado);
+        $respuesta = ModeloEmpresas::listarBusquedaCertificado($certificado);
         return $respuesta;
     }
     public static function listarBusquedaMatricula($matricula){
-        $respuesta = ModeloServicios::listarBusquedaMatricula($matricula);
+        $respuesta = ModeloEmpresas::listarBusquedaMatricula($matricula);
         return $respuesta;
     }
     public static function listarIdServicioPorClienteYFechas($fecha1,$fecha2,$cliente){
-        $respuesta = ModeloServicios::listarIdServicioPorClienteYFechas($fecha1,$fecha2,$cliente);
+        $respuesta = ModeloEmpresas::listarIdServicioPorClienteYFechas($fecha1,$fecha2,$cliente);
         return $respuesta;
     }
     public static function listarTerrestreSelect($id){
-        $respuesta = ModeloServicios::listarTerrestreSelect($id);
+        $respuesta = ModeloEmpresas::listarTerrestreSelect($id);
         return $respuesta;
     }
     public static function listarServicioUnico($id){
-        $respuesta = ModeloServicios::listarServicioUnico($id);
+        $respuesta = ModeloEmpresas::listarServicioUnico($id);
         return $respuesta;
     }
     public static function listarTipoDeTrabajoPorIdPadre($id){
-        $respuesta = ModeloServicios::listarTipoDeTrabajoPorIdPadre($id);
+        $respuesta = ModeloEmpresas::listarTipoDeTrabajoPorIdPadre($id);
         return $respuesta;
     }
     public static function listarTipoDeTrabajoPorIdPadreTerrestre($id){
-        $respuesta = ModeloServicios::listarTipoDeTrabajoPorIdPadreTerrestre($id);
+        $respuesta = ModeloEmpresas::listarTipoDeTrabajoPorIdPadreTerrestre($id);
         return $respuesta;
     }
     public static function listarTipoDeTrabajoPorIdTerrestre($id){
-        $respuesta = ModeloServicios::listarTipoDeTrabajoPorIdTerrestre($id);
+        $respuesta = ModeloEmpresas::listarTipoDeTrabajoPorIdTerrestre($id);
         return $respuesta;
     }
     public static function listarRelacionTerrestre($id){
-        $respuesta = ModeloServicios::listarRelacionTerrestre($id);
+        $respuesta = ModeloEmpresas::listarRelacionTerrestre($id);
         return $respuesta;
     }
     public static function listarRelacionOtrosMaritimo($id){
-        $respuesta = ModeloServicios::listarRelacionOtrosMaritimo($id);
+        $respuesta = ModeloEmpresas::listarRelacionOtrosMaritimo($id);
         return $respuesta;
     }
     public static function listarRelacionOtrosTerrestre($id){
-        $respuesta = ModeloServicios::listarRelacionOtrosTerrestre($id);
+        $respuesta = ModeloEmpresas::listarRelacionOtrosTerrestre($id);
         return $respuesta;
     }
     public static function listarTipoDeTrabajoPorIdOtros($id){
-        $respuesta = ModeloServicios::listarTipoDeTrabajoPorIdOtros($id);
+        $respuesta = ModeloEmpresas::listarTipoDeTrabajoPorIdOtros($id);
         return $respuesta;
     }
     public static function listarMaritimos($id){
-        $respuesta = ModeloServicios::listarMaritimo($id);
+        $respuesta = ModeloEmpresas::listarMaritimo($id);
         return $respuesta;
     }
     public static function listarMaritimosPorIdServicio($IDServicios){
-        $respuesta = ModeloServicios::listarMaritimosPorIdServicio($IDServicios);
+        $respuesta = ModeloEmpresas::listarMaritimosPorIdServicio($IDServicios);
         return $respuesta;
     }
     public static function listarOtrosDeMaritimosPorIdServicio($IDServicios){
-        $respuesta = ModeloServicios::listarOtrosDeMaritimosPorIdServicio($IDServicios);
+        $respuesta = ModeloEmpresas::listarOtrosDeMaritimosPorIdServicio($IDServicios);
         return $respuesta;
     }
     public static function listarOtrosDeTerrestrePorIdServicio($IDServicios){
-        $respuesta = ModeloServicios::listarOtrosDeTerrestrePorIdServicio($IDServicios);
+        $respuesta = ModeloEmpresas::listarOtrosDeTerrestrePorIdServicio($IDServicios);
         return $respuesta;
     }
     public static function listarTiposDeTrabajoPorIdServicio($IDServicios){
-        $respuesta = ModeloServicios::listarTiposDeTrabajoPorIdServicio($IDServicios);
+        $respuesta = ModeloEmpresas::listarTiposDeTrabajoPorIdServicio($IDServicios);
         return $respuesta;
     }
     public static function listarTerrestrePorIdServicio($IDServicios){
-        $respuesta = ModeloServicios::listarTerrestrePorIdServicio($IDServicios);
+        $respuesta = ModeloEmpresas::listarTerrestrePorIdServicio($IDServicios);
         return $respuesta;
     }
     public static function listarTerrestre($id){
-        $respuesta = ModeloServicios::listarTerrestre($id);
+        $respuesta = ModeloEmpresas::listarTerrestre($id);
         return $respuesta;
     }
     public static function listarOtro($id){
-        $respuesta = ModeloServicios::listarOtro($id);
+        $respuesta = ModeloEmpresas::listarOtro($id);
         return $respuesta;
     }
     public static function listarObjetos($id){
-        $respuesta = ModeloServicios::listarObjetos($id);
+        $respuesta = ModeloEmpresas::listarObjetos($id);
         return $respuesta;
     }
     public static function listarTiposDeTrabajo($id){
-        $respuesta = ModeloServicios::listarTiposDeTrabajo($id);
+        $respuesta = ModeloEmpresas::listarTiposDeTrabajo($id);
         return $respuesta;
     }
     public static function listarFechas($fecha1,$fecha2){
-        $respuesta = ModeloServicios::listarFecha($fecha1,$fecha2);
+        $respuesta = ModeloEmpresas::listarFecha($fecha1,$fecha2);
         return $respuesta;
     }
     public static function listarClientes($id){
-        $respuesta = ModeloServicios::listarCliente($id);
+        $respuesta = ModeloEmpresas::listarCliente($id);
         return $respuesta;
     }
     //Editar
     public static function EditarServicios($datos) {
-	    $respuesta = ModeloServicios::EditarServicio($datos);
+	    $respuesta = ModeloEmpresas::EditarServicio($datos);
 		return $respuesta;
     }
     public static function EditarMaritimos($datos) {
-		$respuesta = ModeloServicios::EditarMaritimo($datos);
+		$respuesta = ModeloEmpresas::EditarMaritimo($datos);
     	return $respuesta;
     }
     public static function EditarTerrestre($datos) {
-		$respuesta = ModeloServicios::EditarTerrestre($datos);
+		$respuesta = ModeloEmpresas::EditarTerrestre($datos);
     	return $respuesta;
     }
     public static function EditarOtro($datos) {
-		$respuesta = ModeloServicios::EditarOtro($datos);
+		$respuesta = ModeloEmpresas::EditarOtro($datos);
     	return $respuesta;
     }
     //Eliminar
     public static function EliminarServicios($id) {
 		$tablaname = "servicios";
-        $respuesta = ModeloServicios::EliminarServicio($tablaname, $id);
+        $respuesta = ModeloEmpresas::EliminarServicio($tablaname, $id);
 		return $respuesta;
     }
     public static function EliminarMaritimo($id) {
-        $respuesta = ModeloServicios::EliminarMaritimo($id);
+        $respuesta = ModeloEmpresas::EliminarMaritimo($id);
 		return $respuesta;
     }
     public static function EliminarTerrestre($id) {
-        $respuesta = ModeloServicios::EliminarTerrestre($id);
+        $respuesta = ModeloEmpresas::EliminarTerrestre($id);
 		return $respuesta;
     }
     public static function EliminarOtros($id) {
-        $respuesta = ModeloServicios::EliminarOtros($id);
+        $respuesta = ModeloEmpresas::EliminarOtros($id);
 		return $respuesta;
     }
 

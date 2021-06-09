@@ -17,7 +17,7 @@ class ControllerEnrutamiento {
 		$ruta == "variables" || 
 		$ruta == "CrearExcel" || 
 		$ruta == "pdf" || 
-		$ruta == "servicios" 
+		$ruta == "empresa" 
 		) {
 		include "vista/".$ruta.".php";
 		} else{

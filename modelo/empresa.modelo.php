@@ -1,6 +1,6 @@
 <?php
 require_once "conexion.php";
-class ModeloServicios
+class ModeloEmpresas
 {
     //Insertar
     static public function InsertarMaritimo($datos)
@@ -169,7 +169,7 @@ class ModeloServicios
     }
 
     //Listar
-    static public function listarServicio()
+    static public function listarEmpresa()
     {
         $sql = DB::conexion()->prepare("SELECT idservicios, detalles, fecha FROM servicios order by idservicios desc");
         $sql->execute();
