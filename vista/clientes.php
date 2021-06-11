@@ -78,8 +78,8 @@
                       <input type="text" name="id" class="form-control" id="idId" placeholder="Nombre">
                     </div> 
                      <div class="form-group">
-                      <label for="exampleFormControlInput1">Nombre Contacto</label>
-                      <input type="text" required name="nombre" class="form-control" id="idNombreContacto" placeholder="Nombre Completo">
+                      <label for="exampleFormControlInput1">Nombre cliente</label>
+                      <input type="text" required name="nombre" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
                     </div>
                    
                     <div class="form-group">
@@ -98,6 +98,23 @@
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Teléfono</label>
                       <input type="text" name="telefono" class="form-control" id="idTelefono" placeholder="+569 88888888">
+                    </div>
+             
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Forma de pago</label>
+                      <input type="text"  class="form-control" id="idFormaPago" placeholder="Tarjeta">
+                    </div>             
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Tipo cuenta</label>
+                      <input type="text"  class="form-control" id="idTipoCuenta" placeholder="Vista">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Banco</label>
+                      <input type="text"  class="form-control" id="idBanco" placeholder="Banco Falabella">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">N° Cuenta</label>
+                      <input type="text"  class="form-control" id="idNCuenta" placeholder="7895455-4">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Agregar detalles</label>
@@ -125,22 +142,30 @@
                 <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Empresa</th>
-                      <th>Rut Empresa</th>
-                      <th>Contacto</th>
+                      <th>Nombre</th>
+                      <th>Rut</th>
                       <th>Correo</th>
+                      <th>Dirección</th>
                       <th>Teléfono</th>
+                      <th>Forma de pago</th>
+                      <th>Tipo cuenta</th>
+                      <th>Banco</th>
+                      <th>N° Cuenta</th>
                       <th>Detalles</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Empresa</th>
-                      <th>Rut Empresa</th>
-                      <th>Contacto</th>
+                      <th>Nombre</th>
+                      <th>Rut</th>
                       <th>Correo</th>
+                      <th>Dirección</th>
                       <th>Teléfono</th>
+                      <th>Forma de pago</th>
+                      <th>Tipo cuenta</th>
+                      <th>Banco</th>
+                      <th>N° Cuenta</th>
                       <th>Detalles</th>
                       <th>Acciones</th>
                     </tr>
