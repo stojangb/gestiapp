@@ -4,13 +4,16 @@ require_once "../modelo/cliente.modelo.php";
 Class ajaxCliente {
 	public function crearCliente(){
 		$datos = array(	
-						"nombreContacto"=>$this->nombreContacto,
-						"nombreEmpresa"=>$this->nombreEmpresa,
+						"nombreCliente"=>$this->nombreCliente,
 						"rut"=>$this->rut,
 						"correo"=>$this->correo,
 						"telefono"=>$this->telefono,
-						"tipo"=>$this->tipo,
 						"detalles"=>$this->detalles,
+						"direccion"=>$this->direccion,
+						"formaPago"=>$this->formaPago,
+						"banco"=>$this->banco,
+						"tipoCuenta"=>$this->tipoCuenta,
+						"nCuenta"=>$this->nCuenta,
 					);
 		$respuesta = ControllerClientes::CrearClientes($datos);
 		echo $respuesta;
@@ -38,15 +41,32 @@ Class ajaxCliente {
 }
 $tipoOperacion = $_POST["tipoOperacion"];
 
+
+/* 						"nombreCliente    "=>$this->nombreCliente,
+						"rut			  "=>$this->rut,
+						"correo			  "=>$this->correo,
+						"telefono		  "=>$this->telefono,
+						"detalles		  "=>$this->detalles,
+						"direccion		  "=>$this->direccion,
+						"formaPago		  "=>$this->formaPago,
+						"banco			  "=>$this->banco,
+						"tipoCuenta		  "=>$this->tipoCuenta,
+						"nCuenta		  "=>$this->nCuenta, */
+
+
+
 if($tipoOperacion == "insertarCliente") {
 	$crearNuevoCliente = new ajaxCliente();
-	$crearNuevoCliente ->	nombreEmpresa   = $_POST["nombreEmpresa"];
-	$crearNuevoCliente ->	nombreContacto   = $_POST["nombreContacto"];
-	$crearNuevoCliente ->	rut      = $_POST["rut"];
-	$crearNuevoCliente ->	correo   = $_POST["correo"];
-	$crearNuevoCliente ->	telefono  = $_POST["telefono"];
-	$crearNuevoCliente ->	tipo      = $_POST["tipo"];
-	$crearNuevoCliente ->	detalles  = $_POST["detalles"];
+	$crearNuevoCliente ->	nombreCliente    = $_POST["nombreCliente"];
+	$crearNuevoCliente ->	rut      		 = $_POST["rut"];
+	$crearNuevoCliente ->	correo           = $_POST["correo"];
+	$crearNuevoCliente ->	telefono  		 = $_POST["telefono"];
+	$crearNuevoCliente ->	detalles  		 = $_POST["detalles"];
+	$crearNuevoCliente ->	direccion  		 = $_POST["direccion"];
+	$crearNuevoCliente ->	formaPago  		 = $_POST["formaPago"];
+	$crearNuevoCliente ->	banco  		     = $_POST["banco"];
+	$crearNuevoCliente ->	tipoCuenta       = $_POST["tipoCuenta"];
+	$crearNuevoCliente ->	nCuenta  		 = $_POST["nCuenta"];
 	$crearNuevoCliente ->crearCliente();
 }
 

@@ -92,8 +92,7 @@
   $('#enviar').click(function(e) {
     var rut = $('#idRut').val();
     //Validación de campos vacios.
-   // if (rut == "" || rut == "-") {} else {
-  //      if (rutValido == true) {
+    // if (rut == "" || rut == "-") {} else {  if (rutValido == true) {
           var datosAgregar = new FormData();
           datosAgregar.append("tipoOperacion", "insertarCliente");
           var nombreCliente = $('#idNombreCliente').val();
@@ -102,20 +101,21 @@
           var telefono = $('#idTelefono').val();
           var detalles = $('#idDetalle').val();
           var direccion = $('#idDireccion').val();
-          //Rut listo
-          //Nombre cliente listo
-          //Correo listo
-          //direccion listo
-          //telefono listo
-          //detalles listo
-          alert(detalles)
-          
-          datosAgregar.append("nombreContacto", nombreContacto);
-          datosAgregar.append("nombreEmpresa", nombreEmpresa);
+          var formaPago = $('#idFormaPago').val();
+          var banco = $('#idBanco').val();
+          var tipoCuenta = $('#idTipoCuenta').val();
+          var nCuenta = $('#idNCuenta').val();
+
+          datosAgregar.append("nombreCliente", nombreCliente);
           datosAgregar.append("rut", rut);
           datosAgregar.append("correo", correo);
           datosAgregar.append("telefono", telefono);
           datosAgregar.append("detalles", detalles);
+          datosAgregar.append("direccion", direccion);
+          datosAgregar.append("formaPago", formaPago);
+          datosAgregar.append("banco", banco);
+          datosAgregar.append("tipoCuenta", tipoCuenta);
+          datosAgregar.append("nCuenta", nCuenta);
           $.ajax({
             url: 'ajax/ajaxCliente.php',
             type: 'POST',
@@ -123,15 +123,15 @@
             processData: false,
             contentType: false,
             success: function(res) {
+              alert(res);
               $("#recargar1").load(location.href + " #recargar1");
               limpiarFormulario();
               $('#exampleModalCenter').modal("show");
               $('#exampleModal').modal("hide");
             }
           });
-    //    }
-      
-  //  }
+     
+  //  }}
   })
 
   $('#editar').click(function(e) {

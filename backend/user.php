@@ -24,7 +24,7 @@ class User extends DB{
 
         foreach ($query as $currentUser) {
            // $this->nombre = $currentUser['nombre'];
-            $this->nombre = "Pablo Castro";
+            $this->nombre = "Joaquin Perez";
         }
     }
 

@@ -99,36 +99,33 @@
                       <label for="exampleFormControlInput1">Teléfono</label>
                       <input type="text" name="telefono" class="form-control" id="idTelefono" placeholder="+569 88888888">
                     </div>
+                
+
                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Forma de pago</label>
-                      <select id="idCliente" class="form-control" name="nameCliente">
+                      <select id="idFormaPago" class="form-control">
                         <option value="">Seleccionar</option>
                         <?php
-                        $matrizClientes = ControllerClientes::listarClientes();
+                        $matrizClientes = ControllerClientes::listarFormaPago();
                         foreach ($matrizClientes as $registro) {
                         ?>
                           <option value="<?php echo $registro["id"] ?>">
-                            <?php echo $registro["nombreEmpresa"];
-                            echo ' ';
-                            echo $registro["rut"]; ?> </option>
+                            <?php echo $registro["nombre"];?> </option>
                         <?php
                         }
                         ?>
                       </select>
-                    </div>
-                    
-                    <div class="form-group">
+                    </div>   
+                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Banco</label>
-                      <select id="idCliente" class="form-control" name="nameCliente">
+                      <select id="idBanco" class="form-control" name="nameCliente">
                         <option value="">Seleccionar</option>
                         <?php
-                        $matrizClientes = ControllerClientes::listarClientes();
+                        $matrizClientes = ControllerClientes::listarBancos();
                         foreach ($matrizClientes as $registro) {
                         ?>
                           <option value="<?php echo $registro["id"] ?>">
-                            <?php echo $registro["nombreEmpresa"];
-                            echo ' ';
-                            echo $registro["rut"]; ?> </option>
+                            <?php echo $registro["nombre"];?> </option>
                         <?php
                         }
                         ?>
@@ -136,16 +133,14 @@
                     </div>
                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Tipo de cuenta</label>
-                      <select id="idCliente" class="form-control" name="nameCliente">
+                      <select id="idTipoCuenta" class="form-control">
                         <option value="">Seleccionar</option>
                         <?php
-                        $matrizClientes = ControllerClientes::listarClientes();
+                        $matrizClientes = ControllerClientes::listarTipoCuenta();
                         foreach ($matrizClientes as $registro) {
                         ?>
                           <option value="<?php echo $registro["id"] ?>">
-                            <?php echo $registro["nombreEmpresa"];
-                            echo ' ';
-                            echo $registro["rut"]; ?> </option>
+                            <?php echo $registro["nombre"]; ?> </option>
                         <?php
                         }
                         ?>
@@ -215,16 +210,20 @@
                     foreach ($matrizClientes as $registro) {
                     ?>
                       <tr>
-                        <td><?php echo $registro["nombreEmpresa"] ?></td>
+                        <td><?php echo $registro["nombre_completo"] ?></td>
                         <td><?php echo $registro["rut"] ?></td>
-                        <td><?php echo $registro["nombreContacto"] ?></td>
                         <td><?php echo $registro["correo"] ?></td>
+                        <td><?php echo $registro["direccion"] ?></td>
                         <td><?php echo $registro["telefono"] ?></td>
+                        <td><?php echo $registro["forma_pago"] ?></td>
+                        <td><?php echo $registro["tipo_cuenta"] ?></td>
+                        <td><?php echo $registro["nombre_banco"] ?></td>
+                        <td><?php echo $registro["n_cuenta"] ?></td>                   
                         <td><?php echo $registro["detalles"] ?></td>
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" data-toggle="modal" data-target="#exampleModal" type="submit" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                      <?php echo 'idcode:', $registro["id"], ':idcode nombreContactocode:',  $registro["nombreContacto"], ':nombreContactocode nombreEmpresacode:',  $registro["nombreEmpresa"], ':nombreEmpresacode rutcode:', $registro["rut"], ':rutcode correocode:', $registro["correo"], ':correocode telefonocode:', $registro["telefono"], ':telefonocode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                      <?php echo 'idcode:', $registro["clientes.id"], ':idcode nombreContactocode:',  $registro["nombreContacto"], ':nombreContactocode nombreEmpresacode:',  $registro["nombreEmpresa"], ':nombreEmpresacode rutcode:', $registro["rut"], ':rutcode correocode:', $registro["correo"], ':correocode telefonocode:', $registro["telefono"], ':telefonocode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="submit" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                           </div>
                         </td>
