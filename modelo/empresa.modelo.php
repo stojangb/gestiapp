@@ -171,7 +171,7 @@ class ModeloEmpresas
     //Listar
     static public function listarEmpresa()
     {
-        $sql = DB::conexion()->prepare("SELECT id, nombre_abreviado, razon_social, rut, giro FROM empresas order by id desc");
+        $sql = DB::conexion()->prepare("SELECT id, nombre_abreviado, razon_social, rut, giro FROM empresas_usuario order by id desc");
         $sql->execute();
         return $sql->fetchAll();
     }

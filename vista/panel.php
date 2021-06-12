@@ -20,7 +20,7 @@
                           <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Servicios</div>
                             <?php
-                            $matriz = ControllerServicios::listarServicios();
+                            $matriz = ControllerEmpresas::listarServicios();
                             $numero = count($matriz);
                             ?>
                             <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numero ?>"><?php echo $numero ?></div>
@@ -123,7 +123,7 @@
                           diciembre = 0;
                       </script>
                       <?php
-                      $matriz3 = ControllerServicios::listarServiciosPorAñoPanel();
+                      $matriz3 = ControllerEmpresas::listarServiciosPorAñoPanel();
                       $enero = 0;
                       $febrero = 0;
                       $marzo = 0;

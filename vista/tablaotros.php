@@ -57,7 +57,7 @@ require_once "../modelo/servicio.modelo.php";
       if (!isset($_SESSION)) {
         session_start();
       }
-      $matrizOtros = ControllerServicios::listarOtro($_SESSION['iid']);
+      $matrizOtros = ControllerEmpresas::listarOtro($_SESSION['iid']);
       foreach ($matrizOtros as $registroOtros) {
       ?>
         <tr>
@@ -65,14 +65,14 @@ require_once "../modelo/servicio.modelo.php";
           <td> <?php echo $registroOtros["cantidad"]; ?></td>
           <td>
             <?php
-            $matrizTipoTrabajo = ControllerServicios::listarRelacionOtrosTerrestre($registroOtros["id"]);
+            $matrizTipoTrabajo = ControllerEmpresas::listarRelacionOtrosTerrestre($registroOtros["id"]);
             foreach ($matrizTipoTrabajo as $registro3) {
               echo "\n ", $registro3["productos"];
               echo "\n ", $registro3["matricula"];
             }
             ?>
             <?php
-            $matrizTipoTrabajo = ControllerServicios::listarRelacionOtrosMaritimo($registroOtros["id"]);
+            $matrizTipoTrabajo = ControllerEmpresas::listarRelacionOtrosMaritimo($registroOtros["id"]);
             foreach ($matrizTipoTrabajo as $registro3) {
               echo "\n ", $registro3["nombre"];
               echo "\n ", $registro3["matricula"];

@@ -22,14 +22,14 @@ $_SESSION['iid'] = $_POST["id"] ?>
           </div>
           <input hidden type="text" name="" value=" <?php echo $_POST["id"]; ?>" class="custom-file-input" id="idservicio00">
           <?php
-          $matrizServicios = ControllerServicios::listarServicioUnico($_POST["id"]);
+          $matrizServicios = ControllerEmpresas::listarServicioUnico($_POST["id"]);
           foreach ($matrizServicios as $registro) {
           ?>
             <div style="color:#4e73df"><?php echo $registro["fecha"]; ?>
             </div>
             <?php
             //Nombre
-            $matrizFechas = ControllerServicios::listarClientes($registro["idservicios"]);
+            $matrizFechas = ControllerEmpresas::listarClientes($registro["idservicios"]);
             foreach ($matrizFechas as $registro3) {
               echo "Cliente: ";
               echo $registro3["nombreEmpresa"];
@@ -38,7 +38,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
             ?>
             <?php
             //RUT
-            $matrizFechas = ControllerServicios::listarClientes($registro["idservicios"]);
+            $matrizFechas = ControllerEmpresas::listarClientes($registro["idservicios"]);
             foreach ($matrizFechas as $registro3) {
               RUT:
               echo $registro3["rut"];

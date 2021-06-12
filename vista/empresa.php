@@ -15,33 +15,29 @@
           </div>
           <div class="row">
             <div class="col-lg-3">
-
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nombre abreviado</label>
-                <input type="text" required name="nombre" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
+                <input type="text" required name="nombre" class="form-control" id="idNombreAbreviado" placeholder="Nombre abreviado">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Razón social</label>
-                <input type="text" required name="nombre completo" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
+                <input type="text" required name="nombre completo" class="form-control" id="idRazonSocial" placeholder="Nombre Completo">
               </div>
             </div>
             <div class="col-lg-2">
               <div class="form-group">
                 <label for="exampleFormControlInput1">Rut</label>
-                <input type="text" placeholder="Ingrese RUT" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
+                <input type="text" placeholder="Ingrese RUT" value=""  name="rut" class="form-control" id="idRut">
               </div>
-
-
               <div class="form-group">
                 <label for="exampleFormControlInput1">Giro</label>
-                <input type="text" placeholder="Ingrese giro" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
+                <input type="text" placeholder="Ingrese giro" value="" name="rut" class="form-control" id="idGiro">
               </div>
-
             </div>
           </div>
           <br>
           <br>
-          <button id="idAgregarServicio" type="button" class="btn btn-outline-success">Agregar empresa</button>
+          <button id="idAgregar" type="button" class="btn btn-outline-success">Agregar empresa</button>
           <input type="button" value="Editar" name="editar" id="editar" class="btn btn-outline-warning">
           <input type="button" value="Cancelar" id="cancelar" class="btn btn-outline-danger">
           <br>
@@ -89,7 +85,7 @@
                           <div style="text-align: center;">
                             <!-- Botón editar -->
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                            <?php echo 'idcode:', $registro["idservicios"], ':idcode fechacode:',  $registro["fecha"], ':fechacode clientecode:', $registro["rut"], ':clientecode  lugarcode:', $registro["lugar"], ':lugarcode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                            <?php echo 'idcode:', $registro["id"], ':idcode fechacode:',  $registro["fecha"], ':fechacode clientecode:', $registro["rut"], ':clientecode  lugarcode:', $registro["lugar"], ':lugarcode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <!-- Botón Borrar -->
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["idservicios"] ?>" class="borrar-id btn btn-outline-danger">
                             <!-- FORMULARIO POST ENVIO ID -->
@@ -112,7 +108,7 @@
         <script src="vendor/datatables/jquery.dataTables.min.js"></script>
         <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
         <script src="js/demo/datatables-demo.js"></script>
-        <?php require_once "js/servicio.php"; ?>
+        <?php require_once "js/empresa.php"; ?>
 
         <!-- Inicio Modal Agregar-->
         <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -46,7 +46,7 @@ $('#descargar').prop('hidden', true);
         datosAgregar.append("fechaTermino", fechaTermino);
         datosAgregar.append("cliente", cliente);
         $.ajax({
-            url: 'ajax/ajaxServicios.php',
+            url: 'ajax/ajaxEmpresas.php',
             type: 'POST',
             data: datosAgregar,
             processData: false,
@@ -66,7 +66,7 @@ $('#descargar').prop('hidden', true);
         datosAgregar2.append("tipoOperacion", "listarMaritimosPorIdServicio");
         datosAgregar2.append("IDServicios", IDServicios);
         $.ajax({
-            url: 'ajax/ajaxServicios.php',
+            url: 'ajax/ajaxEmpresas.php',
             type: 'POST',
             data: datosAgregar2,
             processData: false,
@@ -89,7 +89,7 @@ $('#descargar').prop('hidden', true);
         datosAgregar3.append("tipoOperacion", "listarTerrestrePorIdServicio");
         datosAgregar3.append("IDServicios", IDServicios);
         $.ajax({
-            url: 'ajax/ajaxServicios.php',
+            url: 'ajax/ajaxEmpresas.php',
             type: 'POST',
             data: datosAgregar3,
             processData: false,
@@ -109,7 +109,7 @@ $('#descargar').prop('hidden', true);
                 datosAgregar4.append("tipoOperacion", "listarObjetos");
                 datosAgregar4.append("IDServicios", IDServicios);
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar4,
                     processData: false,
@@ -131,7 +131,7 @@ $('#descargar').prop('hidden', true);
                 datosAgregar5.append("tipoOperacion", "listarTiposDeTrabajo");
                 datosAgregar5.append("IDServicios", IDServicios);
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar5,
                     processData: false,
@@ -154,7 +154,7 @@ $('#descargar').prop('hidden', true);
                 datosAgregar6.append("tipoOperacion", "listarOtrosDeMaritimosPorIdServicio");
                 datosAgregar6.append("IDServicios", IDServicios);
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar6,
                     processData: false,
@@ -176,7 +176,7 @@ $('#descargar').prop('hidden', true);
                 datosAgregar6.append("tipoOperacion", "listarOtrosDeTerrestrePorIdServicio");
                 datosAgregar6.append("IDServicios", IDServicios);
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar6,
                     processData: false,
@@ -198,7 +198,7 @@ $('#descargar').prop('hidden', true);
                 datosAgregar6.append("tipoOperacion", "listarTiposDeTrabajoPorIdServicio");
                 datosAgregar6.append("IDServicios", IDServicios);
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar6,
                     processData: false,

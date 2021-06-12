@@ -52,7 +52,7 @@ require_once "../modelo/servicio.modelo.php";
                 </thead>
                 <tbody>
                     <?php
-                    $matrizMaritimo = ControllerServicios::listarMaritimos($_POST["id"]);
+                    $matrizMaritimo = ControllerEmpresas::listarMaritimos($_POST["id"]);
                     foreach ($matrizMaritimo as $registroMaritimo) {
                     ?>
                         <tr>
@@ -61,7 +61,7 @@ require_once "../modelo/servicio.modelo.php";
                             <td><?php echo $registroMaritimo["nombre"] ?></td>
                             <td>
                                 <?php
-                                $matrizTipoTrabajo = ControllerServicios::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
+                                $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
                                 foreach ($matrizTipoTrabajo as $registro3) {
                                     echo "\n", $registro3["tipotrabajo"];
                                     echo "<hr>";
@@ -81,7 +81,7 @@ require_once "../modelo/servicio.modelo.php";
                                    <?php
                                     error_reporting(0);
                                     echo 'idcode:', $registroMaritimo["id"],  ':idcode certificadocode:', $registroMaritimo["certificado"], ':certificadocode idbarcazacode:', $registroMaritimo["objmarid"],  ':idbarcazacode vueltafalsacode:', $registroMaritimo["vueltafalsa"], ':vueltafalsacode',
-                                        $matrizTipoTrabajo = ControllerServicios::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
+                                        $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
                                     echo 'tipocode:';
                                     foreach ($matrizTipoTrabajo as $registro3) {
                                         echo $registro3["id"], ',';

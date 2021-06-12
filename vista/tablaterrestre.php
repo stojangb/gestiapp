@@ -52,7 +52,7 @@ require_once "../modelo/servicio.modelo.php";
         </thead>
         <tbody>
           <?php
-          $matrizTerrestre = ControllerServicios::listarTerrestre($_POST["id"]);
+          $matrizTerrestre = ControllerEmpresas::listarTerrestre($_POST["id"]);
           foreach ($matrizTerrestre as $registroTerrestre) {
           ?>
             <tr>
@@ -61,7 +61,7 @@ require_once "../modelo/servicio.modelo.php";
               <td><?php echo $registroTerrestre["productos"] ?></td>
               <td>
                 <?php
-                $matrizTipoTrabajo = ControllerServicios::listarTipoDeTrabajoPorIdTerrestre($registroTerrestre["id"]);
+                $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdTerrestre($registroTerrestre["id"]);
                 foreach ($matrizTipoTrabajo as $registro3) {
                   echo "\n", $registro3["tipotrabajo"];
                   echo "<hr>";
@@ -70,7 +70,7 @@ require_once "../modelo/servicio.modelo.php";
               </td>
               <td>
                 <?php
-                $matrizTipoTrabajo = ControllerServicios::listarRelacionTerrestre($registroTerrestre["id"]);
+                $matrizTipoTrabajo = ControllerEmpresas::listarRelacionTerrestre($registroTerrestre["id"]);
                 foreach ($matrizTipoTrabajo as $registro3) {
                   echo "\n ", $registro3["nombre"];
                   echo "\n ", $registro3["matricula"];
@@ -83,7 +83,7 @@ require_once "../modelo/servicio.modelo.php";
               <?php
               error_reporting(0);
               echo 'idcode:', $registroTerrestre["id"],  ':idcode certificadocode:', $registroTerrestre["certificado"], ':certificadocode patentecode:', $registroTerrestre["matricula"],  ':patentecode relacioncode:', $registroTerrestre["id_maritimo"], ':relacioncode nombrecode:', $registroTerrestre["id_producto_nombre"], ':nombrecode',
-                $matrizTipoTrabajo = ControllerServicios::listarTipoDeTrabajoPorIdPadreTerrestre($registroTerrestre["id"]);
+                $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadreTerrestre($registroTerrestre["id"]);
               echo 'tipocode:';
               foreach ($matrizTipoTrabajo as $registro3) {
                 echo $registro3["id"], ',';

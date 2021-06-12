@@ -1,10 +1,10 @@
 <?php
 require_once "../controlador/servicios.controller.php";
 require_once "../modelo/servicio.modelo.php";
-class ajaxServicio
+class ajaxEmpresa
 {
 	//Insertar
-	public function crearServicio()
+	public function crearEmpresa()
 	{
 		$datos = array(
 			"detalles" => $this->detalles,
@@ -12,7 +12,7 @@ class ajaxServicio
 			"idcliente" => $this->idcliente,
 			"idlugar" => $this->idlugar,
 		);
-		$respuesta = ControllerServicios::CrearServicios($datos);
+		$respuesta = ControllerEmpresas::CrearEmpresa($datos);
 		echo $respuesta;
 	}
 	public function insertarMaritimo()
@@ -24,7 +24,7 @@ class ajaxServicio
 			"idservicio" => $this->idservicio,
 			"tipotrabajomaritimo" => $this->tipotrabajomaritimo,
 		);
-		$respuesta = ControllerServicios::InsertarMaritimos($datos);
+		$respuesta = ControllerEmpresas::InsertarMaritimos($datos);
 		echo $respuesta;
 	}
 	public function editarMaritimo()
@@ -37,7 +37,7 @@ class ajaxServicio
 			"idservicio" => $this->idservicio,
 			"tipotrabajomaritimo" => $this->tipotrabajomaritimo,
 		);
-		$respuesta = ControllerServicios::EditarMaritimos($datos);
+		$respuesta = ControllerEmpresas::EditarMaritimos($datos);
 		echo $respuesta;
 	}
 	public function insertarTerrestre()
@@ -50,7 +50,7 @@ class ajaxServicio
 			"idmaritimo" => $this->idmaritimo,
 			"tipotrabajoterrestre" => $this->tipotrabajoterrestre,
 		);
-		$respuesta = ControllerServicios::InsertarTerrestre($datos);
+		$respuesta = ControllerEmpresas::InsertarTerrestre($datos);
 		echo $respuesta;
 	}
 	public function editarTerrestre()
@@ -64,7 +64,7 @@ class ajaxServicio
 			"idmaritimo" => $this->idmaritimo,
 			"tipotrabajoterrestre" => $this->tipotrabajoterrestre,
 		);
-		$respuesta = ControllerServicios::EditarTerrestre($datos);
+		$respuesta = ControllerEmpresas::EditarTerrestre($datos);
 		echo $respuesta;
 	}
 	public function insertarOtro()
@@ -76,7 +76,7 @@ class ajaxServicio
 			"idterrestre" => $this->idterrestre,
 			"idmaritimo" => $this->idmaritimo,
 		);
-		$respuesta = ControllerServicios::InsertarOtro($datos);
+		$respuesta = ControllerEmpresas::InsertarOtro($datos);
 		echo $respuesta;
 	}
 	public function editarOtro()
@@ -89,26 +89,26 @@ class ajaxServicio
 			"idterrestre" => $this->idterrestre,
 			"idmaritimo" => $this->idmaritimo,
 		);
-		$respuesta = ControllerServicios::EditarOtro($datos);
+		$respuesta = ControllerEmpresas::EditarOtro($datos);
 		echo $respuesta;
 	}
 	//Listar
 	public function listarMaritimoSelect()
 	{
 		$id = $this->idservicio;
-		$respuesta = ControllerServicios::listarMaritimoSelect($id);
+		$respuesta = ControllerEmpresas::listarMaritimoSelect($id);
 		echo json_encode($respuesta);
 	}
 	public function listarBusquedaCertificado()
 	{
 		$certificado = $this->certificado;
-		$respuesta = ControllerServicios::listarBusquedaCertificado($certificado);
+		$respuesta = ControllerEmpresas::listarBusquedaCertificado($certificado);
 		echo json_encode($respuesta);
 	}
 	public function listarBusquedaMatricula()
 	{
 		$matricula = $this->matricula;
-		$respuesta = ControllerServicios::listarBusquedaMatricula($matricula);
+		$respuesta = ControllerEmpresas::listarBusquedaMatricula($matricula);
 		echo json_encode($respuesta);
 	}
 	public function listarIdServicioPorClienteYFechas()
@@ -116,57 +116,34 @@ class ajaxServicio
 		$fecha1 = $this->fecha1;
 		$fecha2 = $this->fecha2;
 		$cliente = $this->cliente;
-		$respuesta = ControllerServicios::listarIdServicioPorClienteYFechas($fecha1, $fecha2, $cliente);
+		$respuesta = ControllerEmpresas::listarIdServicioPorClienteYFechas($fecha1, $fecha2, $cliente);
 		echo json_encode($respuesta);
 	}
 	public function listarMaritimosPorIdServicio()
 	{
 		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarMaritimosPorIdServicio($IDServicios);
+		$respuesta = ControllerEmpresas::listarMaritimosPorIdServicio($IDServicios);
 		echo json_encode($respuesta);
 	}
 	public function listarOtrosDeMaritimosPorIdServicio()
 	{
 		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarOtrosDeMaritimosPorIdServicio($IDServicios);
+		$respuesta = ControllerEmpresas::listarOtrosDeMaritimosPorIdServicio($IDServicios);
 		echo json_encode($respuesta);
 	}
 	public function listarOtrosDeTerrestrePorIdServicio()
 	{
 		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarOtrosDeTerrestrePorIdServicio($IDServicios);
+		$respuesta = ControllerEmpresas::listarOtrosDeTerrestrePorIdServicio($IDServicios);
 		echo json_encode($respuesta);
 	}
 	public function listarTiposDeTrabajoPorIdServicio()
 	{
 		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarTiposDeTrabajoPorIdServicio($IDServicios);
+		$respuesta = ControllerEmpresas::listarTiposDeTrabajoPorIdServicio($IDServicios);
 		echo json_encode($respuesta);
 	}
-	public function listarTerrestrePorIdServicio()
-	{
-		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarTerrestrePorIdServicio($IDServicios);
-		echo json_encode($respuesta);
-	}
-	public function listarTerrestreSelect()
-	{
-		$id = $this->idservicio;
-		$respuesta = ControllerServicios::listarTerrestreSelect($id);
-		echo json_encode($respuesta);
-	}
-	public function listarObjetos()
-	{
-		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarObjetos($IDServicios);
-		echo json_encode($respuesta);
-	}
-	public function listarTiposDeTrabajo()
-	{
-		$IDServicios = $this->IDServicios;
-		$respuesta = ControllerServicios::listarTiposDeTrabajo($IDServicios);
-		echo json_encode($respuesta);
-	}
+
 	//Editar
 	public function editarServicio()
 	{
@@ -175,47 +152,47 @@ class ajaxServicio
 			"detalles" => $this->detalles,
 			"fecha" => $this->fecha,
 		);
-		$respuesta = ControllerServicios::EditarServicios($datos);
+		$respuesta = ControllerEmpresas::EditarServicios($datos);
 		echo $respuesta;
 	}
 	//Eliminar
 	public function eliminarServicio()
 	{
 		$id = $this->id_servicio;
-		$respuesta = ControllerServicios::EliminarServicios($id);
+		$respuesta = ControllerEmpresas::EliminarServicios($id);
 		echo $respuesta;
 	}
 	public function eliminarMaritimo()
 	{
 		$id = $this->id_maritimo;
-		$respuesta = ControllerServicios::EliminarMaritimo($id);
+		$respuesta = ControllerEmpresas::EliminarMaritimo($id);
 		echo $respuesta;
 	}
 	public function eliminarTerrestre()
 	{
 		$id = $this->id_terrestre;
-		$respuesta = ControllerServicios::EliminarTerrestre($id);
+		$respuesta = ControllerEmpresas::EliminarTerrestre($id);
 		echo $respuesta;
 	}
 	public function eliminarOtro()
 	{
 		$id = $this->id_otro;
-		$respuesta = ControllerServicios::EliminarOtros($id);
+		$respuesta = ControllerEmpresas::EliminarOtros($id);
 		echo $respuesta;
 	}
 }
 $tipoOperacion = $_POST["tipoOperacion"];
 //Insertar
-if ($tipoOperacion == "insertarServicio") {
-	$crearNuevoServicio = new ajaxServicio();
+if ($tipoOperacion == "insertarEmpresa") {
+	$crearNuevoServicio = new ajaxEmpresa();
 	$crearNuevoServicio->idlugar   = $_POST['idlugar'];
 	$crearNuevoServicio->idcliente = $_POST["cliente"];
 	$crearNuevoServicio->detalles  = $_POST["detalles"];
 	$crearNuevoServicio->fecha     = $_POST["fecha"];
-	$crearNuevoServicio->crearServicio();
+	$crearNuevoServicio->crearEmpresa();
 }
 if ($tipoOperacion == "insertarMaritimo") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 
 	$agregarProducto->nombre = $_POST['nombre'];
 	$agregarProducto->certificado = $_POST["certificado"];
@@ -225,7 +202,7 @@ if ($tipoOperacion == "insertarMaritimo") {
 	$agregarProducto->insertarMaritimo();
 }
 if ($tipoOperacion == "editarMaritimo") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 	$agregarProducto->idMaritimo = $_POST['idMaritimo'];
 	$agregarProducto->nombre = $_POST['nombre'];
 	$agregarProducto->certificado = $_POST["certificado"];
@@ -235,7 +212,7 @@ if ($tipoOperacion == "editarMaritimo") {
 	$agregarProducto->editarMaritimo();
 }
 if ($tipoOperacion == "insertarTerrestre") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 	$agregarProducto->nombre = $_POST["nombre"];
 	$agregarProducto->certificado = $_POST["certificado"];
 	$agregarProducto->matricula = $_POST["matricula"];
@@ -249,7 +226,7 @@ if ($tipoOperacion == "insertarTerrestre") {
 	$agregarProducto->insertarTerrestre();
 }
 if ($tipoOperacion == "editarTerrestre") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 	$agregarProducto->idTerrestre = $_POST["idTerrestre"];
 	$agregarProducto->nombre = $_POST["nombre"];
 	$agregarProducto->certificado = $_POST["certificado"];
@@ -264,7 +241,7 @@ if ($tipoOperacion == "editarTerrestre") {
 	$agregarProducto->editarTerrestre();
 }
 if ($tipoOperacion == "insertarOtro") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 	if ($_POST["idmaritimo"] == 'null') {
 		$agregarProducto->idmaritimo = null;
 	} else {
@@ -282,7 +259,7 @@ if ($tipoOperacion == "insertarOtro") {
 	$agregarProducto->insertarOtro();
 }
 if ($tipoOperacion == "editarOtro") {
-	$agregarProducto = new ajaxServicio();
+	$agregarProducto = new ajaxEmpresa();
 	if ($_POST["idmaritimo"] == 'null') {
 		$agregarProducto->idmaritimo = null;
 	} else {
@@ -301,70 +278,50 @@ if ($tipoOperacion == "editarOtro") {
 }
 //Listar
 if ($tipoOperacion == "listarMaritimoSelect") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->idservicio = $_POST["idservicio"];
 	$listarProducto->listarMaritimoSelect();
 }
 if ($tipoOperacion == "listarBusquedaCertificado") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->certificado = $_POST["certificado"];
 	$listarProducto->listarBusquedaCertificado();
 }
 if ($tipoOperacion == "listarBusquedaMatricula") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->matricula = $_POST["matricula"];
 	$listarProducto->listarBusquedaMatricula();
 }
 if ($tipoOperacion == "listarIdServicioPorClienteYFechas") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->fecha1 = $_POST["fechaInicio"];
 	$listarProducto->fecha2 = $_POST["fechaTermino"];
 	$listarProducto->cliente = $_POST["cliente"];
 	$listarProducto->listarIdServicioPorClienteYFechas();
 }
 if ($tipoOperacion == "listarMaritimosPorIdServicio") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->IDServicios = $_POST["IDServicios"];
 	$listarProducto->listarMaritimosPorIdServicio();
 }
 if ($tipoOperacion == "listarOtrosDeMaritimosPorIdServicio") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->IDServicios = $_POST["IDServicios"];
 	$listarProducto->listarOtrosDeMaritimosPorIdServicio();
 }
 if ($tipoOperacion == "listarOtrosDeTerrestrePorIdServicio") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->IDServicios = $_POST["IDServicios"];
 	$listarProducto->listarOtrosDeTerrestrePorIdServicio();
 }
 if ($tipoOperacion == "listarTiposDeTrabajoPorIdServicio") {
-	$listarProducto = new ajaxServicio();
+	$listarProducto = new ajaxEmpresa();
 	$listarProducto->IDServicios = $_POST["IDServicios"];
 	$listarProducto->listarTiposDeTrabajoPorIdServicio();
 }
-if ($tipoOperacion == "listarTerrestrePorIdServicio") {
-	$listarProducto = new ajaxServicio();
-	$listarProducto->IDServicios = $_POST["IDServicios"];
-	$listarProducto->listarTerrestrePorIdServicio();
-}
-if ($tipoOperacion == "listarTerrestreSelect") {
-	$listarProducto = new ajaxServicio();
-	$listarProducto->idservicio = $_POST["idservicio"];
-	$listarProducto->listarTerrestreSelect();
-}
-if ($tipoOperacion == "listarObjetos") {
-	$listarProducto = new ajaxServicio();
-	$listarProducto->IDServicios = $_POST["IDServicios"];
-	$listarProducto->listarObjetos();
-}
-if ($tipoOperacion == "listarTiposDeTrabajo") {
-	$listarProducto = new ajaxServicio();
-	$listarProducto->IDServicios = $_POST["IDServicios"];
-	$listarProducto->listarTiposDeTrabajo();
-}
 //Editar
 if ($tipoOperacion == "editarServicio") {
-	$editarServicio = new ajaxServicio();
+	$editarServicio = new ajaxEmpresa();
 	$editarServicio->id  	   = $_POST["id"];
 	$editarServicio->fecha     = $_POST["fecha"];
 	$editarServicio->detalles  = $_POST["detalles"];
@@ -372,22 +329,22 @@ if ($tipoOperacion == "editarServicio") {
 }
 //Borrar
 if ($tipoOperacion == "eliminarServicio") {
-	$eliminarCliente = new ajaxServicio();
+	$eliminarCliente = new ajaxEmpresa();
 	$eliminarCliente->id_servicio = $_POST["id_servicio"];
 	$eliminarCliente->eliminarServicio();
 }
 if ($tipoOperacion == "eliminarMaritimo") {
-	$eliminarMaritimo = new ajaxServicio();
+	$eliminarMaritimo = new ajaxEmpresa();
 	$eliminarMaritimo->id_maritimo = $_POST["id_maritimo"];
 	$eliminarMaritimo->eliminarMaritimo();
 }
 if ($tipoOperacion == "eliminarTerrestre") {
-	$eliminarTerrestre = new ajaxServicio();
+	$eliminarTerrestre = new ajaxEmpresa();
 	$eliminarTerrestre->id_terrestre = $_POST["id_terrestre"];
 	$eliminarTerrestre->eliminarTerrestre();
 }
 if ($tipoOperacion == "eliminarOtro") {
-	$eliminarOtro = new ajaxServicio();
+	$eliminarOtro = new ajaxEmpresa();
 	$eliminarOtro->id_otro = $_POST["id_otro"];
 	$eliminarOtro->eliminarOtro();
 }

@@ -16,7 +16,7 @@
             DdatosOtros.append("id_servicio", id);
             DdatosOtros.append("tipoOperacion", "eliminarServicio");
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: DdatosOtros,
                 processData: false, // tell jQuery not to process the data
@@ -68,43 +68,36 @@
         $("#lugarVista").hide();
     }
 
-    Date.prototype.toDateInputValue = (function() {
-        var local = new Date(this);
-        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0, 10);
-    });
-
     $(document).ready(function() {
-        //Fecha automática
-        $('#idDate').val(new Date().toDateInputValue());
 
-        $("#idAgregarServicio").click(function(e) {
+        $("#idAgregar").click(function(e) {
             e.preventDefault();
+            var nombre = $('#idNombre').val();
+            var razonSocial = $('#idRazonSocial').val();
+            var rut = $('#idRut').val();
+            var giro = $('#idGiro').val();
 
-            var idlugar = $('#idLugar').val();
-            var detalles = $('#idDetalles').val();
-            var fecha = $('#idDate').val();
-            var cliente = $('#idCliente').val();
-            if (idlugar == "" || detalles == "" || fecha == "" || cliente == "") {
+            if (nombre == "" || razonSocial == "" || rut == "" || giro == "") {
                 alert("Campo Vacío detectado.");
             } else {
                 var datosAgregar = new FormData();
-                datosAgregar.append("idlugar", idlugar);
-                datosAgregar.append("detalles", detalles);
-                datosAgregar.append("fecha", fecha);
-                datosAgregar.append("cliente", cliente);
-                datosAgregar.append("tipoOperacion", "insertarServicio");
+                datosAgregar.append("nombre", nombre);
+                datosAgregar.append("razonSocial", razonSocial);
+                datosAgregar.append("rut", rut);
+                datosAgregar.append("giro", giro);
+                datosAgregar.append("tipoOperacion", "insertarEmpresa");
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar,
                     processData: false,
                     contentType: false,
                     success: function(res) {
                         $("#recargar1").load(location.href + " #recargar1");
-                        $('#idDetalles').val("");
-                        $('#idLugar').val("");
-                        $('#idCliente').val("");
+                        $('#idNombre').val("");
+                        $('#idRazonSocial').val("");
+                        $('#idRut').val("");
+                        $('#idGiro').val("");
                         $('#ModalAgregar').modal("show");
                     }
                 });
@@ -140,7 +133,7 @@
                 datosAgregar.append("id", id);
                 datosAgregar.append("tipoOperacion", "editarServicio");
                 $.ajax({
-                    url: 'ajax/ajaxServicios.php',
+                    url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
                     data: datosAgregar,
                     processData: false,

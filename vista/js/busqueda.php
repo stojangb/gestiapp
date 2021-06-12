@@ -69,7 +69,7 @@
         datosAgregar.append("certificado", certificado);
         var tablaProductos = $('#tablaproductos').DataTable();
         $.ajax({
-            url: 'ajax/ajaxServicios.php',
+            url: 'ajax/ajaxEmpresas.php',
             type: 'POST',
             data: datosAgregar,
             processData: false,
@@ -112,7 +112,7 @@
         datosAgregar.append("tipoOperacion", "listarBusquedaMatricula");
         datosAgregar.append("matricula", matricula);
         $.ajax({
-            url: 'ajax/ajaxServicios.php',
+            url: 'ajax/ajaxEmpresas.php',
             type: 'POST',
             data: datosAgregar,
             processData: false,

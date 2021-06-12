@@ -77,7 +77,7 @@
             DdatosOtros.append("id_maritimo", id);
             DdatosOtros.append("tipoOperacion", "eliminarMaritimo");
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: DdatosOtros,
                 processData: false, // tell jQuery not to process the data
@@ -130,7 +130,7 @@
             DdatosOtros.append("id_terrestre", id);
             DdatosOtros.append("tipoOperacion", "eliminarTerrestre");
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: DdatosOtros,
                 processData: false, // tell jQuery not to process the data
@@ -186,7 +186,7 @@
             DdatosOtros.append("id_otro", id);
             DdatosOtros.append("tipoOperacion", "eliminarOtro");
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: DdatosOtros,
                 processData: false, // tell jQuery not to process the data
@@ -390,7 +390,7 @@
                         datosAgregar.append("certificado", certificadoMaritimo);
 
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosAgregar,
                             processData: false,
@@ -515,7 +515,7 @@
                         datosAgregarx.append("vueltafalsa", vuelta);
 
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosAgregarx,
                             processData: false,
@@ -607,7 +607,7 @@
             datosAAgregar3.append("tipoOperacion", "listarMaritimoSelect");
             datosAAgregar3.append("idservicio", idservicio);
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: datosAAgregar3,
                 processData: false,
@@ -745,7 +745,7 @@
                         datosTerrestres.append("idmaritimo", idmaritimoOnull);
                         datosTerrestres.append("idservicio", idservicio);
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosTerrestres,
                             processData: false,
@@ -883,7 +883,7 @@
                         datosTerrestres.append("idservicio", idservicio);
                         datosTerrestres.append("idTerrestre", idTerrestre);
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosTerrestres,
                             processData: false,
@@ -980,7 +980,7 @@
             datosAAgregar3.append("tipoOperacion", "listarMaritimoSelect");
             datosAAgregar3.append("idservicio", idservicio);
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: datosAAgregar3,
                 processData: false,
@@ -1006,7 +1006,7 @@
             datosAAgregar4.append("tipoOperacion", "listarTerrestreSelect");
             datosAAgregar4.append("idservicio", idservicio);
             $.ajax({
-                url: 'ajax/ajaxServicios.php',
+                url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
                 data: datosAAgregar4,
                 processData: false,
@@ -1141,7 +1141,7 @@
                         datosOtros.append("idterrestre", idterrestreOnull);
                         datosOtros.append("idservicio", idservicio);
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosOtros,
                             processData: false,
@@ -1277,7 +1277,7 @@
                         datosOtros.append("idservicio", idservicio);
                         datosOtros.append("idOtro", idOtro);
                         $.ajax({
-                            url: 'ajax/ajaxServicios.php',
+                            url: 'ajax/ajaxEmpresas.php',
                             type: 'POST',
                             data: datosOtros,
                             processData: false,
