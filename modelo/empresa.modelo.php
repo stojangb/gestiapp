@@ -151,9 +151,9 @@ class ModeloEmpresas
         $sql->execute();
     }
 
-    static public function CrearServicio($datos)
+    static public function CrearEmpresa($datos)
     {
-        $sql1 = DB::conexion()->prepare("INSERT INTO servicios (detalles, fecha) VALUES (:detalles, :fecha)");
+        $sql1 = DB::conexion()->prepare("INSERT INTO empresas (detalles, fecha) VALUES (:detalles, :fecha)");
         $sql1->bindParam(":detalles", $datos["detalles"], PDO::PARAM_STR);
         $sql1->bindParam(":fecha", $datos["fecha"], PDO::PARAM_STR);
         $sql1->execute();
@@ -171,7 +171,7 @@ class ModeloEmpresas
     //Listar
     static public function listarEmpresa()
     {
-        $sql = DB::conexion()->prepare("SELECT idservicios, detalles, fecha FROM servicios order by idservicios desc");
+        $sql = DB::conexion()->prepare("SELECT id, nombre_abreviado, razon_social, rut, giro FROM empresas order by id desc");
         $sql->execute();
         return $sql->fetchAll();
     }

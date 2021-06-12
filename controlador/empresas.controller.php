@@ -1,8 +1,8 @@
 <?php
-Class ControllerServicios{ 
+Class ControllerEmpresas{ 
     //Insertar
-    public static function CrearServicios($datos) {
-		$respuesta = ModeloEmpresas::CrearServicio($datos);
+    public static function CrearEmpresa($datos) {
+		$respuesta = ModeloEmpresas::CrearEmpresa($datos);
     	return $respuesta;
     }
     public static function InsertarMaritimos($datos) {
@@ -18,7 +18,7 @@ Class ControllerServicios{
     	return $respuesta;
     }
     //Listar
-    public static function listarServicios(){
+    public static function listarEmpresas(){
         $respuesta = ModeloEmpresas::listarEmpresa();
         return $respuesta;
     }

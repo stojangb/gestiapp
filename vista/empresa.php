@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php require('estructura/head.php'); ?>
+
 <body id="page-top">
   <div id="wrapper">
     <?php include('estructura/barraLateral.php'); ?>
@@ -14,50 +15,39 @@
           </div>
           <div class="row">
             <div class="col-lg-3">
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Detalles de la empresa</label>
-                <textarea class="form-control" id="idDetalles" name="nameDetallesServicio" rows="3"></textarea>
-              </div>
-            </div>
-            <div id="clienteVista" class="col-lg-3 rojo">
-              <div class="form-group">
-                <label class="" for="exampleFormControlSelect1">Selección de cliente</label>
 
-                <select id="idCliente" class="form-control" name="nameCliente">
-                  <option value="">Seleccionar</option>
-                  <?php
-                  $matrizClientes = ControllerClientes::listarClientes();
-                  foreach ($matrizClientes as $registro) {
-                  ?>
-                    <option value="<?php echo $registro["id"] ?>">
-                      <?php echo $registro["nombreEmpresa"];
-                      echo ' ';
-                      echo $registro["rut"]; ?> </option>
-                  <?php
-                  }
-                  ?>
-                </select>
-                <p class="text-dark">No editable</p>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Nombre abreviado</label>
+                <input type="text" required name="nombre" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Razón social</label>
+                <input type="text" required name="nombre completo" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
               </div>
             </div>
             <div class="col-lg-2">
               <div class="form-group">
-                <label for="">Fecha</label>
-                <br>
-                <input id="idId" hidden type="text">
-                <input id="idDate" type="date">
+                <label for="exampleFormControlInput1">Rut</label>
+                <input type="text" placeholder="Ingrese RUT" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
               </div>
+
+
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Giro</label>
+                <input type="text" placeholder="Ingrese giro" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
+              </div>
+
             </div>
           </div>
           <br>
           <br>
-          <button id="idAgregarServicio" type="button" class="btn btn-outline-success">Agregar Servicio</button>
+          <button id="idAgregarServicio" type="button" class="btn btn-outline-success">Agregar empresa</button>
           <input type="button" value="Editar" name="editar" id="editar" class="btn btn-outline-warning">
           <input type="button" value="Cancelar" id="cancelar" class="btn btn-outline-danger">
           <br>
           <br>
           </form>
-         
+
           <br>
           <!-- Inicio Código php que agrega interactividad a la tabla -->
           <div id="recargar1" class="card shadow mb-4 reload">
@@ -70,20 +60,18 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Detalles</th>
-                      <th>Empresa</th>
+                      <th>Nombre</th>
                       <th>Rut</th>
-                      <th>Fecha</th>
+                      <th>Giro</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Detalles</th>
-                      <th>Empresa</th>
+                      <th>Nombre</th>
                       <th>Rut</th>
-                      <th>Fecha</th>
+                      <th>Giro</th>
                       <th>Acciones</th>
                     </tr>
                   </tfoot>
@@ -93,27 +81,10 @@
                     foreach ($matrizServicios as $registro) {
                     ?>
                       <tr>
-                        <td><?php echo $registro["idservicios"] ?></td>
-                        <td><?php echo $registro["detalles"] ?></td>
-                        <td> <?php
-                              //Nombre
-                              $matrizFechas = ControllerServicios::listarClientes($registro["idservicios"]);
-                              foreach ($matrizFechas as $registro3) {
-                                echo $registro3["nombreEmpresa"];
-                              }
-                              ?>
-                        </td>
-                        <td> <?php
-                              //Rut
-                              $matrizFechas = ControllerServicios::listarClientes($registro["idservicios"]);
-                              foreach ($matrizFechas as $registro3) {
-                                echo $registro3["rut"];
-                              }
-                              ?>
-                        </td>
-                        <td>
-                          <?php echo $registro["fecha"] ?>
-                        </td>
+                        <td><?php echo $registro["id"]?></td>
+                        <td><?php echo $registro["nombre_abreviado"]?></td>
+                        <td><?php echo $registro["rut"]?></td>
+                        <td><?php echo $registro["giro"]?></td>
                         <td>
                           <div style="text-align: center;">
                             <!-- Botón editar -->
@@ -143,46 +114,46 @@
         <script src="js/demo/datatables-demo.js"></script>
         <?php require_once "js/servicio.php"; ?>
 
-             <!-- Inicio Modal Agregar-->
-             <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Notificación</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Servicio agregado con éxito
-                </div>
-                <div class="modal-footer">
-                  <button type="button" data-dismiss="modal"  id="idEditarAgregado" class="btn btn-primary">Aceptar</button>
-                </div>
+        <!-- Inicio Modal Agregar-->
+        <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Notificación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Servicio agregado con éxito
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" id="idEditarAgregado" class="btn btn-primary">Aceptar</button>
               </div>
             </div>
           </div>
-          <!-- Fin Modal -->
-               <!-- Inicio Modal Editar-->
-               <div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Notificación</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Servicio editado con éxito
-                </div>
-                <div class="modal-footer">
-                  <button type="button" id="idEditarAgregado" data-dismiss="modal"  class="btn btn-primary">Aceptar</button>
-                </div>
+        </div>
+        <!-- Fin Modal -->
+        <!-- Inicio Modal Editar-->
+        <div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Notificación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Servicio editado con éxito
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="idEditarAgregado" data-dismiss="modal" class="btn btn-primary">Aceptar</button>
               </div>
             </div>
           </div>
-          <!-- Fin Modal -->
+        </div>
+        <!-- Fin Modal -->
         <?php include('estructura/footer.php'); ?>
       </div>
     </div>
