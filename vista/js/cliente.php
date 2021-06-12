@@ -90,20 +90,26 @@
   }
 
   $('#enviar').click(function(e) {
-    var nombreEmpresa = $('#idNombreEmpresa').val();
     var rut = $('#idRut').val();
     //Validación de campos vacios.
-    if (rut == "" || rut == "-") {} else {
-      if (nombreEmpresa == "") {} else {
-        if (rutValido == true) {
+   // if (rut == "" || rut == "-") {} else {
+  //      if (rutValido == true) {
           var datosAgregar = new FormData();
           datosAgregar.append("tipoOperacion", "insertarCliente");
-          var nombreContacto = $('#idNombreContacto').val();
-          var nombreEmpresa = $('#idNombreEmpresa').val();
+          var nombreCliente = $('#idNombreCliente').val();
           var rut = $('#idRut').val();
           var correo = $('#idCorreo').val();
           var telefono = $('#idTelefono').val();
           var detalles = $('#idDetalle').val();
+          var direccion = $('#idDireccion').val();
+          //Rut listo
+          //Nombre cliente listo
+          //Correo listo
+          //direccion listo
+          //telefono listo
+          //detalles listo
+          alert(detalles)
+          
           datosAgregar.append("nombreContacto", nombreContacto);
           datosAgregar.append("nombreEmpresa", nombreEmpresa);
           datosAgregar.append("rut", rut);
@@ -123,9 +129,9 @@
               $('#exampleModal').modal("hide");
             }
           });
-        }
-      }
-    }
+    //    }
+      
+  //  }
   })
 
   $('#editar').click(function(e) {

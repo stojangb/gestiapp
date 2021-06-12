@@ -76,21 +76,21 @@
                     <div class="form-group" style="display: none">
                       <!--  ID solo para uso BD -->
                       <input type="text" name="id" class="form-control" id="idId" placeholder="Nombre">
-                    </div> 
-                     <div class="form-group">
+                    </div>
+                    <div class="form-group">
                       <label for="exampleFormControlInput1">Nombre cliente</label>
                       <input type="text" required name="nombre" class="form-control" id="idNombreCliente" placeholder="Nombre Completo">
                     </div>
-                   
+
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Rut</label>
                       <input type="text" placeholder="Ingrese RUT" value="" required oninput="checkRut(this)" name="rut" class="form-control" id="idRut">
                     </div>
-                  
+
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Correo electrónico</label>
                       <input type="text" name="correo" class="form-control" id="idCorreo" placeholder="nombre@ejemplo.com">
-                    </div> 
+                    </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Dirección</label>
                       <input type="text" required name="direccion" class="form-control" id="idDireccion" placeholder="Dirección">
@@ -99,22 +99,61 @@
                       <label for="exampleFormControlInput1">Teléfono</label>
                       <input type="text" name="telefono" class="form-control" id="idTelefono" placeholder="+569 88888888">
                     </div>
-             
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Forma de pago</label>
-                      <input type="text"  class="form-control" id="idFormaPago" placeholder="Tarjeta">
-                    </div>             
+                      <label class="" for="exampleFormControlSelect1">Forma de pago</label>
+                      <select id="idCliente" class="form-control" name="nameCliente">
+                        <option value="">Seleccionar</option>
+                        <?php
+                        $matrizClientes = ControllerClientes::listarClientes();
+                        foreach ($matrizClientes as $registro) {
+                        ?>
+                          <option value="<?php echo $registro["id"] ?>">
+                            <?php echo $registro["nombreEmpresa"];
+                            echo ' ';
+                            echo $registro["rut"]; ?> </option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Tipo cuenta</label>
-                      <input type="text"  class="form-control" id="idTipoCuenta" placeholder="Vista">
+                      <label class="" for="exampleFormControlSelect1">Banco</label>
+                      <select id="idCliente" class="form-control" name="nameCliente">
+                        <option value="">Seleccionar</option>
+                        <?php
+                        $matrizClientes = ControllerClientes::listarClientes();
+                        foreach ($matrizClientes as $registro) {
+                        ?>
+                          <option value="<?php echo $registro["id"] ?>">
+                            <?php echo $registro["nombreEmpresa"];
+                            echo ' ';
+                            echo $registro["rut"]; ?> </option>
+                        <?php
+                        }
+                        ?>
+                      </select>
                     </div>
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Banco</label>
-                      <input type="text"  class="form-control" id="idBanco" placeholder="Banco Falabella">
+                      <label class="" for="exampleFormControlSelect1">Tipo de cuenta</label>
+                      <select id="idCliente" class="form-control" name="nameCliente">
+                        <option value="">Seleccionar</option>
+                        <?php
+                        $matrizClientes = ControllerClientes::listarClientes();
+                        foreach ($matrizClientes as $registro) {
+                        ?>
+                          <option value="<?php echo $registro["id"] ?>">
+                            <?php echo $registro["nombreEmpresa"];
+                            echo ' ';
+                            echo $registro["rut"]; ?> </option>
+                        <?php
+                        }
+                        ?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">N° Cuenta</label>
-                      <input type="text"  class="form-control" id="idNCuenta" placeholder="7895455-4">
+                      <input type="text" class="form-control" id="idNCuenta" placeholder="7895455-4">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Agregar detalles</label>
