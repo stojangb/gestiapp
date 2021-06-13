@@ -145,9 +145,8 @@ Class ControllerEmpresas{
     	return $respuesta;
     }
     //Eliminar
-    public static function EliminarServicios($id) {
-		$tablaname = "servicios";
-        $respuesta = ModeloEmpresas::EliminarServicio($tablaname, $id);
+    public static function EliminarEmpresa($id) {
+        $respuesta = ModeloEmpresas::EliminarEmpresa($id);
 		return $respuesta;
     }
     public static function EliminarMaritimo($id) {

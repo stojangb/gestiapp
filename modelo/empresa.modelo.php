@@ -153,19 +153,12 @@ class ModeloEmpresas
 
     static public function CrearEmpresa($datos)
     {
-        $sql1 = DB::conexion()->prepare("INSERT INTO empresas (detalles, fecha) VALUES (:detalles, :fecha)");
-        $sql1->bindParam(":detalles", $datos["detalles"], PDO::PARAM_STR);
-        $sql1->bindParam(":fecha", $datos["fecha"], PDO::PARAM_STR);
+        $sql1 = DB::conexion()->prepare("INSERT INTO empresas_usuario (nombre_abreviado, razon_social, rut,giro) VALUES (:nombre_abreviado, :razon_social, :rut,:giro)");
+        $sql1->bindParam(":nombre_abreviado", $datos["nombre"], PDO::PARAM_STR);
+        $sql1->bindParam(":razon_social", $datos["razonSocial"], PDO::PARAM_STR);
+        $sql1->bindParam(":rut", $datos["rut"], PDO::PARAM_STR);
+        $sql1->bindParam(":giro", $datos["giro"], PDO::PARAM_STR);
         $sql1->execute();
-        $sqle = DB::conexion()->prepare("SELECT * FROM servicios order by idservicios desc limit 1");
-        $sqle->execute();
-        foreach ($sqle as $key => $value) {
-            $id_servicio = $value["idservicios"];
-        }
-        //Obtener valor último ID
-        $sql2 = DB::conexion()->prepare("INSERT INTO servicio_cliente (idservicio, idcliente) VALUES ('" . $id_servicio . "', :idcliente)");
-        $sql2->bindParam(":idcliente", $datos["idcliente"], PDO::PARAM_STR);
-        $sql2->execute();
     }
 
     //Listar
@@ -405,10 +398,10 @@ class ModeloEmpresas
     }
 
     //Borrar
-    static public function EliminarServicio($tabla, $id_tabla)
+    static public function EliminarEmpresa($id)
     {
 
-        //Tengo que obtener todos los otros, maritimos y terrestres del servicio y borrarlos y luego borrar el servicio.
+/*         //Tengo que obtener todos los otros, maritimos y terrestres del servicio y borrarlos y luego borrar el servicio.
         $sql2 = DB::conexion()->prepare("DELETE FROM otros WHERE id_servicio = :id");
         $sql2->bindParam(":id", $id_tabla, PDO::PARAM_INT);
         $sql2->execute();
@@ -419,10 +412,10 @@ class ModeloEmpresas
 
         $sql1 = DB::conexion()->prepare("DELETE FROM maritimo WHERE idservicio = :id");
         $sql1->bindParam(":id", $id_tabla, PDO::PARAM_INT);
-        $sql1->execute();
+        $sql1->execute(); */
 
-        $sql = DB::conexion()->prepare("DELETE FROM $tabla WHERE idservicios = :id");
-        $sql->bindParam(":id", $id_tabla, PDO::PARAM_INT);
+        $sql = DB::conexion()->prepare("DELETE FROM empresas_usuario WHERE id = :id");
+        $sql->bindParam(":id", $id, PDO::PARAM_INT);
         if ($sql->execute()) {
             return "ok";
         } else {

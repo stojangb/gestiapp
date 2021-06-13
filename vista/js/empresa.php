@@ -10,11 +10,11 @@
     } );
 
     function reply_clickBorrar(id) {
-        confirmar = confirm('¿Estás seguro de eliminar el servicio?, Todos los datos que contiene también se eliminaran.');
+        confirmar = confirm('¿Estás seguro de eliminar esta empresa?, Todos los datos que contiene también se eliminaran.');
         if (confirmar == true) {
             var DdatosOtros = new FormData();
-            DdatosOtros.append("id_servicio", id);
-            DdatosOtros.append("tipoOperacion", "eliminarServicio");
+            DdatosOtros.append("id_empresa", id);
+            DdatosOtros.append("tipoOperacion", "eliminarEmpresa");
             $.ajax({
                 url: 'ajax/ajaxEmpresas.php',
                 type: 'POST',
@@ -23,16 +23,6 @@
                 contentType: false, // tell jQuery not to set contentType
                 success: function(res) {
                     $("#recargar1").load(location.href + " #recargar1");
-                }
-            });
-            //Eliminar carpeta del servicio
-            var dataString = 'id=' + id;
-            $.ajax({
-                type: "POST",
-                url: "vista/borrar_directorio.php",
-                data: dataString,
-                success: function() {
-
                 }
             });
         }
@@ -72,11 +62,10 @@
 
         $("#idAgregar").click(function(e) {
             e.preventDefault();
-            var nombre = $('#idNombre').val();
+            var nombre = $('#idNombreAbreviado').val();
             var razonSocial = $('#idRazonSocial').val();
             var rut = $('#idRut').val();
             var giro = $('#idGiro').val();
-
             if (nombre == "" || razonSocial == "" || rut == "" || giro == "") {
                 alert("Campo Vacío detectado.");
             } else {

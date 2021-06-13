@@ -57,6 +57,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Nombre</th>
+                      <th>Razón social</th>
                       <th>Rut</th>
                       <th>Giro</th>
                       <th>Acciones</th>
@@ -66,6 +67,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Nombre</th>
+                      <th>Razón social</th>
                       <th>Rut</th>
                       <th>Giro</th>
                       <th>Acciones</th>
@@ -79,6 +81,7 @@
                       <tr>
                         <td><?php echo $registro["id"]?></td>
                         <td><?php echo $registro["nombre_abreviado"]?></td>
+                        <td><?php echo $registro["razon_social"]?></td>
                         <td><?php echo $registro["rut"]?></td>
                         <td><?php echo $registro["giro"]?></td>
                         <td>
@@ -87,11 +90,11 @@
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
                             <?php echo 'idcode:', $registro["id"], ':idcode fechacode:',  $registro["fecha"], ':fechacode clientecode:', $registro["rut"], ':clientecode  lugarcode:', $registro["lugar"], ':lugarcode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <!-- Botón Borrar -->
-                            <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["idservicios"] ?>" class="borrar-id btn btn-outline-danger">
+                            <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                             <!-- FORMULARIO POST ENVIO ID -->
                             <form action="productos" method="post">
                               <input hidden type="text" name="id" value="<?php echo $registro["idservicios"] ?>"><br>
-                              <input style="margin-bottom: 4px;  margin-right:6px;" value="Revisar Servicio" type="submit" class=" btn btn-outline-primary">
+                              <input style="margin-bottom: 4px;  margin-right:6px;" value="Revisar Empresa" type="submit" class=" btn btn-outline-primary">
                             </form>
                           </div>
                         </td>

@@ -1,16 +1,16 @@
 <?php
-require_once "../controlador/servicios.controller.php";
-require_once "../modelo/servicio.modelo.php";
+require_once "../controlador/empresas.controller.php";
+require_once "../modelo/empresa.modelo.php";
 class ajaxEmpresa
 {
 	//Insertar
 	public function crearEmpresa()
 	{
 		$datos = array(
-			"detalles" => $this->detalles,
-			"fecha" => $this->fecha,
-			"idcliente" => $this->idcliente,
-			"idlugar" => $this->idlugar,
+			"nombre" => $this->nombre,
+			"razonSocial" => $this->razonSocial,
+			"rut" => $this->rut,
+			"giro" => $this->giro,
 		);
 		$respuesta = ControllerEmpresas::CrearEmpresa($datos);
 		echo $respuesta;
@@ -156,10 +156,10 @@ class ajaxEmpresa
 		echo $respuesta;
 	}
 	//Eliminar
-	public function eliminarServicio()
+	public function eliminarEmpresa()
 	{
-		$id = $this->id_servicio;
-		$respuesta = ControllerEmpresas::EliminarServicios($id);
+		$id = $this->id_empresa;
+		$respuesta = ControllerEmpresas::EliminarEmpresa($id);
 		echo $respuesta;
 	}
 	public function eliminarMaritimo()
@@ -185,10 +185,10 @@ $tipoOperacion = $_POST["tipoOperacion"];
 //Insertar
 if ($tipoOperacion == "insertarEmpresa") {
 	$crearNuevoServicio = new ajaxEmpresa();
-	$crearNuevoServicio->idlugar   = $_POST['idlugar'];
-	$crearNuevoServicio->idcliente = $_POST["cliente"];
-	$crearNuevoServicio->detalles  = $_POST["detalles"];
-	$crearNuevoServicio->fecha     = $_POST["fecha"];
+	$crearNuevoServicio->nombre      = $_POST['nombre'];
+	$crearNuevoServicio->razonSocial = $_POST["razonSocial"];
+	$crearNuevoServicio->rut      = $_POST["rut"];
+	$crearNuevoServicio->giro     = $_POST["giro"];
 	$crearNuevoServicio->crearEmpresa();
 }
 if ($tipoOperacion == "insertarMaritimo") {
@@ -328,10 +328,10 @@ if ($tipoOperacion == "editarServicio") {
 	$editarServicio->editarServicio();
 }
 //Borrar
-if ($tipoOperacion == "eliminarServicio") {
+if ($tipoOperacion == "eliminarEmpresa") {
 	$eliminarCliente = new ajaxEmpresa();
-	$eliminarCliente->id_servicio = $_POST["id_servicio"];
-	$eliminarCliente->eliminarServicio();
+	$eliminarCliente->id_empresa = $_POST["id_empresa"];
+	$eliminarCliente->eliminarEmpresa();
 }
 if ($tipoOperacion == "eliminarMaritimo") {
 	$eliminarMaritimo = new ajaxEmpresa();
