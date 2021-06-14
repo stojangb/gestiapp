@@ -18,9 +18,9 @@
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Servicios</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Empresas</div>
                             <?php
-                            $matriz = ControllerEmpresas::listarServicios();
+                            $matriz = ControllerEmpresas::listarEmpresas();
                             $numero = count($matriz);
                             ?>
                             <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numero ?>"><?php echo $numero ?></div>
@@ -43,13 +43,10 @@
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vuelta falsa</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendientes, recordatorios, etc, compra, venta</div>
                             <!-- Controlador Vuelta falsa -->
-                            <?php
-                            $matriz = ControllerBarcazas::listarVueltaFalsaBarcazas();
-                            $numeroVueltaFalsa = count($matriz);
-                            ?>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numeroVueltaFalsa ?>"><?php echo $numeroVueltaFalsa ?></div>
+               
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="555">555</div>
                           </div>
                           <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -84,15 +81,12 @@
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Objetos</div>
-                            <?php
-                            $matriz = ControllerProductos::listarProductosOtrosPanel();
-                            foreach ($matriz as $registro) {
-                              $ho = $registro["cantidad"];
-                            }
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ganancias, perdidas, montos, etc</div>
+                           
+                   
 
-                            ?>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $ho ?>"><?php echo $ho ?></div>
+                            
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="555">555</div>
 
                           </div>
                           <div class="col-auto">
@@ -123,7 +117,7 @@
                           diciembre = 0;
                       </script>
                       <?php
-                      $matriz3 = ControllerEmpresas::listarServiciosPorAñoPanel();
+            //          $matriz3 = ControllerEmpresas::listarServiciosPorAñoPanel();
                       $enero = 0;
                       $febrero = 0;
                       $marzo = 0;
@@ -136,7 +130,7 @@
                       $octubre = 0;
                       $noviembre = 0;
                       $diciembre = 0;
-                      foreach ($matriz3 as $registro1) {
+      /*                 foreach ($matriz3 as $registro1) {
                         $ho = $registro1["Mes"];
                         $h1 = $registro1["Total"];
                         //     echo $registro1["Total"];
@@ -177,7 +171,7 @@
                         if ($ho == "December") {
                           $diciembre = $h1;
                         }
-                      }
+                      } */
                       ?>
 
                       <script>
@@ -212,12 +206,15 @@
                     <div class="card shadow mb-4">
                       <br>
                       <?php
-                      $matriz1 = ControllerProductos::listarProductosMaritimosPanel();
+               /*        $matriz1 = ControllerProductos::listarProductosMaritimosPanel();
                       $cantidadMarit = count($matriz1);
                       $matriz2 = ControllerProductos::listarProductosTerrestresPanel();
-                      $cantidadTerr = count($matriz2);
+                      $cantidadTerr = count($matriz2); */
 
-                      $sumaAmbos = $cantidadMarit + $cantidadTerr;
+                 //     $sumaAmbos = $cantidadMarit + $cantidadTerr;
+                 $cantidadMarit = 20;
+                 $cantidadTerr = 20;
+                 $sumaAmbos = $cantidadMarit + $cantidadTerr;
                       ?>
                       <script>
                         var maritimos = <?php echo $cantidadMarit;  ?>;

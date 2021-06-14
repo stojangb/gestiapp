@@ -1,6 +1,6 @@
 <?php
-require_once "../controlador/servicios.controller.php";
-require_once "../modelo/servicio.modelo.php";
+require_once "../controlador/articulos.controller.php";
+require_once "../modelo/articulo.modelo.php";
 ?>
 <style type="text/css">
 @media screen and (max-width: 600px) {
@@ -41,40 +41,22 @@ require_once "../modelo/servicio.modelo.php";
         <div class="table-responsive">
             <table class="table table-bordered display" id="tablaproductos1" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
-                        <th>Certificado</th>
-                        <th>Patente</th>
-                        <th>Nombre</th>
-                        <th>Tipo de trabajo</th>
-                        <th>¿Vuelta Falsa?</th>
-                        <th>Acciones</th>
+                <tr>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $matrizMaritimo = ControllerEmpresas::listarMaritimos($_POST["id"]);
+                    $matrizMaritimo = ControllerArticulos::listarArticulos($_POST["id"]);
                     foreach ($matrizMaritimo as $registroMaritimo) {
                     ?>
                         <tr>
-                            <td><?php echo $registroMaritimo["certificado"] ?></td>
-                            <td><?php echo $registroMaritimo["matricula"] ?></td>
                             <td><?php echo $registroMaritimo["nombre"] ?></td>
-                            <td>
-                                <?php
-                                $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
-                                foreach ($matrizTipoTrabajo as $registro3) {
-                                    echo "\n", $registro3["tipotrabajo"];
-                                    echo "<hr>";
-                                }
-                                ?>
-                            </td>
-                            <td><?php $mar = $registroMaritimo["vueltafalsa"];
-                                if ($mar == 1) {
-                                    echo "Sí";
-                                } else {
-                                    echo "No";
-                                }
-                                ?></td>
+                            <td><?php echo $registroMaritimo["cantidad"] ?></td>
+                            <td><?php echo $registroMaritimo["precio"] ?></td>
                             <td>
                                 <div style="text-align: center;">
                                     <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificarMaritimo(this.id)" value="Editar" name="enviar" id="                 

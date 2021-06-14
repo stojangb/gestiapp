@@ -93,7 +93,7 @@
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                             <!-- FORMULARIO POST ENVIO ID -->
                             <form action="productos" method="post">
-                              <input hidden type="text" name="id" value="<?php echo $registro["idservicios"] ?>"><br>
+                              <input hidden type="text" name="id" value="<?php echo $registro["id"] ?>"><br>
                               <input style="margin-bottom: 4px;  margin-right:6px;" value="Revisar Empresa" type="submit" class=" btn btn-outline-primary">
                             </form>
                           </div>

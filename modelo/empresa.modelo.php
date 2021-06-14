@@ -287,7 +287,7 @@ class ModeloEmpresas
 
     static public function listarServicioUnico($id)
     {
-        $sql = DB::conexion()->prepare("SELECT idservicios, detalles, fecha FROM servicios WHERE idservicios='$id'");
+        $sql = DB::conexion()->prepare("SELECT id, rut, giro, nombre_abreviado, razon_social FROM empresas_usuario WHERE id ='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }

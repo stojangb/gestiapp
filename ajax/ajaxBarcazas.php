@@ -9,7 +9,7 @@ Class ajaxBarcazas {
 						"producto"     =>$this->producto,
 						"matricula"    =>$this->matricula,
 					);
-		$respuesta = ControllerBarcazas::CrearBarcaza($datos);
+		$respuesta = ControllerArticulos::CrearBarcaza($datos);
 		echo $respuesta;
 	}
 	//editar
@@ -20,50 +20,50 @@ Class ajaxBarcazas {
 						"producto"     =>$this->producto,
 						"matricula"    =>$this->matricula,
 					);
-		$respuesta = ControllerBarcazas::EditarBarcaza($datos);
+		$respuesta = ControllerArticulos::EditarBarcaza($datos);
 		echo $respuesta;
 	}
 	//ELiminar
 	public function eliminarBarcaza(){
 		$id_barcaza = $this->id_barcaza;
-		$respuesta = ControllerBarcazas::EliminarBarcaza($id_barcaza);
+		$respuesta = ControllerArticulos::EliminarBarcaza($id_barcaza);
 		echo $respuesta;
 	}
 	//Listar
 
 	public function listarProductoPorTipo(){
 		$tipodeproducto = $this->tipodeproducto;
-		$respuesta = ControllerBarcazas::listarProductosPorTipo($tipodeproducto);
+		$respuesta = ControllerArticulos::listarProductosPorTipo($tipodeproducto);
 		echo json_encode($respuesta);
 	}
 	public function listarCertificados2Meses(){
-		$respuesta = ControllerBarcazas::listarCertificados2Meses();
+		$respuesta = ControllerArticulos::listarCertificados2Meses();
 		echo json_encode($respuesta);
 	}
 
 	public function listarBarcazasPorCliente(){
 		$cliente = $this->cliente;
-		$respuesta = ControllerBarcazas::listarBarcazasPorCliente($cliente);
+		$respuesta = ControllerArticulos::listarBarcazasPorCliente($cliente);
 		echo json_encode($respuesta);
 	}
 	public function listarPatenteMaritimoPorServicio(){
 		$idservicio = $this->idservicio;
-		$respuesta = ControllerBarcazas::listarPatenteMaritimoPorServicio($idservicio);
+		$respuesta = ControllerArticulos::listarPatenteMaritimoPorServicio($idservicio);
 		echo json_encode($respuesta);
 	}
 	public function listarPatenteTerrestrePorServicio(){
 		$idservicio = $this->idservicio;
-		$respuesta = ControllerBarcazas::listarPatenteTerrestrePorServicio($idservicio);
+		$respuesta = ControllerArticulos::listarPatenteTerrestrePorServicio($idservicio);
 		echo json_encode($respuesta);
 	}
 	public function listarRelacionTerrestreOtroPorServicio(){
 		$idservicio = $this->idservicio;
-		$respuesta = ControllerBarcazas::listarRelacionTerrestreOtroPorServicio($idservicio);
+		$respuesta = ControllerArticulos::listarRelacionTerrestreOtroPorServicio($idservicio);
 		echo json_encode($respuesta);
 	}
 	public function listarRelacionMaritimoOtroPorServicio(){
 		$idservicio = $this->idservicio;
-		$respuesta = ControllerBarcazas::listarRelacionMaritimoOtroPorServicio($idservicio);
+		$respuesta = ControllerArticulos::listarRelacionMaritimoOtroPorServicio($idservicio);
 		echo json_encode($respuesta);
 	}
 }

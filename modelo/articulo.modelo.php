@@ -1,6 +1,6 @@
 <?php
 require_once "conexion.php";
-class ModeloBarcazas
+class ModeloArticulos
 {
     //Insertar
     static public function CrearBarcaza($datos)
@@ -16,9 +16,9 @@ class ModeloBarcazas
         }
     }
     //Listar
-    static public function listarBarcazas()
+    static public function listarArticulos()
     {
-        $sql = DB::conexion()->prepare("SELECT objetomaritimo.id, clientes.nombreEmpresa, clientes.rut, objetomaritimo.nombre, objetomaritimo.matricula, clientes.id as idclient FROM clientes INNER JOIN objetomaritimo ON clientes.id = objetomaritimo.idcliente");
+        $sql = DB::conexion()->prepare("SELECT id, nombre, cantidad, precio FROM productos");
         $sql->execute();
         return $sql->fetchAll();
     }

@@ -95,7 +95,7 @@
         <h6 class="collapse-header">Utilidades y variables:</h6>
         <a class="collapse-item" href="tipotrabajos">Tipos de trabajo</a>
         <a class="collapse-item" href="terrestresyotros">Camiones y otros</a>
-        <a class="collapse-item" href="maritimos">Barcazas</a>
+        <a class="collapse-item" href="articulos">Artículos</a>
       </div>
     </div>
   </li>

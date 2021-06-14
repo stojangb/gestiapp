@@ -9,7 +9,7 @@ class ControllerEnrutamiento {
 		$ruta == "login" ||
 		$ruta == "terrestresyotros" || 
 		$ruta == "tipotrabajos" ||
-		$ruta == "maritimos" ||
+		$ruta == "articulos" ||
 		$ruta == "cobro" || 
 		$ruta == "productos" || 
 		$ruta == "busqueda" || 

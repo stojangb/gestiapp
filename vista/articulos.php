@@ -13,23 +13,19 @@
         <?php include('estructura/barraSuperior.php'); ?>
         <div class="container-fluid">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Marítimos</h1>
+            <h1 class="h3 mb-0 text-gray-800">Artículos o productos</h1>
           </div>
-          <p class="mb-4">Aquí podrá agregar barcazas y relacionarlas según lugar y matrícula</a>.</p>
-
+          <p class="mb-4">Agregar artículos para la venta.</a>.</p>
           <div class="form-group">
-            <label class="" for="exampleFormControlSelect1">Selección de cliente</label>
-
+            <label class="" for="exampleFormControlSelect1">Selección de empresa a la que pertenece el artículo</label>
             <select id="idCliente" class="form-control" name="nameCliente">
               <option value="">Seleccionar</option>
               <?php
-              $matrizClientes = ControllerClientes::listarClientes();
+              $matrizClientes = ControllerEmpresas::listarEmpresas();
               foreach ($matrizClientes as $registro) {
               ?>
                 <option value="<?php echo $registro["id"] ?>">
-                  <?php echo $registro["nombreEmpresa"];
-                  echo ' ';
-                  echo $registro["rut"]; ?> </option>
+                  <?php echo $registro["nombre_abreviado"]; ?> </option>
               <?php
               }
               ?>
@@ -37,14 +33,17 @@
           </div>
 
           <div class="form-group">
-            <label for="exampleFormControlInput1">Nombre de la Barcaza</label>
-            <input type="text" name="nombre" class="form-control" id="idProducto" placeholder="Santa Lucía">
+            <label for="exampleFormControlInput1">Nombre del artículo</label>
+            <input type="text" name="nombre" class="form-control" id="idProducto" placeholder="Poleras">
             <input type="text" hidden class="form-control" id="idId">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Matrícula</label>
-            <input type="text" name="nombre" class="form-control" id="idMatricula" placeholder="AABB11">
-            <input type="text" name="nombre" class="form-control" hidden id="idMatriculaDuplicada" placeholder="AABB11">
+            <label for="exampleFormControlInput1">Cantidad</label>
+            <input type="text" name="nombre" class="form-control" id="idMatricula" placeholder="20">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Precio</label>
+            <input type="text" name="nombre" class="form-control" id="idMatricula" placeholder="20">
           </div>
           <br>
           <input type="submit" value="Agregar" name="enviar" id="enviar" class="btn btn-outline-success" style="display: true;">
@@ -57,17 +56,17 @@
           <!-- DataTales Example -->
           <div id="recargar1" class="card shadow mb-4 reload">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Listado de Marítimos</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Listado de artículos</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Nombre Empresa</th>
-                      <th>Rut Empresa</th>
-                      <th>Nombre de la Barcaza</th>
-                      <th>Matrícula</th>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Empresa</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -82,7 +81,7 @@
                   </tfoot>
                   <tbody>
                     <?php
-                    $matrizPrecios = ControllerBarcazas::listarBarcazas();
+                    $matrizPrecios = ControllerArticulos::listarArticulos();
                     foreach ($matrizPrecios as $registro) {
                     ?>
                       <tr>
@@ -90,7 +89,6 @@
                         <td><?php echo $registro["rut"]; ?></td>
                         <td><?php echo $registro["nombre"]; ?></td>
                         <td><?php echo $registro["matricula"]; ?></td>
-
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
