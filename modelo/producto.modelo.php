@@ -39,11 +39,12 @@ class ModeloProductos
         $sql->execute();
         return $sql->fetchAll();
     }
-    static public function CrearProducto($tabla, $datos)
+    static public function CrearProducto($datos)
     {
-        $sql = DB::conexion()->prepare("INSERT INTO $tabla (productos,tipoproducto) VALUES (:productos,:tipoproducto)");
-        $sql->bindParam(":productos", $datos["producto"], PDO::PARAM_STR);
-        $sql->bindParam(":tipoproducto", $datos["tipoproducto"], PDO::PARAM_STR);
+        $sql = DB::conexion()->prepare("INSERT INTO productos (nombre,cantidad,precio) VALUES (:nombre,:cantidad,:precio)");
+        $sql->bindParam(":nombre", $datos["producto"], PDO::PARAM_STR);
+        $sql->bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
+        $sql->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
         if ($sql->execute()) {
             return "ok";
         } else {

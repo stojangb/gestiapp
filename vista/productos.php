@@ -9,7 +9,6 @@ $_SESSION['iid'] = $_POST["id"] ?>
 <html lang="es">
 <?php require('estructura/head.php'); ?>
 
-
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -40,13 +39,6 @@ $_SESSION['iid'] = $_POST["id"] ?>
                 Razón social: <div style="color:#4e73df"><?php echo $registro["razon_social"]; ?> </div>
               </div>
             </div>
-
-
-
-
-
-
-
             <div>
             <?php }  ?>
             <br>
@@ -66,7 +58,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
             <div class="collapse" id="collapseMaritimo">
               <div class="card card-body">
                 <div style="background-color: #f8f9fc;" class="container">
-                  <form id="id-formulario-agregar-maritimo">
+                  <form>
                     <br>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Nombre del artículo</label>
@@ -75,27 +67,25 @@ $_SESSION['iid'] = $_POST["id"] ?>
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Cantidad</label>
-                      <input type="text" name="nombre" class="form-control" id="idMatricula" placeholder="20">
+                      <input type="text" name="nombre" class="form-control" id="idCantidad" placeholder="20">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Precio</label>
-                      <input type="text" name="nombre" class="form-control" id="idMatricula" placeholder="20.000">
+                      <input type="text" name="nombre" class="form-control" id="idPrecio" placeholder="20.000">
                     </div>
-
-                    <button id="guardarMaritimo" name="guardarMaritimo" type="submit" class="btn btn-outline-info">Guardar</button>
-
+                    <button id="idGuardarProducto" type="button" class="btn btn-outline-info">Guardar</button>
+                  </form>
                 </div>
-                </form>
+
                 <div class="row">
                   <div class="col-sm-3">
-
                   </div>
                   <div class="col-sm-3">
                   </div>
                   <div class="col-sm-3">
                   </div>
                   <div class="col-sm-3">
-                    <form id="id-formulario-editar-maritimo">
+                    <form id="id-formulario-editar-maritim">
                       <div id="AgregarNuevoProductoMaritimo2" name="AgregarNuevoProductoMaritimo2"></div>
                       <input type="submit" name="editar" value="Editar" id="editarMaritimo" class="btn btn-outline-warning">
                       <input type="button" value="Cancelar" name="cancelar" id="cancelarMaritimo" class="btn btn-outline-danger">

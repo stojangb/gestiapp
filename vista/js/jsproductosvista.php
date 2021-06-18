@@ -440,128 +440,51 @@
             }
         });
 
-        $("#id-formulario-agregar-maritimo").submit(function(e) {
-            e.preventDefault();
-            bloquearBarcazaPorMatricula = 0;
-            bloquearBarcazaPorCertificado = 0;
-            var nombreMaritimo = $("#idProductoMaritimo").val();
-            var certificadoMaritimo = $("#certificadoMaritimo").val();
-            if (nombreMaritimo == "" || certificadoMaritimo == "") {
+
+$("#idGuardarProducto").click(function(e) {
+        var producto = $("#idProducto").val();
+        var cantidad = $("#idCantidad").val();
+        var precio = $("#idPrecio").val();
+      
+     if (producto == "" || cantidad == "" || precio == "") {
                 alert("Campo Vacío Detectado");
-            } else {
-                //Una vez con la patente, la comparamos con las patentes existentes en la BD que tienen relación con el servicio
-                //Consultando las patentes maritimas del servicio
-                var datosAgregar3 = new FormData();
-                datosAgregar3.append("tipoOperacion", "listarPatenteMaritimoPorServicio");
-                datosAgregar3.append("idservicio", idservicio);
-                $.ajax({
-                    url: 'ajax/ajaxBarcazas.php',
-                    type: 'POST',
-                    data: datosAgregar3,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    success: function(res) {
-                        var valor0 = JSON.parse(res);
-                        var contador = valor0.length;
-                        for (var i = 0; i < contador; i++) {
-                            if (valor0[i][0] == nombreMaritimo) {
-                                alert("No se puede ingresar la misma Barcaza 2 veces en un servicio");
-                                bloquearBarcazaPorMatricula = 1;
-                            }
-                        }
-                    }
-                });
-                //Consultando las patentes maritimas del servicio FIN
-                if (bloquearBarcazaPorMatricula == 0) {
-                    //Una vez que se comprobo todo eso se comprueba el certificado
-                    var datosAgregar3 = new FormData();
-                    datosAgregar3.append("tipoOperacion", "listarCertificados2Meses");
-                    $.ajax({
-                        url: 'ajax/ajaxBarcazas.php',
-                        type: 'POST',
-                        data: datosAgregar3,
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        success: function(res) {
-                            var valor0 = JSON.parse(res);
-                            var contador = valor0.length;
-                            for (var i = 0; i < contador; i++) {
-                                if (valor0[i][0] == certificadoMaritimo) {
-                                    alert("El certificado ya existe");
-                                    bloquearBarcazaPorCertificado = 1;
-                                }
-                            }
-                        }
-                    });
-                    //Comprobación de certificado Fin
-                    if (bloquearBarcazaPorCertificado == 0) {
-                        $("#AgregarNuevoProductoMaritimo").empty();
-                        var contadordecheckmaritimo;
-                        $('.seleccionMaritimo:checked').each(
-                            function() {
-                                contadordecheckmaritimo++;
-                                $("#AgregarNuevoProductoMaritimo").append('<input hidden type="text" name="tipotrabajomaritimo[]  id="idtipotrabajomaritimo_' + contadordecheckmaritimo + '" value="' + ($(this).val()) + '" >');
-                            }
-                        );
-                        var vuelta = "0";
-                        if ($('input:checkbox[name=vuelta1]:checked').val() == "true") {
-                            vuelta = "1";
-                        }
-                        var datosAgregarx = new FormData($(this)[0]);
-                        datosAgregarx.append("tipoOperacion", "insertarMaritimo");
-                        datosAgregarx.append("idservicio", idservicio);
-                        datosAgregarx.append("vueltafalsa", vuelta);
+     } else   {
+   
+        var datosAgregarx = new FormData();
+        datosAgregarx.append("tipoOperacion", "insertarProducto");
+        datosAgregarx.append("producto", producto);
+        datosAgregarx.append("cantidad", cantidad);
+        datosAgregarx.append("precio", precio);
 
-                        $.ajax({
-                            url: 'ajax/ajaxEmpresas.php',
-                            type: 'POST',
-                            data: datosAgregarx,
-                            processData: false,
-                            contentType: false,
-                            success: function(res) {
-                                var datos11 = new FormData();
-                                datos11.append("id", idservicio);
-                                $.ajax({
-                                    url: 'vista/tablamaritimo.php',
-                                    type: 'POST',
-                                    data: datos11,
-                                    processData: false,
-                                    contentType: false,
-                                    success: function(respuesta) {
-                                        $('#tablaMaritimo').html(respuesta);
-                                        $('.reiniciarMaritimo').prop("checked", false);
-                                        $("#idProductoMaritimo").val("");
-                                        $('#vuelta').prop("checked", false);
-                                        $('#ModalAgregar').modal("show");
-                                        //Obtenemos el número del certificado y le agregamos 1.
-                                        var datosAgregar3 = new FormData();
-                                        datosAgregar3.append("tipoOperacion", "listarCertificados2Meses");
-                                        $.ajax({
-                                            url: 'ajax/ajaxBarcazas.php',
-                                            type: 'POST',
-                                            data: datosAgregar3,
-                                            processData: false,
-                                            contentType: false,
-                                            async: false,
-                                            success: function(res) {
-                                                var valor0 = JSON.parse(res);
-                                                var val = valor0[0][0];
-                                                var val1 = parseInt(val);
-                                                val1 = val1 + 1;
-                                                $("#certificadoMaritimo").val(val1)
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                    }
-                } else {}
-            }
-        });
+       $.ajax({
+           url: 'ajax/ajaxProductos.php',
+           type: 'POST',
+           data: datosAgregarx,
+           processData: false,
+           contentType: false,
+           success: function(res) {
+               var datos11 = new FormData();
+               datos11.append("id", idservicio);
+               $.ajax({
+                   url: 'vista/tablamaritimo.php',
+                   type: 'POST',
+                   data: datos11,
+                   processData: false,
+                   contentType: false,
+                   success: function(respuesta) {
+                       alert(respuesta);
+                       $('#tablaMaritimo').html(respuesta);
+                       $('.reiniciarMaritimo').prop("checked", false);
+                       $("#idProductoMaritimo").val("");
+                       $('#ModalAgregar').modal("show");
+                   }
+               });
+           }
+       });
 
+}
+
+  });
         //----------------------------------------------TERRESTRE---------------------------------------------------
         $('#idBotonCollapseTerrestre').click(function() {
             $("#editarTerrestre").hide();

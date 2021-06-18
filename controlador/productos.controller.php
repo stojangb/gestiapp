@@ -28,8 +28,7 @@ Class ControllerProductos{
     }
 
     static public function CrearProductos($datos) {
-		$tablaname = "productos";
-		$respuesta = ModeloProductos::CrearProducto($tablaname, $datos);
+		$respuesta = ModeloProductos::CrearProducto($datos);
 		return $respuesta;
     }
 

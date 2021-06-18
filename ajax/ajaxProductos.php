@@ -5,9 +5,9 @@ Class ajaxProducto {
 	public function crearProducto(){
 		$datos = array(	
 						"producto"=>$this->producto,
-						"tipoproducto"=>$this->tipoproducto,
+						"cantidad"=>$this->cantidad,
+						"precio"=>$this->precio,
 					);
-
 		$respuesta = ControllerProductos::CrearProductos($datos);
 		echo $respuesta;
 	}
@@ -39,11 +39,9 @@ Class ajaxProducto {
 $tipoOperacion = $_POST["tipoOperacion"];
 if($tipoOperacion == "insertarProducto") {
 	$crearNuevoProducto = new ajaxProducto();
-
-
 	$crearNuevoProducto ->	producto   = $_POST["producto"];
-	$crearNuevoProducto ->	tipoproducto   = $_POST["tipoproducto"];
-
+	$crearNuevoProducto ->	cantidad   = $_POST["cantidad"];
+	$crearNuevoProducto ->	precio   = $_POST["precio"];
 	$crearNuevoProducto ->crearProducto();
 }	
 
@@ -52,7 +50,8 @@ if ($tipoOperacion == "editarProducto") {
 	$editarProducto = new ajaxProducto();
 	$editarProducto ->	id   = $_POST["id"];
 	$editarProducto ->	producto   = $_POST["producto"];
-	$editarProducto ->	tipoproducto   = $_POST["tipoproducto"];
+	$editarProducto ->	cantidad   = $_POST["cantidad"];
+	$editarProducto ->	precio   = $_POST["precio"];
 	$editarProducto ->	editarProducto();
 }
 if ($tipoOperacion == "eliminarProducto") {

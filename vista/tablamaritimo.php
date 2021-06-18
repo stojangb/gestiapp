@@ -3,31 +3,36 @@ require_once "../controlador/articulos.controller.php";
 require_once "../modelo/articulo.modelo.php";
 ?>
 <style type="text/css">
-@media screen and (max-width: 600px) {
-       table {
-           width:100%;
-       }
-       thead {
-           display: none;
-       }
-       tr:nth-of-type(2n) {
-           background-color: inherit;
-       }
-       tr td:first-child {
-           background: #f0f0f0;
-           font-weight:bold;
-           font-size:1.3em;
-       }
-       tbody td {
-           display: block;
-           text-align:center;
-       }
-       tbody td:before {
-           content: attr(data-th);
-           display: block;
-           text-align:center;
-       }
-}
+    @media screen and (max-width: 600px) {
+        table {
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr:nth-of-type(2n) {
+            background-color: inherit;
+        }
+
+        tr td:first-child {
+            background: #f0f0f0;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        tbody td {
+            display: block;
+            text-align: center;
+        }
+
+        tbody td:before {
+            content: attr(data-th);
+            display: block;
+            text-align: center;
+        }
+    }
 </style>
 <script type="text/javascript">
     $('.display').dataTable();
@@ -35,47 +40,47 @@ require_once "../modelo/articulo.modelo.php";
 
 <div class="card shadow mb-4 reload">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Marítimos</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Productos</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered display" id="tablaproductos1" width="100%" cellspacing="0">
                 <thead>
-                <tr>
-                      <th>Nombre</th>
-                      <th>Cantidad</th>
-                      <th>Precio</th>
-                      <th>Acciones</th>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $matrizMaritimo = ControllerArticulos::listarArticulos($_POST["id"]);
-                    foreach ($matrizMaritimo as $registroMaritimo) {
+                   $matrizMaritimo = ControllerArticulos::listarArticulos($_POST["id"]);
+                   foreach ($matrizMaritimo as $registroMaritimo) {
                     ?>
                         <tr>
                             <td><?php echo $registroMaritimo["nombre"] ?></td>
                             <td><?php echo $registroMaritimo["cantidad"] ?></td>
                             <td><?php echo $registroMaritimo["precio"] ?></td>
                             <td>
-                                <div style="text-align: center;">
+<!--                                 <div style="text-align: center;">
                                     <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificarMaritimo(this.id)" value="Editar" name="enviar" id="                 
                                    <?php
-                                    error_reporting(0);
+                     /*                error_reporting(0);
                                     echo 'idcode:', $registroMaritimo["id"],  ':idcode certificadocode:', $registroMaritimo["certificado"], ':certificadocode idbarcazacode:', $registroMaritimo["objmarid"],  ':idbarcazacode vueltafalsacode:', $registroMaritimo["vueltafalsa"], ':vueltafalsacode',
-                                        $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
+                                    $matrizTipoTrabajo = ControllerEmpresas::listarTipoDeTrabajoPorIdPadre($registroMaritimo["id"]);
                                     echo 'tipocode:';
                                     foreach ($matrizTipoTrabajo as $registro3) {
                                         echo $registro3["id"], ',';
                                     }
-                                    echo ':tipocode';
+                                    echo ':tipocode'; */
                                     ?>" class="btn btn-outline-warning">
                                     <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrarMaritimo(this.id)" value="Borrar" name="borrar" id="<?php echo $registroMaritimo["id"] ?>" class="borrar-id btn btn-outline-danger">
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                     <?php
-                    }
+                   }
                     ?>
                 </tbody>
             </table>
