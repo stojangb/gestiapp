@@ -18,6 +18,7 @@
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nombre abreviado</label>
                 <input type="text" required name="nombre" class="form-control" id="idNombreAbreviado" placeholder="Nombre abreviado">
+                <input type="text" class="form-control" id="idId" hidden>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Razón social</label>
@@ -27,11 +28,11 @@
             <div class="col-lg-2">
               <div class="form-group">
                 <label for="exampleFormControlInput1">Rut</label>
-                <input type="text" placeholder="Ingrese RUT" value=""  name="rut" class="form-control" id="idRut">
+                <input type="text" placeholder="Ingrese RUT" value=""  class="form-control" id="idRut">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Giro</label>
-                <input type="text" placeholder="Ingrese giro" value="" name="rut" class="form-control" id="idGiro">
+                <input type="text" placeholder="Ingrese giro" value="" class="form-control" id="idGiro">
               </div>
             </div>
           </div>

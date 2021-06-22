@@ -75,7 +75,7 @@
                   <form id="formulario" onsubmit="return false" method="POST">
                     <div class="form-group" style="display: none">
                       <!--  ID solo para uso BD -->
-                      <input type="text" name="id" class="form-control" id="idId" placeholder="Nombre">
+                      <input type="text" class="form-control" id="idId">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Nombre cliente</label>
@@ -104,7 +104,6 @@
                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Forma de pago</label>
                       <select id="idFormaPago" class="form-control">
-                        <option value="">Seleccionar</option>
                         <?php
                         $matrizClientes = ControllerClientes::listarFormaPago();
                         foreach ($matrizClientes as $registro) {
@@ -119,7 +118,6 @@
                      <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Banco</label>
                       <select id="idBanco" class="form-control" name="nameCliente">
-                        <option value="">Seleccionar</option>
                         <?php
                         $matrizClientes = ControllerClientes::listarBancos();
                         foreach ($matrizClientes as $registro) {
@@ -134,7 +132,6 @@
                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Tipo de cuenta</label>
                       <select id="idTipoCuenta" class="form-control">
-                        <option value="">Seleccionar</option>
                         <?php
                         $matrizClientes = ControllerClientes::listarTipoCuenta();
                         foreach ($matrizClientes as $registro) {
@@ -223,7 +220,7 @@
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" data-toggle="modal" data-target="#exampleModal" type="submit" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                      <?php echo 'idcode:', $registro["clientes.id"], ':idcode nombreContactocode:',  $registro["nombreContacto"], ':nombreContactocode nombreEmpresacode:',  $registro["nombreEmpresa"], ':nombreEmpresacode rutcode:', $registro["rut"], ':rutcode correocode:', $registro["correo"], ':correocode telefonocode:', $registro["telefono"], ':telefonocode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                            <?php echo 'idcode:', $registro["id"], ':idcode idtipocuentacode:',  $registro["id_tipo_cuenta"], ':idtipocuentacode idbancocode:',  $registro["id_banco"], ':idbancocode idformapagocode:',  $registro["id_forma_pago"], ':idformapagocode ncuentacode:',  $registro["n_cuenta"], ':ncuentacode direccioncode:',  $registro["direccion"], ':direccioncode nombreContactocode:',  $registro["nombre_completo"], ':nombreContactocode rutcode:', $registro["rut"], ':rutcode correocode:', $registro["correo"], ':correocode telefonocode:', $registro["telefono"], ':telefonocode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="submit" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                           </div>
                         </td>

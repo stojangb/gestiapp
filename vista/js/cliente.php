@@ -64,10 +64,30 @@
     var fin_telefono = cadena.indexOf(":telefonocode");
     var telefono = cadena.substring(inicio_telefono, fin_telefono);
 
-    //Obteniendo valor del Tipo
-    var inicio_nombreEmpresa = cadena.indexOf("nombreEmpresacode:") + 18;
-    var fin_nombreEmpresa = cadena.indexOf(":nombreEmpresacode");
-    var nombreEmpresa = cadena.substring(inicio_nombreEmpresa, fin_nombreEmpresa);
+    //Obteniendo valor de direccion
+    var inicio_direccion = cadena.indexOf("direccioncode:") + 14;
+    var fin_direccion = cadena.indexOf(":direccioncode");
+    var direccion = cadena.substring(inicio_direccion, fin_direccion);
+
+    //Obteniendo valor de ncuenta
+    var inicio_ncuenta = cadena.indexOf("ncuentacode:") + 12;
+    var fin_ncuenta = cadena.indexOf(":ncuentacode");
+    var ncuenta = cadena.substring(inicio_ncuenta, fin_ncuenta);
+
+    //Obteniendo valor de formaPago
+    var inicio_forma_pago = cadena.indexOf("idformapagocode:") + 16;
+    var fin_forma_pago = cadena.indexOf(":idformapagocode");
+    var forma_pago = cadena.substring(inicio_forma_pago, fin_forma_pago);
+
+    //Obteniendo valor de banco
+    var inicio_banco = cadena.indexOf("idbancocode:") + 12;
+    var fin_banco = cadena.indexOf(":idbancocode");
+    var banco = cadena.substring(inicio_banco, fin_banco);
+
+    //Obteniendo valor del TipoDeCuenta
+    var inicio_tipocuenta = cadena.indexOf("idtipocuentacode:") + 17;
+    var fin_tipocuenta = cadena.indexOf(":idtipocuentacode");
+    var tipocuenta = cadena.substring(inicio_tipocuenta, fin_tipocuenta);
 
     //Obteniendo detalle
     var inicio_detalle = cadena.indexOf("detallescode:") + 13;
@@ -76,8 +96,12 @@
 
     //Redireccionando  Valores a formulario.
     $('#idId').val(id);
-    $('#idNombreContacto').val(nombreContacto);
-    $('#idNombreEmpresa').val(nombreEmpresa);
+    $('#idNombreCliente').val(nombreContacto);
+    $('#idDireccion').val(direccion);
+    $('#idNCuenta').val(ncuenta);
+    $('#idTipoCuenta').val(tipocuenta);
+    $('#idBanco').val(banco);
+    $('#idFormaPago').val(forma_pago);
     $('#idRut').val(rut);
     $('#idCorreo').val(correo);
     $('#idTelefono').val(telefono);
@@ -135,46 +159,49 @@
   })
 
   $('#editar').click(function(e) {
-    var nombreEmpresa = $('#idNombreEmpresa').val();
     var rut = $('#idRut').val();
     //Validación de campos vacios.
-    if (nombreEmpresa == "") {} else {
+    // if (rut == "" || rut == "-") {} else {  if (rutValido == true) {
+          var datosAgregar = new FormData();
+          datosAgregar.append("tipoOperacion", "editarCliente");
+          var id = $('#idId').val();
+          var nombreCliente = $('#idNombreCliente').val();
+          var rut = $('#idRut').val();
+          var correo = $('#idCorreo').val();
+          var telefono = $('#idTelefono').val();
+          var detalles = $('#idDetalle').val();
+          var direccion = $('#idDireccion').val();
+          var formaPago = $('#idFormaPago').val();
+          var banco = $('#idBanco').val();
+          var tipoCuenta = $('#idTipoCuenta').val();
+          var nCuenta = $('#idNCuenta').val();
 
-      var datosEditar = new FormData();
-      datosEditar.append("tipoOperacion", "editarCliente");
-      var id = $('#idId').val();
-      var nombreContacto = $('#idNombreContacto').val();
-      var correo = $('#idCorreo').val();
-      var telefono = $('#idTelefono').val();
-      var detalles = $('#idDetalle').val();
-
-      datosEditar.append("id", id);
-      datosEditar.append("nombreContacto", nombreContacto);
-      datosEditar.append("nombreEmpresa", nombreEmpresa);
-      datosEditar.append("rut", rut);
-      datosEditar.append("correo", correo);
-      datosEditar.append("telefono", telefono);
-      datosEditar.append("detalles", detalles);
-
-      $.ajax({
-        url: 'ajax/ajaxCliente.php',
-        type: 'POST',
-        data: datosEditar,
-        processData: false,
-        contentType: false,
-        success: function(res) {
-          $("#recargar1").load(location.href + " #recargar1");
-          $('#exampleModal').modal("hide");
-          $('#exampleModalCenterEditar').modal("show");
-          $("#editar").hide();
-          $("#enviar").show();
-          $("#cancelar").hide();
-          $("#textoModal").text("Agregar Cliente");
-          limpiarFormulario();
-        }
-      });
-    }
-
+          datosAgregar.append("id", id);
+          datosAgregar.append("nombreCliente", nombreCliente);
+          datosAgregar.append("rut", rut);
+          datosAgregar.append("correo", correo);
+          datosAgregar.append("telefono", telefono);
+          datosAgregar.append("detalles", detalles);
+          datosAgregar.append("direccion", direccion);
+          datosAgregar.append("formaPago", formaPago);
+          datosAgregar.append("banco", banco);
+          datosAgregar.append("tipoCuenta", tipoCuenta);
+          datosAgregar.append("nCuenta", nCuenta);
+          $.ajax({
+            url: 'ajax/ajaxCliente.php',
+            type: 'POST',
+            data: datosAgregar,
+            processData: false,
+            contentType: false,
+            success: function(res) {
+              alert(res);
+              $("#recargar1").load(location.href + " #recargar1");
+              limpiarFormulario();
+            //  $('#exampleModalCenter').modal("show");
+              $('#exampleModal').modal("hide");
+            }
+          });
+  //  }}
   });
 
   function limpiarFormulario() {
@@ -188,7 +215,6 @@
     $("#cancelar").hide();
     $("#textoModal").text("Agregar Cliente");
   });
-
 
   $('#cancelar').click(function() {
     limpiarFormulario();

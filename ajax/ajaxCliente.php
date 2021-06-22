@@ -18,17 +18,19 @@ Class ajaxCliente {
 		$respuesta = ControllerClientes::CrearClientes($datos);
 		echo $respuesta;
 	}
-
 	public function editarCliente(){
 		$datos = array(	
 						"id"=>$this->id,
-						"nombreContacto"=>$this->nombreContacto,
-						"nombreEmpresa"=>$this->nombreEmpresa,
+						"nombreCliente"=>$this->nombreCliente,
 						"rut"=>$this->rut,
 						"correo"=>$this->correo,
 						"telefono"=>$this->telefono,
-						"tipo"=>$this->tipo,
 						"detalles"=>$this->detalles,
+						"direccion"=>$this->direccion,
+						"formaPago"=>$this->formaPago,
+						"banco"=>$this->banco,
+						"tipoCuenta"=>$this->tipoCuenta,
+						"nCuenta"=>$this->nCuenta,
 					);
 		$respuesta = ControllerClientes::EditarClientes($datos);
 		echo $respuesta;
@@ -40,21 +42,6 @@ Class ajaxCliente {
 	}
 }
 $tipoOperacion = $_POST["tipoOperacion"];
-
-
-/* 						"nombreCliente    "=>$this->nombreCliente,
-						"rut			  "=>$this->rut,
-						"correo			  "=>$this->correo,
-						"telefono		  "=>$this->telefono,
-						"detalles		  "=>$this->detalles,
-						"direccion		  "=>$this->direccion,
-						"formaPago		  "=>$this->formaPago,
-						"banco			  "=>$this->banco,
-						"tipoCuenta		  "=>$this->tipoCuenta,
-						"nCuenta		  "=>$this->nCuenta, */
-
-
-
 if($tipoOperacion == "insertarCliente") {
 	$crearNuevoCliente = new ajaxCliente();
 	$crearNuevoCliente ->	nombreCliente    = $_POST["nombreCliente"];
@@ -72,14 +59,17 @@ if($tipoOperacion == "insertarCliente") {
 
 if ($tipoOperacion == "editarCliente") {
 	$editarCliente = new ajaxCliente();
-	$editarCliente ->	id   = $_POST["id"];
-	$editarCliente ->	nombreEmpresa   = $_POST["nombreEmpresa"];
-	$editarCliente ->	nombreContacto   = $_POST["nombreContacto"];
-	$editarCliente ->	rut      = $_POST["rut"];
-	$editarCliente ->	correo   = $_POST["correo"];
-	$editarCliente ->	telefono  = $_POST["telefono"];
-	$editarCliente ->	tipo      = $_POST["tipo"];
-	$editarCliente ->	detalles  = $_POST["detalles"];
+	$editarCliente ->	id               = $_POST["id"];
+	$editarCliente ->	nombreCliente    = $_POST["nombreCliente"];
+	$editarCliente ->	rut      		 = $_POST["rut"];
+	$editarCliente ->	correo           = $_POST["correo"];
+	$editarCliente ->	telefono  		 = $_POST["telefono"];
+	$editarCliente ->	detalles  		 = $_POST["detalles"];
+	$editarCliente ->	direccion  		 = $_POST["direccion"];
+	$editarCliente ->	formaPago  		 = $_POST["formaPago"];
+	$editarCliente ->	banco  		     = $_POST["banco"];
+	$editarCliente ->	tipoCuenta       = $_POST["tipoCuenta"];
+	$editarCliente ->	nCuenta  		 = $_POST["nCuenta"];
 	$editarCliente ->	editarCliente();
 }
 

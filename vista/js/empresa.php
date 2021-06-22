@@ -28,31 +28,43 @@
         }
     }
 
-
     function reply_clickModificar(clicked_id) {
         var cadena = clicked_id;
+
         //Obteniendo valor de Id
         var inicio_id = cadena.indexOf("idcode:") + 7;
         var fin_id = cadena.indexOf(":idcode");
         var id = cadena.substring(inicio_id, fin_id);
 
-        //Obteniendo detalle
-        var inicio_detalle = cadena.indexOf("detallescode:") + 13;
-        var fin_detalle = cadena.indexOf(":detallescode");
-        var detalle = cadena.substring(inicio_detalle, fin_detalle);
-
-        //Obteniendo fecha
-        var inicio_fecha = cadena.indexOf("fechacode:") + 10;
-        var fin_fecha = cadena.indexOf(":fechacode");
-        var fecha = cadena.substring(inicio_fecha, fin_fecha);
+        //Obteniendo valor de nombre_abreviado
+        var inicio_nombre_abreviado = cadena.indexOf("nombre_abreviadocode:") + 7;
+        var fin_nombre_abreviado = cadena.indexOf(":nombre_abreviadocode");
+        var nombre_abreviado = cadena.substring(inicio_nombre_abreviado, fin_nombre_abreviado);
+        
+        //Obteniendo valor de razon_social
+        var inicio_razon_social = cadena.indexOf("razon_socialcode:") + 7;
+        var fin_razon_social = cadena.indexOf(":razon_socialcode");
+        var razon_social = cadena.substring(inicio_razon_social, fin_razon_social);
+        
+        //Obteniendo valor de rut
+        var inicio_rut = cadena.indexOf("rutcode:") + 7;
+        var fin_rut = cadena.indexOf(":rutcode");
+        var rut = cadena.substring(inicio_rut, fin_rut);
+       
+        //Obteniendo valor de giro
+        var inicio_giro = cadena.indexOf("girocode:") + 7;
+        var fin_giro = cadena.indexOf(":girocode");
+        var giro = cadena.substring(inicio_giro, fin_giro);
 
         //Redireccionando  Valores a formulario.
         $('#idId').val(id);
-        $('#idDetalles').val(detalle);
-        $('#idDate').val(fecha);
+        $('#idRut').val(rut);
+        $('#idRazonSocial').val(razon_social);
+        $('#idNombreAbreviado').val(nombre_abreviado);
+        $('#idGiro').val(giro);
         //Mostrar / Ocultar botón
         $("#editar").show();
-        $("#idAgregarServicio").hide();
+        $("#idAgregar").hide();
         $("#cancelar").show();
         $("#clienteVista").hide();
         $("#lugarVista").hide();
@@ -98,7 +110,7 @@
         }
         $('#cancelar').click(function() {
             $("#editar").hide();
-            $("#idAgregarServicio").show();
+            $("#idAgregar").show();
             $("#cancelar").hide();
             $("#clienteVista").show();
             $("#lugarVista").show();
