@@ -89,7 +89,7 @@
                           <div style="text-align: center;">
                             <!-- Botón editar -->
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                            <?php echo 'idcode:', $registro["id"], ':idcode fechacode:',  $registro["fecha"], ':fechacode clientecode:', $registro["rut"], ':clientecode  lugarcode:', $registro["lugar"], ':lugarcode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                            <?php echo 'idcode:', $registro["id"], ':idcode nombre_abreviadocode:',  $registro["nombre_abreviado"], ':nombre_abreviadocode rutcode:', $registro["rut"], ':rutcode  razon_socialcode:', $registro["razon_social"], ':razon_socialcode girocode:', $registro["giro"], ':girocode' ?>" class="btn btn-outline-warning">
                             <!-- Botón Borrar -->
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                             <!-- FORMULARIO POST ENVIO ID -->

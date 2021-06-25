@@ -5,9 +5,11 @@
     $("#clienteVista").show();
     $("#lugarVista").show();
 
-    $('#dataTable2').DataTable( {
-        "order": [[ 0, "desc" ]]
-    } );
+    $('#dataTable2').DataTable({
+        "order": [
+            [0, "desc"]
+        ]
+    });
 
     function reply_clickBorrar(id) {
         confirmar = confirm('¿Estás seguro de eliminar esta empresa?, Todos los datos que contiene también se eliminaran.');
@@ -37,22 +39,22 @@
         var id = cadena.substring(inicio_id, fin_id);
 
         //Obteniendo valor de nombre_abreviado
-        var inicio_nombre_abreviado = cadena.indexOf("nombre_abreviadocode:") + 7;
+        var inicio_nombre_abreviado = cadena.indexOf("nombre_abreviadocode:") + 21;
         var fin_nombre_abreviado = cadena.indexOf(":nombre_abreviadocode");
         var nombre_abreviado = cadena.substring(inicio_nombre_abreviado, fin_nombre_abreviado);
-        
+
         //Obteniendo valor de razon_social
-        var inicio_razon_social = cadena.indexOf("razon_socialcode:") + 7;
+        var inicio_razon_social = cadena.indexOf("razon_socialcode:") + 17;
         var fin_razon_social = cadena.indexOf(":razon_socialcode");
         var razon_social = cadena.substring(inicio_razon_social, fin_razon_social);
-        
+
         //Obteniendo valor de rut
-        var inicio_rut = cadena.indexOf("rutcode:") + 7;
+        var inicio_rut = cadena.indexOf("rutcode:") + 8;
         var fin_rut = cadena.indexOf(":rutcode");
         var rut = cadena.substring(inicio_rut, fin_rut);
-       
+
         //Obteniendo valor de giro
-        var inicio_giro = cadena.indexOf("girocode:") + 7;
+        var inicio_giro = cadena.indexOf("girocode:") + 9;
         var fin_giro = cadena.indexOf(":girocode");
         var giro = cadena.substring(inicio_giro, fin_giro);
 
@@ -71,7 +73,6 @@
     }
 
     $(document).ready(function() {
-
         $("#idAgregar").click(function(e) {
             e.preventDefault();
             var nombre = $('#idNombreAbreviado').val();
@@ -108,31 +109,37 @@
         function limpiarFormulario() {
             document.getElementById("formulario").reset();
         }
+
         $('#cancelar').click(function() {
             $("#editar").hide();
             $("#idAgregar").show();
             $("#cancelar").hide();
             $("#clienteVista").show();
             $("#lugarVista").show();
-            $('#idDetalles').val("");
-            $('#idLugar').val("");
-            $('#idCliente').val("");
-
+            $('#idRazonSocial').val("");
+            $('#idNombreAbreviado').val("");
+            $('#idRut').val("");
+            $('#idGiro').val("");
         });
-        $('#editar').click(function(e) {
-            var fecha = $('#idDate').val();   
-            var detalles = $('#idDetalles').val();
-            if (detalles == "" || fecha == "") {
-                alert("Campo Vacío detectado");
-            }else{
 
-            
-                var id = $('#idId').val();
-                var datosAgregar = new FormData();
-                datosAgregar.append("detalles", detalles);
-                datosAgregar.append("fecha", fecha);
+        $('#editar').click(function(e) {
+            e.preventDefault();
+            var nombre = $('#idNombreAbreviado').val();
+            var razonSocial = $('#idRazonSocial').val();
+            var rut = $('#idRut').val();
+            var giro = $('#idGiro').val();
+            var id = $('#idId').val();
+            if (nombre == "" || razonSocial == "" || rut == "" || giro == "") {
+                alert("Campo Vacío detectado.");
+            } else {
+                var datosAgregar = new FormData(); 
+                datosAgregar.append("tipoOperacion", "editarEmpresa");
                 datosAgregar.append("id", id);
-                datosAgregar.append("tipoOperacion", "editarServicio");
+                datosAgregar.append("nombre", nombre);
+                datosAgregar.append("razonSocial", razonSocial);
+                datosAgregar.append("rut", rut);
+                datosAgregar.append("giro", giro);
+             
                 $.ajax({
                     url: 'ajax/ajaxEmpresas.php',
                     type: 'POST',
@@ -141,19 +148,21 @@
                     contentType: false,
                     success: function(res) {
                         $("#recargar1").load(location.href + " #recargar1");
-                        $('#idDetalles').val("");
-                        $('#idDetalles').val("");
-                        $('#idLugar').val("");
-                        $('#idCliente').val("");
+                        $('#idNombreAbreviado').val("");
+                        $('#idRazonSocial').val("");
+                        $('#idRut').val("");
+                        $('#idGiro').val("");
                         $('#ModalEditar').modal("show");
                     }
                 });
-                $("#editar").hide();
-                $("#idAgregarServicio").show();
-                $("#cancelar").hide();
-                $("#clienteVista").show();
-                $("#lugarVista").show();
-            }
+          
+
+            $("#editar").hide();
+            $("#idAgregar").show();
+            $("#cancelar").hide();
+            $("#clienteVista").show();
+            $("#lugarVista").show();
+              }
         });
     });
 </script>

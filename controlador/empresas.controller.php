@@ -128,8 +128,8 @@ Class ControllerEmpresas{
         return $respuesta;
     }
     //Editar
-    public static function EditarServicios($datos) {
-	    $respuesta = ModeloEmpresas::EditarServicio($datos);
+    public static function EditarEmpresas($datos) {
+	    $respuesta = ModeloEmpresas::EditarEmpresa($datos);
 		return $respuesta;
     }
     public static function EditarMaritimos($datos) {

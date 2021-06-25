@@ -145,14 +145,16 @@ class ajaxEmpresa
 	}
 
 	//Editar
-	public function editarServicio()
+	public function editarEmpresa()
 	{
 		$datos = array(
 			"id" => $this->id,
-			"detalles" => $this->detalles,
-			"fecha" => $this->fecha,
+			"nombre" => $this->nombre,
+			"razonSocial" => $this->razonSocial,
+			"rut" => $this->rut,
+			"giro" => $this->giro,
 		);
-		$respuesta = ControllerEmpresas::EditarServicios($datos);
+		$respuesta = ControllerEmpresas::EditarEmpresas($datos);
 		echo $respuesta;
 	}
 	//Eliminar
@@ -320,12 +322,14 @@ if ($tipoOperacion == "listarTiposDeTrabajoPorIdServicio") {
 	$listarProducto->listarTiposDeTrabajoPorIdServicio();
 }
 //Editar
-if ($tipoOperacion == "editarServicio") {
+if ($tipoOperacion == "editarEmpresa") {
 	$editarServicio = new ajaxEmpresa();
 	$editarServicio->id  	   = $_POST["id"];
-	$editarServicio->fecha     = $_POST["fecha"];
-	$editarServicio->detalles  = $_POST["detalles"];
-	$editarServicio->editarServicio();
+	$editarServicio->nombre      = $_POST['nombre'];
+	$editarServicio->razonSocial = $_POST["razonSocial"];
+	$editarServicio->rut      = $_POST["rut"];
+	$editarServicio->giro     = $_POST["giro"];
+	$editarServicio->editarEmpresa();
 }
 //Borrar
 if ($tipoOperacion == "eliminarEmpresa") {

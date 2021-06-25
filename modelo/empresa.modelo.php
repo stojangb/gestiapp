@@ -383,12 +383,14 @@ class ModeloEmpresas
     }
 
     //Actualizar 
-    static public function EditarServicio($datos)
+    static public function EditarEmpresa($datos)
     {
-        $sql = DB::conexion()->prepare("UPDATE servicios SET detalles=:detalles, fecha=:fecha WHERE idservicios=:id");
+        $sql = DB::conexion()->prepare("UPDATE empresas_usuario SET nombre_abreviado=:nombre_abreviado, razon_social=:razon_social, rut=:rut, giro=:giro WHERE id=:id");
         $sql->bindParam(":id", $datos["id"], PDO::PARAM_STR);
-        $sql->bindParam(":detalles", $datos["detalles"], PDO::PARAM_STR);
-        $sql->bindParam(":fecha", $datos["fecha"], PDO::PARAM_STR);
+        $sql->bindParam(":nombre_abreviado", $datos["nombre"], PDO::PARAM_STR);
+        $sql->bindParam(":razon_social", $datos["razonSocial"], PDO::PARAM_STR);
+        $sql->bindParam(":rut", $datos["rut"], PDO::PARAM_STR);
+        $sql->bindParam(":giro", $datos["giro"], PDO::PARAM_STR);
 
         if ($sql->execute()) {
             return "ok";
