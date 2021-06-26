@@ -156,7 +156,6 @@
                     }
                 });
           
-
             $("#editar").hide();
             $("#idAgregar").show();
             $("#cancelar").hide();

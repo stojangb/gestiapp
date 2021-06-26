@@ -6,8 +6,8 @@ Class ControllerArticulos{
         return $respuesta;
     }
     //Listar
-    public static function listarArticulos(){
-        $respuesta = ModeloArticulos::listarArticulos();
+    public static function listarArticulos($id){
+        $respuesta = ModeloArticulos::listarArticulos($id);
         return $respuesta;
     }
     public static function listarCertificados2Meses(){

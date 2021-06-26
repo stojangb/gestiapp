@@ -16,9 +16,9 @@ class ModeloArticulos
         }
     }
     //Listar
-    static public function listarArticulos()
+    static public function listarArticulos($id)
     {
-        $sql = DB::conexion()->prepare("SELECT id, nombre, cantidad, precio FROM productos");
+        $sql = DB::conexion()->prepare("SELECT id, nombre, cantidad, precio FROM productos where id_empresa = $id");
         $sql->execute();
         return $sql->fetchAll();
     }

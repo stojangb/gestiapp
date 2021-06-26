@@ -99,7 +99,7 @@
                       <label for="exampleFormControlInput1">Teléfono</label>
                       <input type="text" name="telefono" class="form-control" id="idTelefono" placeholder="+569 88888888">
                     </div>
-                
+
 
                     <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Forma de pago</label>
@@ -109,13 +109,13 @@
                         foreach ($matrizClientes as $registro) {
                         ?>
                           <option value="<?php echo $registro["id"] ?>">
-                            <?php echo $registro["nombre"];?> </option>
+                            <?php echo $registro["nombre"]; ?> </option>
                         <?php
                         }
                         ?>
                       </select>
-                    </div>   
-                     <div class="form-group">
+                    </div>
+                    <div class="form-group">
                       <label class="" for="exampleFormControlSelect1">Banco</label>
                       <select id="idBanco" class="form-control" name="nameCliente">
                         <?php
@@ -123,7 +123,7 @@
                         foreach ($matrizClientes as $registro) {
                         ?>
                           <option value="<?php echo $registro["id"] ?>">
-                            <?php echo $registro["nombre"];?> </option>
+                            <?php echo $registro["nombre"]; ?> </option>
                         <?php
                         }
                         ?>
@@ -215,7 +215,7 @@
                         <td><?php echo $registro["forma_pago"] ?></td>
                         <td><?php echo $registro["tipo_cuenta"] ?></td>
                         <td><?php echo $registro["nombre_banco"] ?></td>
-                        <td><?php echo $registro["n_cuenta"] ?></td>                   
+                        <td><?php echo $registro["n_cuenta"] ?></td>
                         <td><?php echo $registro["detalles"] ?></td>
                         <td>
                           <div style="text-align: center;">

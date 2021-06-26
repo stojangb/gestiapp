@@ -21,11 +21,6 @@ Class ControllerProductos{
         $respuesta = ModeloProductos::listarProductoTerrestrePanel();
         return $respuesta;
     }
-    public static function listarProductosPorTipo($datos){
-        $tabla = "productos";
-        $respuesta = ModeloProductos::listarProductoPorTipo($tabla, $datos);
-        return $respuesta;
-    }
 
     static public function CrearProductos($datos) {
 		$respuesta = ModeloProductos::CrearProducto($datos);
@@ -35,8 +30,7 @@ Class ControllerProductos{
     //Listar
     static public function EditarProductos($datos)
     {
-      $tablaname = "productos";
-      $respuesta = ModeloProductos::EditarProducto($tablaname, $datos);
+      $respuesta = ModeloProductos::EditarProducto($datos);
       return $respuesta;
     }
   

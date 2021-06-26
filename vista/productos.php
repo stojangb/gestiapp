@@ -87,7 +87,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
                   <div class="col-sm-3">
                     <form id="id-formulario-editar-maritim">
                       <div id="AgregarNuevoProductoMaritimo2" name="AgregarNuevoProductoMaritimo2"></div>
-                      <input type="submit" name="editar" value="Editar" id="editarMaritimo" class="btn btn-outline-warning">
+                      <input type="button" name="editar" value="Editar" id="idEditarProducto" class="btn btn-outline-warning">
                       <input type="button" value="Cancelar" name="cancelar" id="cancelarMaritimo" class="btn btn-outline-danger">
                     </form>
                   </div>
@@ -100,7 +100,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
               </div>
             </div>
             </div>
-            <!-- AQUÏ CAMBIA DE ITEM  -->
+            <!-- AQUÏ CAMBIA DE ITEM  A VENTAS-->
             <div class="collapse" id="collapseTerrestre">
               <div class="card card-body">
                 <div style="background-color: #f8f9fc; " class="container">
@@ -109,11 +109,21 @@ $_SESSION['iid'] = $_POST["id"] ?>
                     <div class="row">
                       <div class="col-sm-4">
                         <div class="form-group">
-                          <label for="exampleFormControlTextarea1">Número de certificado</label>
-                          <input type="number" required value="" class="form-control" name="" id="certificadoTerrestre" placeholder="Número">
-                          <input value="" name="idIdTerrestre" id="idIdTerrestre" hidden>
+                          <label class="" for="exampleFormControlSelect1">Banco</label>
+                          <select id="idBanco" class="form-control" name="nameCliente">
+                            <?php
+                            $matrizClientes = ControllerClientes::listarBancos();
+                            foreach ($matrizClientes as $registro) {
+                            ?>
+                              <option value="<?php echo $registro["id"] ?>">
+                                <?php echo $registro["nombre"]; ?> </option>
+                            <?php
+                            }
+                            ?>
+                          </select>
                         </div>
                       </div>
+                      
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label for="exampleFormControlSelect1">Producto a sanitizar</label>

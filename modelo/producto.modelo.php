@@ -41,7 +41,8 @@ class ModeloProductos
     }
     static public function CrearProducto($datos)
     {
-        $sql = DB::conexion()->prepare("INSERT INTO productos (nombre,cantidad,precio) VALUES (:nombre,:cantidad,:precio)");
+        $sql = DB::conexion()->prepare("INSERT INTO productos (nombre,cantidad,precio,id_empresa) VALUES (:nombre,:cantidad,:precio,:id_empresa)");
+        $sql->bindParam(":id_empresa", $datos["idServicio"], PDO::PARAM_STR);
         $sql->bindParam(":nombre", $datos["producto"], PDO::PARAM_STR);
         $sql->bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
         $sql->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
@@ -61,12 +62,13 @@ class ModeloProductos
             return "error";
         }
     }
-    static public function EditarProducto($tabla, $datos)
+    static public function EditarProducto($datos)
     {
-        $sql = DB::conexion()->prepare("UPDATE productos SET productos=:productos,tipoproducto=:tipoproducto WHERE id=:id");
+        $sql = DB::conexion()->prepare("UPDATE productos SET nombre=:nombre, cantidad=:cantidad, precio=:precio WHERE id=:id");
         $sql->bindParam(":id", $datos["id"], PDO::PARAM_STR);
-        $sql->bindParam(":productos", $datos["producto"], PDO::PARAM_STR);
-        $sql->bindParam(":tipoproducto", $datos["tipoproducto"], PDO::PARAM_STR);
+        $sql->bindParam(":nombre", $datos["producto"], PDO::PARAM_STR);
+        $sql->bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
+        $sql->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
         if ($sql->execute()) {
             return "ok";
         } else {
