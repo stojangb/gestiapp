@@ -6,7 +6,7 @@ class ModeloNotas
     static public function CrearNota($datos)
     {
         $sql = DB::conexion()->prepare("INSERT INTO notas(nombre,detalles,recordatorio,id_cliente) 
-        VALUES (:nombreNota,:detalles,:recor,:id_cliente)");
+        VALUES (:nombreNota,:detalles,:id_fecha_hora,:id_cliente)");
         $sql->bindParam(":nombreNota", $datos["nombreNota"], PDO::PARAM_STR);
         $sql->bindParam(":detalles", $datos["detalles"], PDO::PARAM_STR);
         $sql->bindParam(":id_fecha_hora", $datos["id_fecha_hora"], PDO::PARAM_STR);
@@ -21,7 +21,7 @@ class ModeloNotas
     //Listar
     static public function listarNota()
     {
-        $sql = DB::conexion()->prepare("SELECT notas.id, notas.nombre, notas.detalles, notas.recordatorio, clientes.nombre_completo FROM notas inner join clientes on notas.id_cliente = clientes.id");
+        $sql = DB::conexion()->prepare("SELECT notas.id, notas.nombre, notas.detalles, notas.recordatorio, notas.fecha, clientes.nombre_completo, clientes.id as idcliente FROM notas inner join clientes on notas.id_cliente = clientes.id");
         $sql->execute();
         return $sql->fetchAll();
     }

@@ -111,7 +111,6 @@
           </div>
           <br>
           <br>
-
           <?php require_once "js/notas.php"; ?>
           <div id="recargar1" class="card shadow mb-4">
             <div class="card-header py-3">
@@ -154,7 +153,7 @@
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" data-toggle="modal" data-target="#exampleModal" type="submit" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                            <?php echo 'idcode:', $registro["id"], ':idcode idtipocuentacode:',  $registro["id_tipo_cuenta"], ':idtipocuentacode idbancocode:',  $registro["id_banco"], ':idbancocode idformapagocode:',  $registro["id_forma_pago"], ':idformapagocode ncuentacode:',  $registro["n_cuenta"], ':ncuentacode direccioncode:',  $registro["direccion"], ':direccioncode nombreContactocode:',  $registro["nombre_completo"], ':nombreContactocode rutcode:', $registro["rut"], ':rutcode correocode:', $registro["correo"], ':correocode telefonocode:', $registro["telefono"], ':telefonocode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                            <?php echo 'idcode:', $registro["id"], ':idcode idnombrecode:',  $registro["nombre"], ':idnombrecode idrecordatoriocode:',  $registro["recordatorio"], ':idrecordatoriocode idclientecode:',  $registro["idcliente"], ':idclientecode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="submit" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                           </div>
                         </td>

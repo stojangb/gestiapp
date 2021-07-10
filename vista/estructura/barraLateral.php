@@ -18,7 +18,7 @@
   <div class="sidebar-heading"> Menú </div>
   <li class="nav-item
   <?php $url = $_SERVER["REQUEST_URI"];
-  if ($url == '/scanservice/panel') {
+  if ($url == '/gestiapp/panel') {
     echo 'active';
   }
   ?>
@@ -29,7 +29,7 @@
   </li>
   <li class="nav-item
       <?php $url = $_SERVER["REQUEST_URI"];
-      if ($url == '/scanservice/busqueda') {
+      if ($url == '/gestiapp/busqueda') {
         echo 'active';
       }
       ?>
@@ -45,7 +45,7 @@
   <!-- Nav Item - Clientes -->
   <li class="nav-item
       <?php $url = $_SERVER["REQUEST_URI"];
-      if ($url == '/scanservice/clientes') {
+      if ($url == '/gestiapp/clientes') {
         echo 'active';
       }
       ?>
@@ -58,7 +58,7 @@
   </li>
   <li class="nav-item
       <?php $url = $_SERVER["REQUEST_URI"];
-      if ($url == '/scanservice/empresa') {
+      if ($url == '/gestiapp/empresa') {
         echo 'active';
       }
       ?>
@@ -73,7 +73,7 @@
   <!-- Nav Item - Trabajos -->
   <li class="nav-item
       <?php $url = $_SERVER["REQUEST_URI"];
-      if ($url == '/scanservice/cobro') {
+      if ($url == '/gestiapp/cobro') {
         echo 'active';
       }
       ?>">

@@ -12,8 +12,8 @@ if($user->userExists($userForm,$passForm)){
   $userSession->setCurrentUser($userForm);
   $user->setUser($userForm);
 }else{
-header("Location: ../../scanservice/login");
+header("Location: ../../gestiapp/login");
 }
 } else {
-  header("Location: ../../scanservice/login");
+  header("Location: ../../gestiapp/login");
 }

@@ -14,13 +14,13 @@
   $("#cancelar").hide();
 
   function reply_clickBorrar(clicked_id) {
-    confirmar = confirm('¿Estás seguro de eliminar al cliente?, Si tienes servicios asignados a este cliente no podras eliminarlo.');
+    confirmar = confirm('¿Estás seguro de eliminar la nota?');
     if (confirmar == true) {
       var datos = new FormData();
-      datos.append("id_cliente", clicked_id);
-      datos.append("tipoOperacion", "eliminarCliente");
+      datos.append("id_nota", clicked_id);
+      datos.append("tipoOperacion", "eliminarNota");
       $.ajax({
-        url: 'ajax/ajaxCliente.php',
+        url: 'ajax/ajaxNota.php',
         type: 'POST',
         data: datos,
         processData: false,
@@ -41,6 +41,7 @@
     var inicio_id = cadena.indexOf("idcode:") + 7;
     var fin_id = cadena.indexOf(":idcode");
     var id = cadena.substring(inicio_id, fin_id);
+    alert(id);
 
     //Obteniendo valor del Nombre
     var inicio_nombreContacto = cadena.indexOf("nombreContactocode:") + 19;
@@ -208,52 +209,4 @@
     $("#textoModal").text("Agregar Cliente");
   });
 
-  function checkRut(rut) {
-    // Despejar Puntos
-    var valor = rut.value.replace('.', '');
-    // Despejar Guión
-    valor = valor.replace('-', '');
-
-    // Aislar Cuerpo y Dígito Verificador
-    cuerpo = valor.slice(0, -1);
-    dv = valor.slice(-1).toUpperCase();
-
-    // Formatear RUN
-    rut.value = cuerpo + '-' + dv
-
-    // Si no cumple con el mínimo ej. (n.nnn.nnn)
-    if (cuerpo.length < 7) {
-      rut.setCustomValidity("RUT Incompleto");
-      return false;
-    }
-    // Calcular Dígito Verificador
-    suma = 0;
-    multiplo = 2;
-    // Para cada dígito del Cuerpo
-    for (i = 1; i <= cuerpo.length; i++) {
-      // Obtener su Producto con el Múltiplo Correspondiente
-      index = multiplo * valor.charAt(cuerpo.length - i);
-      // Sumar al Contador General
-      suma = suma + index;
-      // Consolidar Múltiplo dentro del rango [2,7]
-      if (multiplo < 7) {
-        multiplo = multiplo + 1;
-      } else {
-        multiplo = 2;
-      }
-    }
-    // Calcular Dígito Verificador en base al Módulo 11
-    dvEsperado = 11 - (suma % 11);
-    // Casos Especiales (0 y K)
-    dv = (dv == 'K') ? 10 : dv;
-    dv = (dv == 0) ? 11 : dv;
-    // Validar que el Cuerpo coincide con su Dígito Verificador
-    if (dvEsperado != dv) {
-      rut.setCustomValidity("RUT Inválido");
-      return false;
-    }
-    // Si todo sale bien, eliminar errores (decretar que es válido)
-    rut.setCustomValidity('');
-    rutValido = true;
-  }
 </script>
