@@ -4,5 +4,5 @@
     $userSession->closeSession();
 ?>
 <script> 
-window.location.replace('/scanservice/login'); 
+window.location.replace('/gestiapp/login'); 
 </script>

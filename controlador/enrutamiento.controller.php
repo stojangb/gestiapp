@@ -13,6 +13,7 @@ class ControllerEnrutamiento {
 		$ruta == "cobro" || 
 		$ruta == "productos" || 
 		$ruta == "busqueda" || 
+		$ruta == "notas" || 
 		$ruta == "archivos" || 
 		$ruta == "variables" || 
 		$ruta == "CrearExcel" || 

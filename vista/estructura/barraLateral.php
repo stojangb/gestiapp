@@ -39,7 +39,7 @@
         <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
         <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
       </svg>
-      <span>Búsquedas</span>
+      <span>Búsquedas / Reportes</span>
     </a>
   </li>
   <!-- Nav Item - Clientes -->
@@ -77,7 +77,7 @@
         echo 'active';
       }
       ?>">
-    <a class="nav-link" href="cobro">
+    <a class="nav-link" href="notas">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M3 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3z" />
         <path d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
@@ -85,7 +85,7 @@
       <span>Notas y recordatorios</span></a>
   </li>
   <!-- Menú desplegable -->
-  <li class="nav-item">
+<!--   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Maestros</span>
@@ -98,10 +98,10 @@
         <a class="collapse-item" href="articulos">Artículos</a>
       </div>
     </div>
-  </li>
+  </li> -->
   <!-- Fin menú desplegable -->
   <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
+<!--   <hr class="sidebar-divider d-none d-md-block"> -->
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>

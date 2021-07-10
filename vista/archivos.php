@@ -21,32 +21,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
             <h1 class="h3 mb-0 text-gray-800">Archivos de servicio <?php echo $_POST["id"]; ?></h1>
           </div>
           <input hidden type="text" name="" value=" <?php echo $_POST["id"]; ?>" class="custom-file-input" id="idservicio00">
-          <?php
-          $matrizServicios = ControllerEmpresas::listarServicioUnico($_POST["id"]);
-          foreach ($matrizServicios as $registro) {
-          ?>
-            <div style="color:#4e73df"><?php echo $registro["fecha"]; ?>
-            </div>
-            <?php
-            //Nombre
-            $matrizFechas = ControllerEmpresas::listarClientes($registro["idservicios"]);
-            foreach ($matrizFechas as $registro3) {
-              echo "Cliente: ";
-              echo $registro3["nombreEmpresa"];
-              echo ", ";
-            }
-            ?>
-            <?php
-            //RUT
-            $matrizFechas = ControllerEmpresas::listarClientes($registro["idservicios"]);
-            foreach ($matrizFechas as $registro3) {
-              RUT:
-              echo $registro3["rut"];
-            }
-            ?>
-            <div>
-              Detalles: <?php echo $registro["detalles"]; ?>
-            <?php }  ?>
+
             <br>
             <br>
             <br>

@@ -109,54 +109,38 @@ $_SESSION['iid'] = $_POST["id"] ?>
                     <div class="row">
                       <div class="col-sm-4">
                         <div class="form-group">
-                          <label class="" for="exampleFormControlSelect1">Banco</label>
+                          <label class="" for="exampleFormControlSelect1">Seleccione un cliente</label>
                           <select id="idBanco" class="form-control" name="nameCliente">
                             <?php
-                            $matrizClientes = ControllerClientes::listarBancos();
+                            $matrizClientes = ControllerClientes::listarClientes();
                             foreach ($matrizClientes as $registro) {
                             ?>
                               <option value="<?php echo $registro["id"] ?>">
-                                <?php echo $registro["nombre"]; ?> </option>
+                                <?php echo $registro["nombre_completo"]; ?> </option>
                             <?php
                             }
                             ?>
                           </select>
                         </div>
                       </div>
-                      
+
                       <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect1">Producto a sanitizar</label>
-                          <select class="form-control" id="idProductoTerrestre" name="tipo">
-                            <input id="idProductoTerrestreComprobacion" hidden>
-                          </select>
-                        </div>
+                        A
                       </div>
                       <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="exampleFormControl">Relacionar con:</label>
-                          <br>
-                          <select style="width: 250px;" class="form-control" id="idRelacionTerrestre" name="tipo">
-                          </select>
-                          <p>Opcional, no afecta excel</p>
-                        </div>
+                        B
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1">Patente</label>
-                          <input type="name" required value="" class="form-control" name="" id="patenteTerrestre" placeholder="Patente">
-                        </div>
+                        C
                       </div>
                       <div class="col-sm-4">
-                        <!--   TIPO TRABAJO -->
-                        <div class="form-group">
-
-
-                        </div>
+                        D
                       </div>
                       <div class="col-sm-4">
+                      EE
+                      <br>
                         <div id="AgregarNuevoProductoTerrestre"></div>
                         <br>
                         <button id="guardarTerrestre" type="submit" class="btn btn-outline-info">Guardar</button>
@@ -167,7 +151,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
                   </form>
                   <div class="row">
                     <div class="col-sm-3">
-                      <a data-toggle="modal" data-target="#exampleModalCenterTerrestre" style="color: blue;" type="button" id="NoEncuentraTerrestre">¿No encuentra el producto?</a>
+                      E
                     </div>
                     <div class="col-sm-3">
                     </div>
