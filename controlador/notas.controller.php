@@ -1,35 +1,19 @@
 <?php
-Class ControllerClientes{
-    public static function listarClientes(){
-        $respuesta = ModeloClientes::listarCliente();
+Class ControllerNotas{
+    public static function listarNotas(){
+        $respuesta = ModeloNotas::listarNota();
         return $respuesta;
     }
-    public static function listarBancos(){
-        $respuesta = ModeloClientes::listarBancos();
+    static public function CrearNotas($datos) {
+        $respuesta = ModeloNotas::CrearNota($datos);
         return $respuesta;
     }
-    public static function listarTipoCuenta(){
-        $respuesta = ModeloClientes::listarTipoCuenta();
+    static public function EliminarNotas($id_Nota) {
+        $respuesta = ModeloNotas::EliminarNota($id_Nota);
         return $respuesta;
     }
-    public static function listarFormaPago(){
-        $respuesta = ModeloClientes::listarFormaPago();
-        return $respuesta;
-    }
-    public static function listarClientesYRut($id){
-        $respuesta = ModeloClientes::listarClienteYRut($id);
-        return $respuesta;
-    }
-    static public function CrearClientes($datos) {
-        $respuesta = ModeloClientes::CrearCliente($datos);
-        return $respuesta;
-    }
-    static public function EliminarClientes($id_cliente) {
-        $respuesta = ModeloClientes::EliminarCliente($id_cliente);
-        return $respuesta;
-    }
-    static public function EditarClientes($datos) {
-        $respuesta = ModeloClientes::EditarCliente($datos);
+    static public function EditarNotas($datos) {
+        $respuesta = ModeloNotas::EditarNota($datos);
         return $respuesta;
     }
 }

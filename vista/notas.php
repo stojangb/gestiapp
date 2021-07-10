@@ -104,10 +104,7 @@
               <div class="col-sm-6">
               </div>
             </div>
-<br>
-
-
-
+            <br>
             <input type="submit" value="Agregar" name="enviar" id="enviar" class="btn btn-outline-success" style="display: true;">
             <input type="submit" value="Editar" name="editar" id="editar" class="btn btn-outline-warning">
             <input type="submit" value="Cancelar" name="cancelar" id="cancelar" class="btn btn-outline-danger" style="display: none;">
@@ -145,15 +142,15 @@
                   </tfoot>
                   <tbody>
                     <?php
-                    $matrizClientes = ControllerClientes::listarClientes();
+                    $matrizClientes = ControllerNotas::listarNotas();
                     foreach ($matrizClientes as $registro) {
                     ?>
                       <tr>
+                        <td><?php echo $registro["nombre"] ?></td>
+                        <td><?php echo $registro["detalles"] ?></td>
                         <td><?php echo $registro["nombre_completo"] ?></td>
-                        <td><?php echo $registro["detalles"] ?></td>
-                        <td><?php echo $registro["detalles"] ?></td>
-                        <td><?php echo $registro["detalles"] ?></td>
-                        <td><?php echo $registro["detalles"] ?></td>
+                        <td><?php echo $registro["fecha"] ?></td>
+                        <td><?php echo $registro["recordatorio"] ?></td>
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" data-toggle="modal" data-target="#exampleModal" type="submit" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 

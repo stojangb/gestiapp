@@ -9,7 +9,7 @@ Class ajaxNota {
 						"id_cliente"=>$this->id_cliente,
 						"id_fecha_hora"=>$this->id_fecha_hora,
 					);
-		$respuesta = ControllerClientes::CrearClientes($datos);
+		$respuesta = ControllerNotas::CrearNotas($datos);
 		echo $respuesta;
 	}
 	public function editarNota(){
@@ -20,50 +20,39 @@ Class ajaxNota {
 						"id_cliente"=>$this->id_cliente,
 						"id_fecha_hora"=>$this->id_fecha_hora,
 					);
-		$respuesta = ControllerClientes::EditarClientes($datos);
+		$respuesta = ControllerNotas::EditarNotas($datos);
 		echo $respuesta;
 	}
-	public function eliminarCliente(){
-		$id_cliente = $this->id_cliente;
-		$respuesta = ControllerClientes::EliminarClientes($id_cliente);
+	public function eliminarNota(){
+		$id_nota = $this->id_nota;
+		$respuesta = ControllerNotas::EliminarNotas($id_nota);
 		echo $respuesta;
 	}
 }
+
 $tipoOperacion = $_POST["tipoOperacion"];
 if($tipoOperacion == "insertarNota") {
-	$crearNuevoCliente = new ajaxCliente();
-	$crearNuevoCliente ->	nombreCliente    = $_POST["nombreCliente"];
-	$crearNuevoCliente ->	rut      		 = $_POST["rut"];
-	$crearNuevoCliente ->	correo           = $_POST["correo"];
-	$crearNuevoCliente ->	telefono  		 = $_POST["telefono"];
-	$crearNuevoCliente ->	detalles  		 = $_POST["detalles"];
-	$crearNuevoCliente ->	direccion  		 = $_POST["direccion"];
-	$crearNuevoCliente ->	formaPago  		 = $_POST["formaPago"];
-	$crearNuevoCliente ->	banco  		     = $_POST["banco"];
-	$crearNuevoCliente ->	tipoCuenta       = $_POST["tipoCuenta"];
-	$crearNuevoCliente ->	nCuenta  		 = $_POST["nCuenta"];
-	$crearNuevoCliente ->crearNota();
+	$crearNuevaNota = new ajaxNota();
+	$crearNuevaNota ->	nombreNota    = $_POST["nombreNota"];
+	$crearNuevaNota ->	detalles      = $_POST["detalles"];
+	$crearNuevaNota ->	id_cliente    = $_POST["id_cliente"];
+	$crearNuevaNota ->	id_fecha_hora = $_POST["id_fecha_hora"];
+	$crearNuevaNota ->crearNota();
 }
 
 if ($tipoOperacion == "editarNota") {
-	$editarCliente = new ajaxCliente();
-	$editarCliente ->	id               = $_POST["id"];
-	$editarCliente ->	nombreCliente    = $_POST["nombreCliente"];
-	$editarCliente ->	rut      		 = $_POST["rut"];
-	$editarCliente ->	correo           = $_POST["correo"];
-	$editarCliente ->	telefono  		 = $_POST["telefono"];
-	$editarCliente ->	detalles  		 = $_POST["detalles"];
-	$editarCliente ->	direccion  		 = $_POST["direccion"];
-	$editarCliente ->	formaPago  		 = $_POST["formaPago"];
-	$editarCliente ->	banco  		     = $_POST["banco"];
-	$editarCliente ->	tipoCuenta       = $_POST["tipoCuenta"];
-	$editarCliente ->	nCuenta  		 = $_POST["nCuenta"];
-	$editarCliente ->	editarNota();
+	$editarNota = new ajaxNota();
+	$editarNota ->	id               = $_POST["id"];
+	$editarNota ->	nombreNota    = $_POST["nombreNota"];
+	$editarNota ->	detalles      = $_POST["detalles"];
+	$editarNota ->	id_cliente    = $_POST["id_cliente"];
+	$editarNota ->	id_fecha_hora = $_POST["id_fecha_hora"];
+	$editarNota ->	editarNota();
 }
 
 if ($tipoOperacion == "eliminarNota") {
-	$eliminarCliente = new ajaxCliente();
-	$eliminarCliente -> id_nota = $_POST["id_nota"];
-	$eliminarCliente -> eliminarNota();
+	$eliminarNota = new ajaxNota();
+	$eliminarNota -> id_nota = $_POST["id_nota"];
+	$eliminarNota -> eliminarNota();
 }
 ?>

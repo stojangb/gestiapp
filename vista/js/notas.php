@@ -124,7 +124,7 @@
     datosAgregar.append("nombreNota", nombreNota);
     datosAgregar.append("detalles", detalles);
     datosAgregar.append("id_cliente", id_cliente);
-    datosAgregar.append("id_fecha_hora_recordatorio", id_fecha_hora_recordatorio);
+    datosAgregar.append("id_fecha_hora", id_fecha_hora_recordatorio);
 
     $.ajax({
       url: 'ajax/ajaxNota.php',
