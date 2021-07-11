@@ -29,15 +29,27 @@ class ModeloNotas
     //Editar
     static public function EditarNota($datos)
     {
-        $sql = DB::conexion()->prepare("UPDATE Notas SET nombre_completo=:nombreNota, direccion=:direccion,telefono=:telefono, detalles=:detalles,  correo=:correo, id_forma_pago=:id_forma_pago, rut=:rut, id_banco=:id_banco, n_cuenta=:n_cuenta, id_tipo_cuenta=:id_tipo_cuenta  WHERE id=:id");
+        $sql = DB::conexion()->prepare("UPDATE notas SET nombre=:nombreNota, detalles=:detalles,  recordatorio=:id_fecha_hora, id_cliente=:id_cliente  WHERE id=:id");
         $sql->bindParam(":id", $datos["id"], PDO::PARAM_STR);
         $sql->bindParam(":nombreNota", $datos["nombreNota"], PDO::PARAM_STR);
-        $sql->bindParam(":direccion", $datos["direccion"], PDO::PARAM_STR);
-        $sql->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
         $sql->bindParam(":detalles", $datos["detalles"], PDO::PARAM_STR);
-       
+        $sql->bindParam(":id_fecha_hora", $datos["id_fecha_hora"], PDO::PARAM_STR);
+        $sql->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_STR);       
         if ($sql->execute()) {
             return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+    static public function RecordarNota($datos)
+    {
+        $sql = DB::conexion()->prepare("SELECT recordatorio FROM `notas` where recordatorio = CURRENT_TIMESTAMP"); 
+
+    
+
+        if ($sql->execute()) {
+            return $sql->rowCount();   
         } else {
             return "error";
         }

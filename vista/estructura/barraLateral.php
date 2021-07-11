@@ -73,7 +73,7 @@
   <!-- Nav Item - Trabajos -->
   <li class="nav-item
       <?php $url = $_SERVER["REQUEST_URI"];
-      if ($url == '/gestiapp/cobro') {
+      if ($url == '/gestiapp/notas') {
         echo 'active';
       }
       ?>">

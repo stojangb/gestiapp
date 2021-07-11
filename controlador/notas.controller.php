@@ -16,4 +16,8 @@ Class ControllerNotas{
         $respuesta = ModeloNotas::EditarNota($datos);
         return $respuesta;
     }
+    static public function RecordarNotas($datos) {
+        $respuesta = ModeloNotas::RecordarNota($datos);
+        return $respuesta;
+    }
 }

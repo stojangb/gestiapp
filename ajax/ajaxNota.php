@@ -23,6 +23,13 @@ Class ajaxNota {
 		$respuesta = ControllerNotas::EditarNotas($datos);
 		echo $respuesta;
 	}
+	public function recordarNota(){
+		$datos = array(	
+						"nombreNota"=>$this->nombreNota,
+					);
+		$respuesta = ControllerNotas::RecordarNotas($datos);
+		echo $respuesta;
+	}
 	public function eliminarNota(){
 		$id_nota = $this->id_nota;
 		$respuesta = ControllerNotas::EliminarNotas($id_nota);
@@ -42,12 +49,17 @@ if($tipoOperacion == "insertarNota") {
 
 if ($tipoOperacion == "editarNota") {
 	$editarNota = new ajaxNota();
-	$editarNota ->	id               = $_POST["id"];
+	$editarNota ->	id            = $_POST["id"];
 	$editarNota ->	nombreNota    = $_POST["nombreNota"];
 	$editarNota ->	detalles      = $_POST["detalles"];
 	$editarNota ->	id_cliente    = $_POST["id_cliente"];
 	$editarNota ->	id_fecha_hora = $_POST["id_fecha_hora"];
 	$editarNota ->	editarNota();
+}
+if ($tipoOperacion == "recordarNota") {
+	$editarNota =   new ajaxNota();
+	$editarNota ->	nombreNota    = $_POST["nombreNota"];
+	$editarNota ->	recordarNota();
 }
 
 if ($tipoOperacion == "eliminarNota") {

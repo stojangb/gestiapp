@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php require('estructura/head.php'); ?>
-
 <body id="page-top">
   <div id="wrapper">
     <?php include('estructura/barraLateral.php'); ?>
@@ -56,10 +55,8 @@
             </div>
           </div>
           <!-- Fin Modal -->
-
           <br>
           <div>
-
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -90,7 +87,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="col-sm-6">
                 ¿Desea agregar un recordatorio?
@@ -102,6 +98,7 @@
                 </div>
               </div>
               <div class="col-sm-6">
+   <!--            <input id="contador" type="number"> -->
               </div>
             </div>
             <br>
@@ -153,7 +150,7 @@
                         <td>
                           <div style="text-align: center;">
                             <input style="margin-bottom: 4px;  margin-right:6px;" data-toggle="modal" data-target="#exampleModal" type="submit" onClick="reply_clickModificar(this.id)" value="Editar" name="enviar" id="                 
-                            <?php echo 'idcode:', $registro["id"], ':idcode idnombrecode:',  $registro["nombre"], ':idnombrecode idrecordatoriocode:',  $registro["recordatorio"], ':idrecordatoriocode idclientecode:',  $registro["idcliente"], ':idclientecode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
+                            <?php echo 'idcode:', $registro["id"], ':idcode idnombrecode:',  $registro["nombre"], ':idnombrecode idrecordatoriocode:', $registro['recordatorio'], ':idrecordatoriocode idclientecode:',  $registro["idcliente"], ':idclientecode detallescode:', $registro["detalles"], ':detallescode' ?>" class="btn btn-outline-warning">
                             <input style="margin-bottom: 4px;  margin-right:6px;" type="submit" onClick="reply_clickBorrar(this.id)" value="Borrar" name="borrar" id="<?php echo $registro["id"] ?>" class="borrar-id btn btn-outline-danger">
                           </div>
                         </td>
@@ -173,5 +170,4 @@
   </div>
   <?php require('estructura/cerrarSesionyEnlacesjs.php'); ?>
 </body>
-
 </html>

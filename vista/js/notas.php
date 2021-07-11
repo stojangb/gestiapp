@@ -1,12 +1,50 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
 <script type="text/javascript">
-  rutValido = false;
+  //Recordatorio
+  Push.Permission.request();
+  function notificacion1() {     
+ 
+    Push.create('¡Recordatorio!, enviando correo', {
+      body: 'Este es un aviso, porque tienes un recordatorio pendiente, revisa tus notas y recordatorios.',
+      icon: 'icon.png',
+      timeout: 8000, // Timeout before notification closes automatically.
+      vibrate: [100, 100, 100], // An array of vibration pulses for mobile devices.
+      onClick: function() {
+        // Callback for when the notification is clicked. 
+        console.log(this);
+      }
+    });
+    alert("Recordatorio, enviando correo");
+  }
+  
+  function recordatorio() {
+    //AJAX
+    var datosAgregar = new FormData();
+    datosAgregar.append("tipoOperacion", "recordarNota");
+    datosAgregar.append("nombreNota", "nombreNota");
+
+    $.ajax({
+      url: 'ajax/ajaxNota.php',
+      type: 'POST',
+      data: datosAgregar,
+      processData: false,
+      contentType: false,
+      success: function(res) {
+  
+        if (res==1) {
+        notificacion1();
+        }
+      }
+    });
+  }
+  setInterval("recordatorio()", 1000);
+
   $('#idAceptarAgregado').click(function() {
     $('#exampleModalCenter').modal("hide");
-    rutValido = false;
+
   });
   $('#idEditarAgregado').click(function() {
     $('#exampleModalCenterEditar').modal("hide");
-    rutValido = false;
   });
 
   $("#editar").hide();
@@ -41,81 +79,43 @@
     var inicio_id = cadena.indexOf("idcode:") + 7;
     var fin_id = cadena.indexOf(":idcode");
     var id = cadena.substring(inicio_id, fin_id);
-    alert(id);
 
     //Obteniendo valor del Nombre
-    var inicio_nombreContacto = cadena.indexOf("nombreContactocode:") + 19;
-    var fin_nombreContacto = cadena.indexOf(":nombreContactocode");
-    var nombreContacto = cadena.substring(inicio_nombreContacto, fin_nombreContacto);
+    var inicio_nombre = cadena.indexOf("idnombrecode:") + 13;
+    var fin_nombre = cadena.indexOf(":idnombrecode");
+    var nombre = cadena.substring(inicio_nombre, fin_nombre);
 
-    //Obteniendo valor del Rut
-    var inicio_rut = cadena.indexOf("rutcode:") + 8;
-    var fin_rut = cadena.indexOf(":rutcode");
-    var rut = cadena.substring(inicio_rut, fin_rut);
-
-    //Obteniendo valor del Correo
-    var inicio_correo = cadena.indexOf("correocode:") + 11;
-    var fin_correo = cadena.indexOf(":correocode");
-    var correo = cadena.substring(inicio_correo, fin_correo);
-
-    //Obteniendo valor del Telefono
-    var inicio_telefono = cadena.indexOf("telefonocode:") + 13;
-    var fin_telefono = cadena.indexOf(":telefonocode");
-    var telefono = cadena.substring(inicio_telefono, fin_telefono);
-
-    //Obteniendo valor de direccion
-    var inicio_direccion = cadena.indexOf("direccioncode:") + 14;
-    var fin_direccion = cadena.indexOf(":direccioncode");
-    var direccion = cadena.substring(inicio_direccion, fin_direccion);
-
-    //Obteniendo valor de ncuenta
-    var inicio_ncuenta = cadena.indexOf("ncuentacode:") + 12;
-    var fin_ncuenta = cadena.indexOf(":ncuentacode");
-    var ncuenta = cadena.substring(inicio_ncuenta, fin_ncuenta);
-
-    //Obteniendo valor de formaPago
-    var inicio_forma_pago = cadena.indexOf("idformapagocode:") + 16;
-    var fin_forma_pago = cadena.indexOf(":idformapagocode");
-    var forma_pago = cadena.substring(inicio_forma_pago, fin_forma_pago);
-
-    //Obteniendo valor de banco
-    var inicio_banco = cadena.indexOf("idbancocode:") + 12;
-    var fin_banco = cadena.indexOf(":idbancocode");
-    var banco = cadena.substring(inicio_banco, fin_banco);
-
-    //Obteniendo valor del TipoDeCuenta
-    var inicio_tipocuenta = cadena.indexOf("idtipocuentacode:") + 17;
-    var fin_tipocuenta = cadena.indexOf(":idtipocuentacode");
-    var tipocuenta = cadena.substring(inicio_tipocuenta, fin_tipocuenta);
+    //Obteniendo valor del recordatorio
+    var inicio_recordatorio = cadena.indexOf("idrecordatoriocode:") + 19;
+    var fin_recordatorio = cadena.indexOf(":idrecordatoriocode");
+    var recordatorio = cadena.substring(inicio_recordatorio, fin_recordatorio);
 
     //Obteniendo detalle
     var inicio_detalle = cadena.indexOf("detallescode:") + 13;
     var fin_detalle = cadena.indexOf(":detallescode");
     var detalle = cadena.substring(inicio_detalle, fin_detalle);
 
+    //Obteniendo valor del cliente
+    var inicio_cliente = cadena.indexOf("idclientecode:") + 14;
+    var fin_cliente = cadena.indexOf(":idclientecode");
+    var cliente = cadena.substring(inicio_cliente, fin_cliente);
+
+    recordatorio = recordatorio.replace(" ", "T")
     //Redireccionando  Valores a formulario.
     $('#idId').val(id);
-    $('#idNombreCliente').val(nombreContacto);
-    $('#idDireccion').val(direccion);
-    $('#idNCuenta').val(ncuenta);
-    $('#idTipoCuenta').val(tipocuenta);
-    $('#idBanco').val(banco);
-    $('#idFormaPago').val(forma_pago);
-    $('#idRut').val(rut);
-    $('#idCorreo').val(correo);
-    $('#idTelefono').val(telefono);
+    $('#idNombreNota').val(nombre);
+    $('#idDate').val(recordatorio);
     $('#idDetalle').val(detalle);
+    $('#idCliente').val(cliente);
     //Mostrar / Ocultar botón
     $("#editar").show();
     $("#enviar").hide();
     $("#cancelar").show();
-    $("#textoModal").text("Editar Cliente");
+    $("#textoModal").text("Editar nota");
   }
 
   $('#enviar').click(function(e) {
-    alert("Hola, agregando")
-
-    var nombreNota= $('#idNombreNota').val();
+    var nombreNota = $('#idNombreNota').val();
     var detalles = $('#idDetalle').val();
     var id_cliente = $('#idCliente').val();
     var id_fecha_hora_recordatorio = $('#idDate').val();
@@ -144,36 +144,20 @@
   })
 
   $('#editar').click(function(e) {
-    var rut = $('#idRut').val();
-    //Validación de campos vacios.
-    // if (rut == "" || rut == "-") {} else {  if (rutValido == true) {
-    var datosAgregar = new FormData();
-    datosAgregar.append("tipoOperacion", "editarCliente");
     var id = $('#idId').val();
-    var nombreCliente = $('#idNombreCliente').val();
-    var rut = $('#idRut').val();
-    var correo = $('#idCorreo').val();
-    var telefono = $('#idTelefono').val();
+    var nombreNota = $('#idNombreNota').val();
     var detalles = $('#idDetalle').val();
-    var direccion = $('#idDireccion').val();
-    var formaPago = $('#idFormaPago').val();
-    var banco = $('#idBanco').val();
-    var tipoCuenta = $('#idTipoCuenta').val();
-    var nCuenta = $('#idNCuenta').val();
-
+    var id_cliente = $('#idCliente').val();
+    var id_fecha_hora_recordatorio = $('#idDate').val();
+    var datosAgregar = new FormData();
+    datosAgregar.append("tipoOperacion", "editarNota");
     datosAgregar.append("id", id);
-    datosAgregar.append("nombreCliente", nombreCliente);
-    datosAgregar.append("rut", rut);
-    datosAgregar.append("correo", correo);
-    datosAgregar.append("telefono", telefono);
+    datosAgregar.append("nombreNota", nombreNota);
     datosAgregar.append("detalles", detalles);
-    datosAgregar.append("direccion", direccion);
-    datosAgregar.append("formaPago", formaPago);
-    datosAgregar.append("banco", banco);
-    datosAgregar.append("tipoCuenta", tipoCuenta);
-    datosAgregar.append("nCuenta", nCuenta);
+    datosAgregar.append("id_cliente", id_cliente);
+    datosAgregar.append("id_fecha_hora", id_fecha_hora_recordatorio);
     $.ajax({
-      url: 'ajax/ajaxCliente.php',
+      url: 'ajax/ajaxNota.php',
       type: 'POST',
       data: datosAgregar,
       processData: false,
@@ -181,32 +165,31 @@
       success: function(res) {
         alert(res);
         $("#recargar1").load(location.href + " #recargar1");
-        limpiarFormulario();
-        //  $('#exampleModalCenter').modal("show");
+        $("#editar").hide();
+        $("#enviar").show();
+        $("#cancelar").hide();
+        $('#idNombreNota').val("");
+        $('#idDetalle').val("");
+        // $('#idCliente').clear();   
+        $('#idDate').val("00/00/00T00:00");
         $('#exampleModal').modal("hide");
       }
     });
     //  }}
   });
 
-  function limpiarFormulario() {
-    document.getElementById("formulario").reset();
-  }
 
-  $('#IDBotonModalAgregar').click(function() {
-    limpiarFormulario();
-    $("#editar").hide();
-    $("#enviar").show();
-    $("#cancelar").hide();
-    $("#textoModal").text("Agregar Cliente");
-  });
+
+
 
   $('#cancelar').click(function() {
-    limpiarFormulario();
     $("#editar").hide();
     $("#enviar").show();
     $("#cancelar").hide();
-    $("#textoModal").text("Agregar Cliente");
+    $('#idNombreNota').val("");
+    $('#idDetalle').val("");
+    // $('#idCliente').clear();   
+    $('#idDate').val("00/00/00T00:00");
+    $("#textoModal").text("Agregar nota");
   });
-
 </script>
