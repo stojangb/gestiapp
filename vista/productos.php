@@ -106,11 +106,14 @@ $_SESSION['iid'] = $_POST["id"] ?>
                 <div style="background-color: #f8f9fc; " class="container">
                   <form id="id-formulario-agregar-terrestre">
                     <br>
+                    <b>Ingresar venta a realizar</b>
+                    <br>
+                    <br>
                     <div class="row">
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="" for="exampleFormControlSelect1">Seleccione un cliente</label>
-                          <select id="idBaco" class="form-control" name="nameCliente">
+                          <select id="idClienteVenta" class="form-control">
                             <?php
                             $matrizClientes = ControllerClientes::listarClientes();
                             foreach ($matrizClientes as $registro) {
@@ -127,59 +130,26 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       <div class="col-sm-4">
                         <p>Fecha y hora venta: </p>
                         <input type="datetime-local" id="fecha_hora_venta">
+                        <input type="text" id="id_venta" hidden>
                       </div>
                       <div class="col-sm-4">
                         <br>
 
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-4">
-                        <div class="form-group">
-                          <label class="" for="exampleFormControlSelect1">Seleccione un producto</label>
-                          <select id="idBanco" class="form-control" name="nameCliente">
-                            <?php
-                            $matrizClientes = ControllerProductos::listarProductosPorEmpresa($_POST["id"]);
-                            foreach ($matrizClientes as $registro) {
-                            ?>
-                              <option value="<?php echo $registro["id"] ?>">
-                                <?php echo $registro["nombre"]; ?> </option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                          <br>
-                          <button id="boton_producto_nuevo" type="button" class="btn btn-outline-primary">Agregar producto</button>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        D
-                      </div>
-                      <div class="col-sm-4">
-                        EE
-                        <br>
-                        <div id="AgregarNuevoProductoTerrestre"></div>
-                        <br>
-                        <button id="guardarTerrestre" type="submit" class="btn btn-outline-info">Guardar</button>
-                        <br>
-                        <br>
-                      </div>
-                    </div>
+
                   </form>
                   <div class="row">
-                    <div class="col-sm-3">
-                      E
+                    <div class="col-sm-4">
+                        <button id="guardar2" type="button" class="btn btn-outline-info">Guardar</button>
+                        <input type="button" name="editar" value="Editar" id="editar2" class="btn btn-outline-warning">
+                        <input type="button" value="Cancelar" name="cancelar" id="cancelar2" class="btn btn-outline-danger">
+                      
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                     </div>
-                    <div class="col-sm-3">
-                    </div>
-                    <div class="col-sm-3">
-                      <form id="id-formulario-editar-terrestre">
-                        <div id="AgregarNuevoProductoTerrestre2" name="AgregarNuevoProductoTerrestre2"></div>
-                        <input type="submit" name="editar" value="Editar" id="editarTerrestre" class="btn btn-outline-warning">
-                        <input type="button" value="Cancelar" name="cancelar" id="cancelarTerrestre" class="btn btn-outline-danger">
-                      </form>
+                    <div class="col-sm-4">
+
                     </div>
                   </div>
                   <div class="row">
@@ -194,8 +164,8 @@ $_SESSION['iid'] = $_POST["id"] ?>
               <div class="card card-body">
                 <div style="background-color: #f8f9fc; " class="container">
                   <form id="id-formulario-agregar-otros">
-              
-                   <b> Agregar ingresos y egresos mensuales de la empresa actual </b>    <br><br>  
+
+                    <b> Agregar ingresos y egresos mensuales de la empresa actual </b> <br><br>
                     <div class="row">
                       <div class="col-xl-6">
                         <p>Nombre</p>
@@ -205,11 +175,11 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       <div class="col-xl-6 ">
                         <p>tipo</p>
                         <select id="idTipo3" class="form-control" name="nameCliente">
-                         
-                              <option value=0>Egreso</option>
-                              <option value=1>Ingreso</option>
-                        
-                          </select>
+
+                          <option value=0>Egreso</option>
+                          <option value=1>Ingreso</option>
+
+                        </select>
                       </div>
                     </div>
                     <div class="row">
@@ -221,9 +191,9 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       </div>
                     </div>
                     <br>
-  <button id="editar3" type="button" class="btn btn-outline-warning">Editar</button>
-  <button id="cancelar3" type="button" class="btn btn-outline-danger">Cancelar</button>
-  <button id="guardar3" type="button" class="btn btn-outline-info">Guardar</button>
+                    <button id="editar3" type="button" class="btn btn-outline-warning">Editar</button>
+                    <button id="cancelar3" type="button" class="btn btn-outline-danger">Cancelar</button>
+                    <button id="guardar3" type="button" class="btn btn-outline-info">Guardar</button>
                     <div id="recargarOtros">
                       <div class="row">
                         <div class="card-body">

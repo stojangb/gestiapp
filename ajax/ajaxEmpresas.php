@@ -18,11 +18,9 @@ class ajaxEmpresa
 	public function insertarVenta()
 	{
 		$datos = array(
-			"nombre" => $this->nombre,
-			"certificado" => $this->certificado,
-			"vueltafalsa" => $this->vueltafalsa,
-			"idservicio" => $this->idservicio,
-			"tipotrabajomaritimo" => $this->tipotrabajomaritimo,
+			"idClienteVenta" => $this->idClienteVenta,
+			"fecha_hora_venta" => $this->fecha_hora_venta,
+			"idEmpresa" => $this->idEmpresa,
 		);
 		$respuesta = ControllerEmpresas::InsertarVenta($datos);
 		echo $respuesta;
@@ -38,27 +36,17 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::InsertarIngresoEgreso($datos);
 		echo $respuesta;
 	}
-	public function editarTerrestre()
+	public function editarVenta()
 	{
 		$datos = array(
-			"idTerrestre" => $this->idTerrestre,
-			"nombre" => $this->nombre,
-			"certificado" => $this->certificado,
-			"matricula" => $this->matricula,
-			"idservicio" => $this->idservicio,
-			"idmaritimo" => $this->idmaritimo,
-			"tipotrabajoterrestre" => $this->tipotrabajoterrestre,
+			"idClienteVenta" => $this->idClienteVenta,
+			"fecha_hora_venta" => $this->fecha_hora_venta,
+			"idEmpresa" => $this->idEmpresa,
 		);
-		$respuesta = ControllerEmpresas::EditarTerrestre($datos);
+		$respuesta = ControllerEmpresas::EditarVenta($datos);
 		echo $respuesta;
 	}
 	//Listar
-	public function listarMaritimoSelect()
-	{
-		$id = $this->idservicio;
-		$respuesta = ControllerEmpresas::listarMaritimoSelect($id);
-		echo json_encode($respuesta);
-	}
 	public function listarBusquedaCertificado()
 	{
 		$certificado = $this->certificado;
@@ -141,13 +129,12 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::EliminarIngresoEgreso($id);
 		echo $respuesta;
 	}
-	public function eliminarMaritimo()
+	public function eliminarVentas()
 	{
-		$id = $this->id_maritimo;
-		$respuesta = ControllerEmpresas::EliminarMaritimo($id);
+		$id = $this->id;
+		$respuesta = ControllerEmpresas::EliminarVentas($id);
 		echo $respuesta;
 	}
-
 }
 $tipoOperacion = $_POST["tipoOperacion"];
 //Insertar
@@ -159,6 +146,13 @@ if ($tipoOperacion == "insertarEmpresa") {
 	$crearNuevoServicio->giro     = $_POST["giro"];
 	$crearNuevoServicio->crearEmpresa();
 }
+if ($tipoOperacion == "insertarVenta") {
+	$crearNuevoServicio = new ajaxEmpresa();
+	$crearNuevoServicio->idClienteVenta   = $_POST['idClienteVenta'];
+	$crearNuevoServicio->fecha_hora_venta = $_POST["fecha_hora_venta"];
+	$crearNuevoServicio->idEmpresa        = $_POST["idEmpresa"];
+	$crearNuevoServicio->insertarVenta();
+}
 if ($tipoOperacion == "insertarIngresoEgreso") {
 	$crearNuevoIngresoEgreso = new ajaxEmpresa();
 	$crearNuevoIngresoEgreso->nombreIngresoEgreso      = $_POST['nombreIngresoEgreso'];
@@ -169,27 +163,15 @@ if ($tipoOperacion == "insertarIngresoEgreso") {
 }
 
 
-if ($tipoOperacion == "editarTerrestre") {
-	$agregarProducto = new ajaxEmpresa();
-	$agregarProducto->idTerrestre = $_POST["idTerrestre"];
-	$agregarProducto->nombre = $_POST["nombre"];
-	$agregarProducto->certificado = $_POST["certificado"];
-	$agregarProducto->matricula = $_POST["matricula"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	if ($_POST["idmaritimo"] == 'null') {
-		$agregarProducto->idmaritimo = null;
-	} else {
-		$agregarProducto->idmaritimo = $_POST["idmaritimo"];
-	}
-	$agregarProducto->tipotrabajoterrestre = $_POST["tipotrabajoterrestre"];
-	$agregarProducto->editarTerrestre();
+if ($tipoOperacion == "editarVenta") {
+	$crearNuevoServicio = new ajaxEmpresa();
+	$crearNuevoServicio->idClienteVenta   = $_POST['idClienteVenta'];
+	$crearNuevoServicio->fecha_hora_venta = $_POST["fecha_hora_venta"];
+	$crearNuevoServicio->idEmpresa        = $_POST["idEmpresa"];
+	$crearNuevoServicio->editarVenta();
 }
+
 //Listar
-if ($tipoOperacion == "listarMaritimoSelect") {
-	$listarProducto = new ajaxEmpresa();
-	$listarProducto->idservicio = $_POST["idservicio"];
-	$listarProducto->listarMaritimoSelect();
-}
 if ($tipoOperacion == "listarBusquedaCertificado") {
 	$listarProducto = new ajaxEmpresa();
 	$listarProducto->certificado = $_POST["certificado"];
@@ -251,6 +233,11 @@ if ($tipoOperacion == "eliminarEmpresa") {
 	$eliminarCliente = new ajaxEmpresa();
 	$eliminarCliente->id_empresa = $_POST["id_empresa"];
 	$eliminarCliente->eliminarEmpresa();
+}
+if ($tipoOperacion == "eliminarVenta") {
+	$eliminarCliente = new ajaxEmpresa();
+	$eliminarCliente->id = $_POST["id"];
+	$eliminarCliente->eliminarVentas();
 }
 if ($tipoOperacion == "eliminarIngresoEgreso") {
 	$eliminar = new ajaxEmpresa();

@@ -22,8 +22,8 @@ Class ControllerEmpresas{
         $respuesta = ModeloEmpresas::listarServicioPorAñoPanel();
         return $respuesta;
     }
-    public static function listarMaritimoSelect($id){
-        $respuesta = ModeloEmpresas::listarMaritimoSelect($id);
+    public static function listarVentaPorIdVenta($id){
+        $respuesta = ModeloEmpresas::listarVentaPorIdVenta($id);
         return $respuesta;
     }
 
@@ -129,8 +129,8 @@ Class ControllerEmpresas{
 		$respuesta = ModeloEmpresas::EditarMaritimo($datos);
     	return $respuesta;
     }
-    public static function EditarTerrestre($datos) {
-		$respuesta = ModeloEmpresas::EditarTerrestre($datos);
+    public static function EditarVenta($datos) {
+		$respuesta = ModeloEmpresas::EditarVenta($datos);
     	return $respuesta;
     }
     public static function EditarIngresoEgreso($datos) {

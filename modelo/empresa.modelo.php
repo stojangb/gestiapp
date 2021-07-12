@@ -67,43 +67,20 @@ class ModeloEmpresas
 
     static public function InsertarVenta($datos)
     {
-        $sql = DB::conexion()->prepare("INSERT INTO terrestre (matricula,id_producto_nombre,id_servicio,id_maritimo) VALUES (:matricula,:nombre,:idservicio,:idmaritimo)");
-        $sql->bindParam(":matricula", $datos["matricula"], PDO::PARAM_STR);
-        $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $sql->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
-        $sql->bindParam(":idmaritimo", $datos["idmaritimo"], PDO::PARAM_STR);
+        $sql = DB::conexion()->prepare("INSERT INTO ventas(fecha, id_cliente, id_empresas_usuario) VALUES (:fecha,:id_cliente,:id_empresas_usuario)");
+        $sql->bindParam(":fecha", $datos["fecha_hora_venta"], PDO::PARAM_STR);
+        $sql->bindParam(":id_cliente", $datos["idClienteVenta"], PDO::PARAM_STR);
+        $sql->bindParam(":id_empresas_usuario", $datos["idEmpresa"], PDO::PARAM_STR);
         $sql->execute();
     }
 
-    static public function EditarTerrestre($datos)
+    static public function EditarVenta($datos)
     {
-        $sql = DB::conexion()->prepare("UPDATE terrestre SET id_producto_nombre=:nombre, matricula=:matricula, id_maritimo=:idmaritimo WHERE id=:idTerrestre");
-        $sql->bindParam(":matricula", $datos["matricula"], PDO::PARAM_STR);
-        $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $sql->bindParam(":idmaritimo", $datos["idmaritimo"], PDO::PARAM_STR);
-        $sql->bindParam(":idTerrestre", $datos["idTerrestre"], PDO::PARAM_STR);
+        $sql = DB::conexion()->prepare("UPDATE ventas SET fecha=:fecha, id_cliente=:id_cliente  WHERE id=:id");
+        $sql->bindParam(":fecha", $datos["fecha_hora_venta"], PDO::PARAM_STR);
+        $sql->bindParam(":id_cliente", $datos["idClienteVenta"], PDO::PARAM_STR);
+        $sql->bindParam(":id", $datos["idEmpresa"], PDO::PARAM_STR);;
         $sql->execute();
-
-        $sql3 = DB::conexion()->prepare("UPDATE certificados SET certificado=:certificado WHERE id_terrestre=:idTerrestre");
-        $sql3->bindParam(":certificado", $datos["certificado"], PDO::PARAM_STR);
-        $sql3->bindParam(":idTerrestre", $datos["idTerrestre"], PDO::PARAM_STR);
-        $sql3->execute();
-
-        //Borrando datos
-        $sql2 = DB::conexion()->prepare("DELETE FROM trabajo WHERE id_terrestre = :idTerrestre");
-        $sql2->bindParam(":idTerrestre", $datos["idTerrestre"], PDO::PARAM_STR);
-        $sql2->execute();
-
-        $contarTipoTrabajoTerrestre = count($datos["tipotrabajoterrestre"]);
-        if ($contarTipoTrabajoTerrestre >= 1) {
-            for ($i = 0; $i < $contarTipoTrabajoTerrestre; $i++) {
-                $tipoTrabajoTerrestre = $datos["tipotrabajoterrestre"][$i];
-                $sql1 = DB::conexion()->prepare("INSERT INTO trabajo (id_tipotrabajo,id_maritimo,id_terrestre,id_servicio) VALUES ('$tipoTrabajoTerrestre',null,:idTerrestre,:idservicio)");
-                $sql1->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
-                $sql1->bindParam(":idTerrestre", $datos["idTerrestre"], PDO::PARAM_STR);
-                $sql1->execute();
-            }
-        }
     }
 
     static public function InsertarIngresoEgreso($datos)
@@ -151,9 +128,9 @@ class ModeloEmpresas
         return $sql->fetchAll();
     }
 
-    static public function listarMaritimoSelect($id)
+    static public function listarVentaPorIdVenta($id)
     {
-        $sql = DB::conexion()->prepare("SELECT maritimo.id, objetomaritimo.nombre, objetomaritimo.matricula, certificados.certificado FROM maritimo inner join objetomaritimo on maritimo.id_objetomaritimo = objetomaritimo.id inner join certificados on maritimo.id = certificados.id_maritimo  WHERE idservicio='$id' and maritimo.vueltafalsa = 0");
+        $sql = DB::conexion()->prepare("SELECT ventas.id, fecha, id_cliente, clientes.nombre_completo as nombre_cliente FROM ventas inner join clientes on ventas.id_cliente = clientes.id  WHERE ventas.id ='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -276,7 +253,7 @@ class ModeloEmpresas
 
     static public function listarVentas($id)
     {
-        $sql = DB::conexion()->prepare("SELECT id, fecha, id_cliente FROM ventas  WHERE id_empresas_usuario='$id'");
+        $sql = DB::conexion()->prepare("SELECT ventas.id, fecha, id_cliente, clientes.nombre_completo as nombre_cliente FROM ventas inner join clientes on ventas.id_cliente = clientes.id  WHERE id_empresas_usuario='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -411,7 +388,7 @@ class ModeloEmpresas
     }
     static public function EliminarVenta($id_tabla)
     {
-        $sql = DB::conexion()->prepare("DELETE FROM terrestre WHERE id = :id");
+        $sql = DB::conexion()->prepare("DELETE FROM ventas WHERE id = :id");
         $sql->bindParam(":id", $id_tabla, PDO::PARAM_INT);
         if ($sql->execute()) {
             return "ok";
