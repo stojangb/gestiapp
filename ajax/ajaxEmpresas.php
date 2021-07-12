@@ -117,11 +117,28 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::EditarEmpresas($datos);
 		echo $respuesta;
 	}
+	public function editarIngresoEgreso()
+	{
+		$datos = array(
+			"nombreIngresoEgreso" => $this->nombreIngresoEgreso,
+			"idTipo3" => $this->idTipo3,
+			"monto3" => $this->monto3,
+			"idIngresoEgreso" => $this->idIngresoEgreso,
+		);
+		$respuesta = ControllerEmpresas::EditarIngresoEgreso($datos);
+		echo $respuesta;
+	}
 	//Eliminar
 	public function eliminarEmpresa()
 	{
 		$id = $this->id_empresa;
 		$respuesta = ControllerEmpresas::EliminarEmpresa($id);
+		echo $respuesta;
+	}
+	public function eliminarIngresoEgreso()
+	{
+		$id = $this->id;
+		$respuesta = ControllerEmpresas::EliminarIngresoEgreso($id);
 		echo $respuesta;
 	}
 	public function eliminarMaritimo()
@@ -141,6 +158,14 @@ if ($tipoOperacion == "insertarEmpresa") {
 	$crearNuevoServicio->rut      = $_POST["rut"];
 	$crearNuevoServicio->giro     = $_POST["giro"];
 	$crearNuevoServicio->crearEmpresa();
+}
+if ($tipoOperacion == "insertarIngresoEgreso") {
+	$crearNuevoIngresoEgreso = new ajaxEmpresa();
+	$crearNuevoIngresoEgreso->nombreIngresoEgreso      = $_POST['nombreIngresoEgreso'];
+	$crearNuevoIngresoEgreso->idTipo3                  = $_POST["idTipo3"];
+	$crearNuevoIngresoEgreso->monto3                   = $_POST["monto3"];
+	$crearNuevoIngresoEgreso->id_empresa               = $_POST["id_empresa"];
+	$crearNuevoIngresoEgreso->insertarIngresoEgreso();
 }
 
 
@@ -212,9 +237,23 @@ if ($tipoOperacion == "editarEmpresa") {
 	$editarServicio->giro     = $_POST["giro"];
 	$editarServicio->editarEmpresa();
 }
+
+if ($tipoOperacion == "editarIngresoEgreso") {
+	$EditarIngresoEgreso = new ajaxEmpresa();
+	$EditarIngresoEgreso->nombreIngresoEgreso      = $_POST['nombreIngresoEgreso'];
+	$EditarIngresoEgreso->idTipo3                  = $_POST["idTipo3"];
+	$EditarIngresoEgreso->monto3                   = $_POST["monto3"];
+	$EditarIngresoEgreso->idIngresoEgreso          = $_POST["idIngresoEgreso"];
+	$EditarIngresoEgreso->editarIngresoEgreso();
+}
 //Borrar
 if ($tipoOperacion == "eliminarEmpresa") {
 	$eliminarCliente = new ajaxEmpresa();
 	$eliminarCliente->id_empresa = $_POST["id_empresa"];
 	$eliminarCliente->eliminarEmpresa();
+}
+if ($tipoOperacion == "eliminarIngresoEgreso") {
+	$eliminar = new ajaxEmpresa();
+	$eliminar->id = $_POST["id"];
+	$eliminar->eliminarIngresoEgreso();
 }

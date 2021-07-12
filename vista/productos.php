@@ -67,11 +67,11 @@ $_SESSION['iid'] = $_POST["id"] ?>
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Cantidad</label>
-                      <input type="text" name="nombre" class="form-control" id="idCantidad" placeholder="20">
+                      <input type="number" name="nombre" class="form-control" id="idCantidad" placeholder="20">
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Precio</label>
-                      <input type="text" name="nombre" class="form-control" id="idPrecio" placeholder="20.000">
+                      <input type="number" name="nombre" class="form-control" id="idPrecio" placeholder="20.000">
                     </div>
                     <button id="idGuardarProducto" type="button" class="btn btn-outline-info">Guardar</button>
                   </form>
@@ -200,6 +200,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       <div class="col-xl-6">
                         <p>Nombre</p>
                         <input type="text" id="nombreIngresoEgreso">
+                        <input type="text" id="idIngresoEgreso" hidden>
                       </div>
                       <div class="col-xl-6 ">
                         <p>tipo</p>
@@ -220,6 +221,8 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       </div>
                     </div>
                     <br>
+  <button id="editar3" type="button" class="btn btn-outline-warning">Editar</button>
+  <button id="cancelar3" type="button" class="btn btn-outline-danger">Cancelar</button>
   <button id="guardar3" type="button" class="btn btn-outline-info">Guardar</button>
                     <div id="recargarOtros">
                       <div class="row">
@@ -235,88 +238,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
             <br>
             <br>
             <div>
-              <!-- INICIO MODAL AGREGAR PRODUCTOS -->
-              <!-- OTROS -->
-              <!-- Modal Otros -->
-              <div class="modal fade" id="exampleModalCenterOtros" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">Agregar Otros</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label for="exampleFormControlInput1">Ingrese nuevo producto a sanitizar</label>
-                        <input type="text" name="" class="form-control" id="idAgregar1Otros" placeholder="Nuevo producto">
-                        <input type="text" hidden value="Otro" name="" class="form-control" id="IdTipoAgregar1Otros">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" id="okmodalOtros" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- FIN MODAL AGREGAR PRODUCTOS OTROS-->
-              <!-- TERRESTRES -->
-              <!-- Modal TERRESTRES -->
-              <div class="modal fade" id="exampleModalCenterTerrestre" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">Agregar Terrestre</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label for="exampleFormControlInput1">Ingrese nuevo producto a sanitizar</label>
-                        <input type="text" name="" class="form-control" id="idAgregar1Terrestre" placeholder="Nuevo producto">
-                        <input id="idCertificadoTerrestreComprobacion" hidden>
-                        <input type="text" hidden value="Terrestre" name="" class="form-control" id="IdTipoAgregar1Terrestre">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" id="okmodalTerrestre" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- FIN MODAL AGREGAR PRODUCTOS TERRESTRES -->
               <!-- Maritimo -->
-              <!-- Modal Maritimo -->
-              <div class="modal fade" id="exampleModalCenterMaritimo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">Agregar Marítimo</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <!-- INICIO -->
-                      <div class="form-group">
-                        <label for="exampleFormControlInput1">Nombre de la Barcaza</label>
-                        <input type="text" name="nombre" class="form-control" id="idProductoModalMaritimo" placeholder="Santa Lucía">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlInput1">Matrícula</label>
-                        <input type="text" name="nombre" class="form-control" id="idMatriculaModalMaritimo" placeholder="AABB11">
-                      </div>
-                      <!-- FIN -->
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" id="okmodalMaritimo" class="btn btn-primary" data-dismiss="modal">Ok</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- FIN MODAL AGREGAR PRODUCTOS TERRESTRES -->
             </div>
             <div>
               <!-- Boton archivos -->

@@ -2,9 +2,6 @@
 require_once "../controlador/empresas.controller.php";
 require_once "../modelo/empresa.modelo.php";
 ?>
-
-
-
 <style type="text/css">
 @media screen and (max-width: 600px) {
        table {
@@ -61,28 +58,24 @@ require_once "../modelo/empresa.modelo.php";
       foreach ($matrizOtros as $registroOtros) {
       ?>
         <tr>
-          <td><?php echo $registroOtros["productos"] ?></td>
-          <td> <?php echo $registroOtros["cantidad"]; ?></td>
-          <td>
-            <?php
-            $matrizTipoTrabajo = ControllerEmpresas::listarRelacionOtrosTerrestre($registroOtros["id"]);
-            foreach ($matrizTipoTrabajo as $registro3) {
-              echo "\n ", $registro3["productos"];
-              echo "\n ", $registro3["matricula"];
-            }
-            ?>
-            <?php
-            $matrizTipoTrabajo = ControllerEmpresas::listarRelacionOtrosMaritimo($registroOtros["id"]);
-            foreach ($matrizTipoTrabajo as $registro3) {
-              echo "\n ", $registro3["nombre"];
-              echo "\n ", $registro3["matricula"];
-            }
-            ?>
-          </td>
+          <td><?php echo $registroOtros["nombre"] ?></td>
+          <td> <?php 
+          
+          
+          if ($registroOtros["tipo"] == 1) {
+            echo "Ingreso";
+          }
+          if ($registroOtros["tipo"] == 0) {
+            echo "Egreso";
+          }
+          
+          
+           ?></td>
+          <td> <?php echo $registroOtros["monto"]; ?></td>
           <td>
             <div style="text-align: center;">
               <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickModificarOtro(this.id)" value="Editar" name="enviar" id="                 
-              <?php echo 'idcode:', $registroOtros["id"], ':idcode nombrecode:',  $registroOtros["id_producto_nombre"], ':nombrecode cantidadcode:', $registroOtros["cantidad"], ':cantidadcode maritimocode:', $registroOtros["id_maritimo"], ':maritimocode terrestrecode:', $registroOtros["id_terrestre"], ':terrestrecode' ?>" class="btn btn-outline-warning">
+              <?php echo 'idcode:', $registroOtros["id"], ':idcode nombrecode:',  $registroOtros["nombre"], ':nombrecode cantidadcode:', $registroOtros["monto"], ':cantidadcode tipocode:', $registroOtros["tipo"], ':tipocode' ?>" class="btn btn-outline-warning">
               <input style="margin-bottom: 4px;  margin-right:6px;" type="button" onClick="reply_clickBorrarOtros(this.id)" value="Borrar" name="borrar" id="<?php echo $registroOtros["id"] ?>" class="borrar-id btn btn-outline-danger">
             </div>
           </td>
@@ -99,9 +92,9 @@ require_once "../modelo/empresa.modelo.php";
 <script type="text/javascript">
   function reply_clickModificarOtro(id) {
 
-    $("#editarOtro").show();
-    $("#cancelarOtro").show();
-    $("#guardarOtro").hide();
+    $("#editar3").show();
+    $("#cancelar3").show();
+    $("#guardar3").hide();
 
     var cadena = id;
     var inicio = cadena.indexOf("idcode:") + 7;
@@ -116,37 +109,14 @@ require_once "../modelo/empresa.modelo.php";
     var fin = cadena.indexOf(":cantidadcode");
     var cantidad = cadena.substring(inicio, fin);
 
-    var inicio = cadena.indexOf("maritimocode:") + 13;
-    var fin = cadena.indexOf(":maritimocode");
-    var maritimo = cadena.substring(inicio, fin);
+    var inicio = cadena.indexOf("tipocode:") + 9;
+    var fin = cadena.indexOf(":tipocode");
+    var tipo = cadena.substring(inicio, fin);
 
-    var inicio = cadena.indexOf("terrestrecode:") + 14;
-    var fin = cadena.indexOf(":terrestrecode");
-    var terrestre = cadena.substring(inicio, fin);
-
-    if (maritimo == "") {
-      maritimo = "null";
-      $("#idRelacionOtros_Terrestre").attr("disabled", false);
-      $("#idRelacionOtros_Maritimo").attr("disabled", true);
-      
-    }
-
-    if (terrestre=="") {
-      terrestre = "null";
-      $("#idRelacionOtros_Maritimo").attr("disabled", false);
-      $("#idRelacionOtros_Terrestre").attr("disabled", true);
-    }
-
-    $("#idIdOtro").val(id00);
-    $('#idProductoOtros').val(nombre);
-    $('#idProductoOtros').trigger('change');
-    $("#cantidadOtros").val(cantidad);
-    $("#idRelacionOtros_Maritimo").val(maritimo);
-    $("#idRelacionOtros_Terrestre").val(terrestre);
-    //Comprobaciones
-    $("#comprobacionRelacionOtroMaritimo").val(maritimo);
-    $("#comprobacionRelacionOtroTerrestre").val(terrestre);
-    $('#comprobacionRelacionOtro').val(nombre);
+    $("#idIngresoEgreso").val(id00);
+    $('#nombreIngresoEgreso').val(nombre);
+    $("#monto3").val(cantidad);
+    $('#idTipo3').val(tipo);
 
   }
 </script>

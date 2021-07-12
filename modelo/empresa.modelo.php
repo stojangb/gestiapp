@@ -109,21 +109,20 @@ class ModeloEmpresas
     static public function InsertarIngresoEgreso($datos)
     {
         $sql = DB::conexion()->prepare("INSERT INTO ingreso_egreso(nombre, tipo, id_empresa, monto) VALUES (:nombre, :tipo, :id_empresa, :monto)");
-        $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $sql->bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
+        $sql->bindParam(":nombre", $datos["nombreIngresoEgreso"], PDO::PARAM_STR);
+        $sql->bindParam(":tipo", $datos["idTipo3"], PDO::PARAM_STR);
         $sql->bindParam(":id_empresa", $datos["id_empresa"], PDO::PARAM_STR);
-        $sql->bindParam(":monto", $datos["monto"], PDO::PARAM_STR);
+        $sql->bindParam(":monto", $datos["monto3"], PDO::PARAM_STR);
         $sql->execute();
     }
 
     static public function EditarIngresoEgreso($datos)
     {
-        $sql = DB::conexion()->prepare("UPDATE otros SET id_producto_nombre=:nombre, cantidad=:cantidad, id_maritimo=:idmaritimo, id_terrestre=:idterrestre WHERE id=:idOtro");
-        $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $sql->bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
-        $sql->bindParam(":idmaritimo", $datos["idmaritimo"], PDO::PARAM_STR);
-        $sql->bindParam(":idterrestre", $datos["idterrestre"], PDO::PARAM_STR);
-        $sql->bindParam(":idOtro", $datos["idOtro"], PDO::PARAM_STR);
+        $sql = DB::conexion()->prepare("UPDATE ingreso_egreso SET nombre = :nombre, tipo=:tipo, monto=:monto WHERE id=:id");
+        $sql->bindParam(":nombre", $datos["nombreIngresoEgreso"], PDO::PARAM_STR);
+        $sql->bindParam(":tipo", $datos["idTipo3"], PDO::PARAM_STR);
+        $sql->bindParam(":id", $datos["idIngresoEgreso"], PDO::PARAM_STR);
+        $sql->bindParam(":monto", $datos["monto3"], PDO::PARAM_STR);
         $sql->execute();
     }
 
