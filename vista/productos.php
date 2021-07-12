@@ -110,7 +110,7 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       <div class="col-sm-4">
                         <div class="form-group">
                           <label class="" for="exampleFormControlSelect1">Seleccione un cliente</label>
-                          <select id="idBanco" class="form-control" name="nameCliente">
+                          <select id="idBaco" class="form-control" name="nameCliente">
                             <?php
                             $matrizClientes = ControllerClientes::listarClientes();
                             foreach ($matrizClientes as $registro) {
@@ -125,22 +125,39 @@ $_SESSION['iid'] = $_POST["id"] ?>
                       </div>
 
                       <div class="col-sm-4">
-                        A
+                        <p>Fecha y hora venta: </p>
+                        <input type="datetime-local" id="fecha_hora_venta">
                       </div>
                       <div class="col-sm-4">
-                        B
+                        <br>
+
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-4">
-                        C
+                        <div class="form-group">
+                          <label class="" for="exampleFormControlSelect1">Seleccione un producto</label>
+                          <select id="idBanco" class="form-control" name="nameCliente">
+                            <?php
+                            $matrizClientes = ControllerProductos::listarProductosPorEmpresa($_POST["id"]);
+                            foreach ($matrizClientes as $registro) {
+                            ?>
+                              <option value="<?php echo $registro["id"] ?>">
+                                <?php echo $registro["nombre"]; ?> </option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                          <br>
+                          <button id="boton_producto_nuevo" type="button" class="btn btn-outline-primary">Agregar producto</button>
+                        </div>
                       </div>
                       <div class="col-sm-4">
                         D
                       </div>
                       <div class="col-sm-4">
-                      EE
-                      <br>
+                        EE
+                        <br>
                         <div id="AgregarNuevoProductoTerrestre"></div>
                         <br>
                         <button id="guardarTerrestre" type="submit" class="btn btn-outline-info">Guardar</button>
@@ -177,56 +194,33 @@ $_SESSION['iid'] = $_POST["id"] ?>
               <div class="card card-body">
                 <div style="background-color: #f8f9fc; " class="container">
                   <form id="id-formulario-agregar-otros">
+              
+                   <b> Agregar ingresos y egresos mensuales de la empresa actual </b>    <br><br>  
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <p>Nombre</p>
+                        <input type="text" id="nombreIngresoEgreso">
+                      </div>
+                      <div class="col-xl-6 ">
+                        <p>tipo</p>
+                        <select id="idTipo3" class="form-control" name="nameCliente">
+                         
+                              <option value=0>Egreso</option>
+                              <option value=1>Ingreso</option>
+                        
+                          </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-6">
+                        <p>Monto:</p>
+                        <input type="number" id="monto3">
+                      </div>
+                      <div class="col-xl-6 ">
+                      </div>
+                    </div>
                     <br>
-                    <div class="row">
-                      <div class="col-xl-4">
-                        <div class="form-group">
-                          <label for="exampleFormControl">Relacionar con Marítimo:</label>
-                          <br>
-                          <select style="width: 250px;" class="form-control" id="idRelacionOtros_Maritimo" name="tipo">
-                          </select>
-                          <label for="exampleFormControl">Relacionar con Terrestre:</label>
-                          <br>
-                          <select style="width: 250px;" class="form-control" id="idRelacionOtros_Terrestre" name="tipo">
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-xl-4 ">
-                        <div class="form-group">
-                          <label for="exampleFormControl">Producto a sanitizar</label>
-                          <br>
-                          <select style="width: 250px;" class="form-control js-example-basic-single" id="idProductoOtros" name="tipo">
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-xl-4">
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1">Cantidad</label>
-                          <input value="" name="idIdOtro" id="idIdOtro" hidden>
-                          <input required type="number" value="" class="form-control" id="cantidadOtros" placeholder="Cantidad">
-                          <input type="name" value="" id="comprobacionRelacionOtroMaritimo" hidden>
-                          <input type="name" value="" id="comprobacionRelacionOtroTerrestre" hidden>
-                          <input type="name" value="" id="comprobacionRelacionOtro" hidden>
-                          <br>
-                          <button id="guardarOtro" type="submit" class="btn btn-outline-info">Guardar</button>
-                          <input type="button" value="Editar" name="editar" id="editarOtro" class="btn btn-outline-warning">
-                          <input type="button" value="Cancelar" name="cancelar" id="cancelarOtro" class="btn btn-outline-danger">
-                          <br>
-                          <br>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-xl-3">
-                        <a data-toggle="modal" data-target="#exampleModalCenterOtros" style="color: blue;" type="button" id="NoEncuentraOtro">¿No encuentra el producto?</a>
-                      </div>
-                      <div class="col-xl-3">
-                      </div>
-                      <div class="col-xl-3">
-                      </div>
-                      <div class="col-xl-3">
-                      </div>
-                    </div>
+  <button id="guardar3" type="button" class="btn btn-outline-info">Guardar</button>
                     <div id="recargarOtros">
                       <div class="row">
                         <div class="card-body">

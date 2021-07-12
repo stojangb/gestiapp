@@ -5,16 +5,12 @@ Class ControllerEmpresas{
 		$respuesta = ModeloEmpresas::CrearEmpresa($datos);
     	return $respuesta;
     }
-    public static function InsertarMaritimos($datos) {
-		$respuesta = ModeloEmpresas::InsertarMaritimo($datos);
+    public static function InsertarVenta($datos) {
+		$respuesta = ModeloEmpresas::InsertarVenta($datos);
     	return $respuesta;
     }
-    public static function InsertarTerrestre($datos) {
-		$respuesta = ModeloEmpresas::InsertarTerrestre($datos);
-    	return $respuesta;
-    }
-    public static function InsertarOtro($datos) {
-		$respuesta = ModeloEmpresas::InsertarOtro($datos);
+    public static function InsertarIngresoEgreso($datos) {
+		$respuesta = ModeloEmpresas::InsertarIngresoEgreso($datos);
     	return $respuesta;
     }
     //Listar
@@ -79,10 +75,7 @@ Class ControllerEmpresas{
         $respuesta = ModeloEmpresas::listarTipoDeTrabajoPorIdOtros($id);
         return $respuesta;
     }
-    public static function listarMaritimos($id){
-        $respuesta = ModeloEmpresas::listarMaritimo($id);
-        return $respuesta;
-    }
+
     public static function listarMaritimosPorIdServicio($IDServicios){
         $respuesta = ModeloEmpresas::listarMaritimosPorIdServicio($IDServicios);
         return $respuesta;
@@ -103,12 +96,12 @@ Class ControllerEmpresas{
         $respuesta = ModeloEmpresas::listarTerrestrePorIdServicio($IDServicios);
         return $respuesta;
     }
-    public static function listarTerrestre($id){
-        $respuesta = ModeloEmpresas::listarTerrestre($id);
+    public static function listarVentas($id){
+        $respuesta = ModeloEmpresas::listarVentas($id);
         return $respuesta;
     }
-    public static function listarOtro($id){
-        $respuesta = ModeloEmpresas::listarOtro($id);
+    public static function listarIngresoEgreso($id){
+        $respuesta = ModeloEmpresas::listarIngresoEgreso($id);
         return $respuesta;
     }
     public static function listarObjetos($id){
@@ -140,8 +133,8 @@ Class ControllerEmpresas{
 		$respuesta = ModeloEmpresas::EditarTerrestre($datos);
     	return $respuesta;
     }
-    public static function EditarOtro($datos) {
-		$respuesta = ModeloEmpresas::EditarOtro($datos);
+    public static function EditarIngresoEgreso($datos) {
+		$respuesta = ModeloEmpresas::EditarIngresoEgreso($datos);
     	return $respuesta;
     }
     //Eliminar
@@ -153,12 +146,12 @@ Class ControllerEmpresas{
         $respuesta = ModeloEmpresas::EliminarMaritimo($id);
 		return $respuesta;
     }
-    public static function EliminarTerrestre($id) {
-        $respuesta = ModeloEmpresas::EliminarTerrestre($id);
+    public static function EliminarVentas($id) {
+        $respuesta = ModeloEmpresas::EliminarVenta($id);
 		return $respuesta;
     }
-    public static function EliminarOtros($id) {
-        $respuesta = ModeloEmpresas::EliminarOtros($id);
+    public static function EliminarIngresoEgreso($id) {
+        $respuesta = ModeloEmpresas::EliminarIngresoEgreso($id);
 		return $respuesta;
     }
 

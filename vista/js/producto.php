@@ -1,10 +1,11 @@
 <script type="text/javascript">
+//Productos
   $("#editar").hide();
   $("#enviar").show();
   $("#cancelar").hide();
 
   function reply_clickBorrar(clicked_id) {
-    confirmar = confirm('¿Estás seguro de eliminar el registro?, Si hay una relación entre un camión y un servicio o un producto y un servicio no podrás eliminarlo.');
+    confirmar = confirm('¿Estás seguro de eliminar el registro?, Si hay una relación involucrada no podrás eliminarlo.');
     if (confirmar == true) {
       var datos = new FormData();
       datos.append("id", clicked_id);
@@ -59,7 +60,6 @@
     } else {
       var datosAgregar = new FormData();
       datosAgregar.append("tipoOperacion", "insertarProducto");
-
       datosAgregar.append("producto", producto);
       datosAgregar.append("tipoproducto", tipoproducto);
       $.ajax({
@@ -117,4 +117,8 @@
     $("#enviar").show();
     $("#cancelar").hide();
   });
+
+
+
+
 </script>

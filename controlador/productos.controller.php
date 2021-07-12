@@ -5,8 +5,8 @@ Class ControllerProductos{
         $respuesta = ModeloProductos::listarProducto($tabla);
         return $respuesta;
     }
-    public static function listarProductosOtros(){
-        $respuesta = ModeloProductos::listarProductosOtros();
+    public static function listarProductosPorEmpresa($id_empresa){
+        $respuesta = ModeloProductos::listarProductosPorEmpresa($id_empresa);
         return $respuesta;
     }
     public static function listarProductosOtrosPanel(){

@@ -15,7 +15,7 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::CrearEmpresa($datos);
 		echo $respuesta;
 	}
-	public function insertarMaritimo()
+	public function insertarVenta()
 	{
 		$datos = array(
 			"nombre" => $this->nombre,
@@ -24,33 +24,18 @@ class ajaxEmpresa
 			"idservicio" => $this->idservicio,
 			"tipotrabajomaritimo" => $this->tipotrabajomaritimo,
 		);
-		$respuesta = ControllerEmpresas::InsertarMaritimos($datos);
+		$respuesta = ControllerEmpresas::InsertarVenta($datos);
 		echo $respuesta;
 	}
-	public function editarMaritimo()
+	public function insertarIngresoEgreso()
 	{
 		$datos = array(
-			"idMaritimo" => $this->idMaritimo,
-			"nombre" => $this->nombre,
-			"certificado" => $this->certificado,
-			"vueltafalsa" => $this->vueltafalsa,
-			"idservicio" => $this->idservicio,
-			"tipotrabajomaritimo" => $this->tipotrabajomaritimo,
+			"nombreIngresoEgreso" => $this->nombreIngresoEgreso,
+			"idTipo3" => $this->idTipo3,
+			"monto3" => $this->monto3,
+			"id_empresa" => $this->id_empresa,
 		);
-		$respuesta = ControllerEmpresas::EditarMaritimos($datos);
-		echo $respuesta;
-	}
-	public function insertarTerrestre()
-	{
-		$datos = array(
-			"nombre" => $this->nombre,
-			"certificado" => $this->certificado,
-			"matricula" => $this->matricula,
-			"idservicio" => $this->idservicio,
-			"idmaritimo" => $this->idmaritimo,
-			"tipotrabajoterrestre" => $this->tipotrabajoterrestre,
-		);
-		$respuesta = ControllerEmpresas::InsertarTerrestre($datos);
+		$respuesta = ControllerEmpresas::InsertarIngresoEgreso($datos);
 		echo $respuesta;
 	}
 	public function editarTerrestre()
@@ -65,31 +50,6 @@ class ajaxEmpresa
 			"tipotrabajoterrestre" => $this->tipotrabajoterrestre,
 		);
 		$respuesta = ControllerEmpresas::EditarTerrestre($datos);
-		echo $respuesta;
-	}
-	public function insertarOtro()
-	{
-		$datos = array(
-			"nombre" => $this->nombre,
-			"cantidad" => $this->cantidad,
-			"idservicio" => $this->idservicio,
-			"idterrestre" => $this->idterrestre,
-			"idmaritimo" => $this->idmaritimo,
-		);
-		$respuesta = ControllerEmpresas::InsertarOtro($datos);
-		echo $respuesta;
-	}
-	public function editarOtro()
-	{
-		$datos = array(
-			"idOtro" => $this->idOtro,
-			"nombre" => $this->nombre,
-			"cantidad" => $this->cantidad,
-			"idservicio" => $this->idservicio,
-			"idterrestre" => $this->idterrestre,
-			"idmaritimo" => $this->idmaritimo,
-		);
-		$respuesta = ControllerEmpresas::EditarOtro($datos);
 		echo $respuesta;
 	}
 	//Listar
@@ -170,18 +130,7 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::EliminarMaritimo($id);
 		echo $respuesta;
 	}
-	public function eliminarTerrestre()
-	{
-		$id = $this->id_terrestre;
-		$respuesta = ControllerEmpresas::EliminarTerrestre($id);
-		echo $respuesta;
-	}
-	public function eliminarOtro()
-	{
-		$id = $this->id_otro;
-		$respuesta = ControllerEmpresas::EliminarOtros($id);
-		echo $respuesta;
-	}
+
 }
 $tipoOperacion = $_POST["tipoOperacion"];
 //Insertar
@@ -193,40 +142,8 @@ if ($tipoOperacion == "insertarEmpresa") {
 	$crearNuevoServicio->giro     = $_POST["giro"];
 	$crearNuevoServicio->crearEmpresa();
 }
-if ($tipoOperacion == "insertarMaritimo") {
-	$agregarProducto = new ajaxEmpresa();
 
-	$agregarProducto->nombre = $_POST['nombre'];
-	$agregarProducto->certificado = $_POST["certificado"];
-	$agregarProducto->vueltafalsa = $_POST["vueltafalsa"];
-	$agregarProducto->tipotrabajomaritimo = $_POST["tipotrabajomaritimo"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	$agregarProducto->insertarMaritimo();
-}
-if ($tipoOperacion == "editarMaritimo") {
-	$agregarProducto = new ajaxEmpresa();
-	$agregarProducto->idMaritimo = $_POST['idMaritimo'];
-	$agregarProducto->nombre = $_POST['nombre'];
-	$agregarProducto->certificado = $_POST["certificado"];
-	$agregarProducto->vueltafalsa = $_POST["vueltafalsa"];
-	$agregarProducto->tipotrabajomaritimo = $_POST["tipotrabajomaritimo"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	$agregarProducto->editarMaritimo();
-}
-if ($tipoOperacion == "insertarTerrestre") {
-	$agregarProducto = new ajaxEmpresa();
-	$agregarProducto->nombre = $_POST["nombre"];
-	$agregarProducto->certificado = $_POST["certificado"];
-	$agregarProducto->matricula = $_POST["matricula"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	if ($_POST["idmaritimo"] == 'null') {
-		$agregarProducto->idmaritimo = null;
-	} else {
-		$agregarProducto->idmaritimo = $_POST["idmaritimo"];
-	}
-	$agregarProducto->tipotrabajoterrestre = $_POST["tipotrabajoterrestre"];
-	$agregarProducto->insertarTerrestre();
-}
+
 if ($tipoOperacion == "editarTerrestre") {
 	$agregarProducto = new ajaxEmpresa();
 	$agregarProducto->idTerrestre = $_POST["idTerrestre"];
@@ -241,42 +158,6 @@ if ($tipoOperacion == "editarTerrestre") {
 	}
 	$agregarProducto->tipotrabajoterrestre = $_POST["tipotrabajoterrestre"];
 	$agregarProducto->editarTerrestre();
-}
-if ($tipoOperacion == "insertarOtro") {
-	$agregarProducto = new ajaxEmpresa();
-	if ($_POST["idmaritimo"] == 'null') {
-		$agregarProducto->idmaritimo = null;
-	} else {
-		$agregarProducto->idmaritimo = $_POST["idmaritimo"];
-	}
-	if ($_POST["idterrestre"] == 'null') {
-		$agregarProducto->idterrestre = null;
-	} else {
-		$agregarProducto->idterrestre = $_POST["idterrestre"];
-	}
-	$agregarProducto->nombre = $_POST["nombre"];
-	$agregarProducto->cantidad = $_POST["cantidad"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	$agregarProducto->tipotrabajootro = $_POST["tipotrabajootro"];
-	$agregarProducto->insertarOtro();
-}
-if ($tipoOperacion == "editarOtro") {
-	$agregarProducto = new ajaxEmpresa();
-	if ($_POST["idmaritimo"] == 'null') {
-		$agregarProducto->idmaritimo = null;
-	} else {
-		$agregarProducto->idmaritimo = $_POST["idmaritimo"];
-	}
-	if ($_POST["idterrestre"] == 'null') {
-		$agregarProducto->idterrestre = null;
-	} else {
-		$agregarProducto->idterrestre = $_POST["idterrestre"];
-	}
-	$agregarProducto->idOtro = $_POST["idOtro"];
-	$agregarProducto->nombre = $_POST["nombre"];
-	$agregarProducto->cantidad = $_POST["cantidad"];
-	$agregarProducto->idservicio = $_POST["idservicio"];
-	$agregarProducto->editarOtro();
 }
 //Listar
 if ($tipoOperacion == "listarMaritimoSelect") {
@@ -336,19 +217,4 @@ if ($tipoOperacion == "eliminarEmpresa") {
 	$eliminarCliente = new ajaxEmpresa();
 	$eliminarCliente->id_empresa = $_POST["id_empresa"];
 	$eliminarCliente->eliminarEmpresa();
-}
-if ($tipoOperacion == "eliminarMaritimo") {
-	$eliminarMaritimo = new ajaxEmpresa();
-	$eliminarMaritimo->id_maritimo = $_POST["id_maritimo"];
-	$eliminarMaritimo->eliminarMaritimo();
-}
-if ($tipoOperacion == "eliminarTerrestre") {
-	$eliminarTerrestre = new ajaxEmpresa();
-	$eliminarTerrestre->id_terrestre = $_POST["id_terrestre"];
-	$eliminarTerrestre->eliminarTerrestre();
-}
-if ($tipoOperacion == "eliminarOtro") {
-	$eliminarOtro = new ajaxEmpresa();
-	$eliminarOtro->id_otro = $_POST["id_otro"];
-	$eliminarOtro->eliminarOtro();
 }

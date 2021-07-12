@@ -65,7 +65,7 @@ class ModeloEmpresas
         }
     }
 
-    static public function InsertarTerrestre($datos)
+    static public function InsertarVenta($datos)
     {
         $sql = DB::conexion()->prepare("INSERT INTO terrestre (matricula,id_producto_nombre,id_servicio,id_maritimo) VALUES (:matricula,:nombre,:idservicio,:idmaritimo)");
         $sql->bindParam(":matricula", $datos["matricula"], PDO::PARAM_STR);
@@ -73,29 +73,6 @@ class ModeloEmpresas
         $sql->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
         $sql->bindParam(":idmaritimo", $datos["idmaritimo"], PDO::PARAM_STR);
         $sql->execute();
-
-        //Obteniendo último valor insertado...
-        $sqle = DB::conexion()->prepare("SELECT id FROM terrestre order by id desc limit 1");
-        $sqle->execute();
-        foreach ($sqle as $key => $value) {
-            $id_terrestre = $value["id"];
-        }
-
-        $sql11 = DB::conexion()->prepare("INSERT INTO certificados (certificado, id_terrestre,id_maritimo,id_servicio) VALUES (:certificado,'$id_terrestre',NULL,:idservicio)");
-        $sql11->bindParam(":certificado", $datos["certificado"], PDO::PARAM_STR);
-        $sql11->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
-        $sql11->execute();
-
-        $contarTipoTrabajoTerrestre = count($datos["tipotrabajoterrestre"]);
-        if ($contarTipoTrabajoTerrestre >= 1) {
-            for ($i = 0; $i < $contarTipoTrabajoTerrestre; $i++) {
-                $tipoTrabajoTerrestre = $datos["tipotrabajoterrestre"][$i];
-                var_dump($tipoTrabajoTerrestre);
-                $sql1 = DB::conexion()->prepare("INSERT INTO trabajo (id_tipotrabajo,id_maritimo,id_terrestre,id_servicio) VALUES ('$tipoTrabajoTerrestre',null,'$id_terrestre',:idservicio)");
-                $sql1->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
-                $sql1->execute();
-            }
-        }
     }
 
     static public function EditarTerrestre($datos)
@@ -129,18 +106,17 @@ class ModeloEmpresas
         }
     }
 
-    static public function InsertarOtro($datos)
+    static public function InsertarIngresoEgreso($datos)
     {
-        $sql = DB::conexion()->prepare("INSERT INTO otros (id_producto_nombre,cantidad,id_servicio,id_maritimo,id_terrestre) VALUES (:nombre,:cantidad,:idservicio,:idmaritimo,:idterrestre)");
+        $sql = DB::conexion()->prepare("INSERT INTO ingreso_egreso(nombre, tipo, id_empresa, monto) VALUES (:nombre, :tipo, :id_empresa, :monto)");
         $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-        $sql->bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
-        $sql->bindParam(":idservicio", $datos["idservicio"], PDO::PARAM_STR);
-        $sql->bindParam(":idmaritimo", $datos["idmaritimo"], PDO::PARAM_STR);
-        $sql->bindParam(":idterrestre", $datos["idterrestre"], PDO::PARAM_STR);
+        $sql->bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
+        $sql->bindParam(":id_empresa", $datos["id_empresa"], PDO::PARAM_STR);
+        $sql->bindParam(":monto", $datos["monto"], PDO::PARAM_STR);
         $sql->execute();
     }
 
-    static public function EditarOtro($datos)
+    static public function EditarIngresoEgreso($datos)
     {
         $sql = DB::conexion()->prepare("UPDATE otros SET id_producto_nombre=:nombre, cantidad=:cantidad, id_maritimo=:idmaritimo, id_terrestre=:idterrestre WHERE id=:idOtro");
         $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
@@ -299,16 +275,16 @@ class ModeloEmpresas
         return $sql->fetchAll();
     }
 
-    static public function listarTerrestre($id)
+    static public function listarVentas($id)
     {
-        $sql = DB::conexion()->prepare("SELECT certificados.certificado, terrestre.matricula, productos.productos, terrestre.id, terrestre.id_producto_nombre, terrestre.id_maritimo FROM terrestre inner join productos on terrestre.id_producto_nombre = productos.id inner join certificados on terrestre.id = certificados.id_terrestre WHERE terrestre.id_servicio='$id'");
+        $sql = DB::conexion()->prepare("SELECT id, fecha, id_cliente FROM ventas  WHERE id_empresas_usuario='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
 
-    static public function listarOtro($id)
+    static public function listarIngresoEgreso($id)
     {
-        $sql = DB::conexion()->prepare("SELECT productos.productos, otros.id, otros.cantidad, otros.id_producto_nombre, otros.id_maritimo, otros.id_terrestre FROM otros inner join productos on otros.id_producto_nombre = productos.id WHERE id_servicio='$id'");
+        $sql = DB::conexion()->prepare("SELECT id, nombre, tipo, id_empresa, monto FROM ingreso_egreso WHERE id_empresa='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -434,7 +410,7 @@ class ModeloEmpresas
             return "error";
         }
     }
-    static public function EliminarTerrestre($id_tabla)
+    static public function EliminarVenta($id_tabla)
     {
         $sql = DB::conexion()->prepare("DELETE FROM terrestre WHERE id = :id");
         $sql->bindParam(":id", $id_tabla, PDO::PARAM_INT);
@@ -444,9 +420,9 @@ class ModeloEmpresas
             return "error";
         }
     }
-    static public function EliminarOtros($id_tabla)
+    static public function EliminarIngresoEgreso($id_tabla)
     {
-        $sql = DB::conexion()->prepare("DELETE FROM otros WHERE id = :id");
+        $sql = DB::conexion()->prepare("DELETE FROM ingreso_egreso WHERE id = :id");
         $sql->bindParam(":id", $id_tabla, PDO::PARAM_INT);
         if ($sql->execute()) {
             return "ok";

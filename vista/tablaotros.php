@@ -1,6 +1,6 @@
 <?php
-require_once "../controlador/servicios.controller.php";
-require_once "../modelo/servicio.modelo.php";
+require_once "../controlador/empresas.controller.php";
+require_once "../modelo/empresa.modelo.php";
 ?>
 
 
@@ -39,7 +39,7 @@ require_once "../modelo/servicio.modelo.php";
 
 <div class="card shadow mb-4 reload">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Listado de Objetos</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Listado de ingresos y egresos de la empresa actual</h6>
     </div>
     <div class="card-body">
 <div class="table-responsive">
@@ -47,8 +47,8 @@ require_once "../modelo/servicio.modelo.php";
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Relación</th>
+        <th>Tipo</th>
+        <th>Monto</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -57,7 +57,7 @@ require_once "../modelo/servicio.modelo.php";
       if (!isset($_SESSION)) {
         session_start();
       }
-      $matrizOtros = ControllerEmpresas::listarOtro($_SESSION['iid']);
+      $matrizOtros = ControllerEmpresas::listarIngresoEgreso($_SESSION['iid']);
       foreach ($matrizOtros as $registroOtros) {
       ?>
         <tr>

@@ -1,6 +1,6 @@
 <?php
-require_once "../controlador/servicios.controller.php";
-require_once "../modelo/servicio.modelo.php";
+require_once "../controlador/empresas.controller.php";
+require_once "../modelo/empresa.modelo.php";
 ?>
 <style type="text/css">
 @media screen and (max-width: 600px) {
@@ -52,7 +52,7 @@ require_once "../modelo/servicio.modelo.php";
         </thead>
         <tbody>
           <?php
-          $matrizTerrestre = ControllerEmpresas::listarTerrestre($_POST["id"]);
+          $matrizTerrestre = ControllerEmpresas::listarVentas($_POST["id"]);
           foreach ($matrizTerrestre as $registroTerrestre) {
           ?>
             <tr>

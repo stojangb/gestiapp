@@ -8,9 +8,9 @@ class ModeloProductos
         $sql->execute();
         return $sql->fetchAll();
     }
-    static public function listarProductosOtros()
+    static public function listarProductosPorEmpresa($id_empresa)
     {
-        $sql = DB::conexion()->prepare("SELECT * FROM productos where tipoproducto = 'Otro'");
+        $sql = DB::conexion()->prepare("SELECT id, nombre FROM productos where id_empresa = '$id_empresa'");
         $sql->execute();
         return $sql->fetchAll();
     }

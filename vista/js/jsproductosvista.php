@@ -309,8 +309,8 @@
             } else {
                 var datosAgregarx = new FormData();
                 datosAgregarx.append("tipoOperacion", "insertarProducto");
-                datosAgregarx.append("idServicio", idServicio); 
-                datosAgregarx.append("producto", producto); 
+                datosAgregarx.append("idServicio", idServicio);
+                datosAgregarx.append("producto", producto);
                 datosAgregarx.append("cantidad", cantidad);
                 datosAgregarx.append("precio", precio);
 
@@ -722,15 +722,8 @@
         //-----------------------------------------------Otros--------------------------------------------------
 
         $('#idBotonCollapseOtros').click(function() {
-            $("#editarOtro").hide();
-            $("#cancelarOtro").hide();
-            $("#guardarOtro").show();
             $("#collapseMaritimo").collapse("hide");
-            $("#cantidadOtros").val("");
             $("#collapseTerrestre").collapse("hide");
-            $("#idProductoOtros").empty();
-            $("#idRelacionOtros_Maritimo").empty();
-            $("#idRelacionOtros_Terrestre").empty();
             var tipodeproducto = "Otro";
             var datos10 = new FormData();
             datos10.append("tipoOperacion", "listarProductoPorTipo");
@@ -827,29 +820,35 @@
                 }
             });
         });
-        $("#idRelacionOtros_Maritimo").change(function() {
-            var rela_otr_mar = $("#idRelacionOtros_Maritimo").val();
-            if (rela_otr_mar == "null") {
-                $("#idRelacionOtros_Terrestre").attr("disabled", false);
-            } else {
-                $("#idRelacionOtros_Terrestre").attr("disabled", true);
-            }
-        });
-        $("#idRelacionOtros_Terrestre").change(function() {
-            var rela_otr_terr = $("#idRelacionOtros_Terrestre").val();
-            if (rela_otr_terr == "null") {
-                $("#idRelacionOtros_Maritimo").attr("disabled", false);
-            } else {
-                $("#idRelacionOtros_Maritimo").attr("disabled", true);
-            }
-        });
-        $("#id-formulario-agregar-otros").submit(function(e) {
-            e.preventDefault();
-            var productoOtros = $("#idProductoOtros").val();
-            var cantidad = $("#cantidadOtros").val();
-            var idmaritimoOnull = $("#idRelacionOtros_Maritimo").val();
-            var idterrestreOnull = $("#idRelacionOtros_Terrestre").val();
-            bloquearOtro = 0;
+
+        $("#guardar3").click(function() {
+            var nombreIngresoEgreso = $("#nombreIngresoEgreso").val();
+            var idTipo3 = $("#idTipo3").val();
+            var monto3 = $("#monto3").val();
+            var id_empresa = $("#idservicio00").val();
+            //Empresa actual
+
+            var datosAgregar3 = new FormData();
+            datosAgregar3.append("tipoOperacion", "insertarIngresoEgreso");
+            datosAgregar3.append("nombreIngresoEgreso", nombreIngresoEgreso);
+            datosAgregar3.append("idTipo3", idTipo3);
+            datosAgregar3.append("monto3", monto3);
+            datosAgregar3.append("id_empresa", id_empresa);
+            $.ajax({
+                url: 'ajax/ajaxEmpresas.php',
+                type: 'POST',
+                data: datosAgregar3,
+                processData: false,
+                contentType: false,
+                async: false,
+                success: function(res) {
+                    alert(res);
+                }
+            });
+
+
+
+
 
             if (idmaritimoOnull == "null" && idterrestreOnull == "null") {
                 alert("Debe relacionar el producto.");
@@ -861,30 +860,7 @@
                     if (idterrestreOnull == "null") {
                         //alert("Camión es null");
                         //Consultar BD sí ya existe un Bins relacionado con  maritimos..
-                        var datosAgregar3 = new FormData();
-                        datosAgregar3.append("tipoOperacion", "listarRelacionMaritimoOtroPorServicio");
-                        datosAgregar3.append("idservicio", idservicio);
-                        $.ajax({
-                            url: 'ajax/ajaxBarcazas.php',
-                            type: 'POST',
-                            data: datosAgregar3,
-                            processData: false,
-                            contentType: false,
-                            async: false,
-                            success: function(res) {
-                                var valor0 = JSON.parse(res);
-                                var contador = valor0.length;
-                                for (var i = 0; i < contador; i++) {
-                                    //  alert(productoOtros +" y "+ idmaritimoOnull + "Relacion existente: "+valor0[i][0]+" y "+valor0[i][1])
-                                    if (productoOtros == valor0[i][0] && idmaritimoOnull == valor0[i][1]) {
-                                        bloquearOtro = 1;
-                                    }
-                                }
-                                if (bloquearOtro == 1) {
-                                    alert("No puede ingresar el mismo Marítimo con el mismo producto 2 veces.");
-                                }
-                            }
-                        });
+
                         //Consultar BD sí ya existe un Bins relacionado con terrestre y maritimos.. FIN
                     }
                     if (idmaritimoOnull == "null") {
