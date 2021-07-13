@@ -159,7 +159,6 @@
             $("#guardar2").show();
         });
         $('#idBotonCollapseMaritimo').click(function() {
-
             $("#idEditarProducto").hide();
             $("#cancelarMaritimo").hide();
             $("#idGuardarProducto").show();

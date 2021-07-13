@@ -74,6 +74,23 @@ class ModeloEmpresas
         $sql->execute();
     }
 
+    static public function insertarDetalleVenta($datos)
+    {
+        $sql = DB::conexion()->prepare("INSERT INTO detalle_ventas(nombre, precio, id_venta, id_producto_elegido) VALUES (:nombre,:precio,:id_venta,:id_producto_elegido);
+        
+        
+        update productos set cantidad = cantidad - 1 where id = :id_producto_elegido;
+        
+        
+        
+        ");
+        $sql->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $sql->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
+        $sql->bindParam(":id_venta", $datos["idventaactual"], PDO::PARAM_STR);
+        $sql->bindParam(":id_producto_elegido", $datos["productoElegido"], PDO::PARAM_STR);
+        $sql->execute();
+    }
+
     static public function EditarVenta($datos)
     {
         $sql = DB::conexion()->prepare("UPDATE ventas SET fecha=:fecha, id_cliente=:id_cliente  WHERE id=:id");
@@ -120,10 +137,16 @@ class ModeloEmpresas
         $sql->execute();
         return $sql->fetchAll();
     }
+    static public function listarNumeroVentas()
+    {
+        $sql = DB::conexion()->prepare("SELECT id FROM ventas order by id desc");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
 
     static public function listarServicioPorAñoPanel()
     {
-        $sql = DB::conexion()->prepare("SELECT COUNT(idservicios) AS Total, MONTHNAME(servicios.fecha) AS Mes FROM servicios where year(servicios.fecha) = YEAR(NOW()) GROUP BY Mes");
+        $sql = DB::conexion()->prepare("SELECT COUNT(id) AS Total, MONTHNAME(ventas.fecha) AS Mes FROM ventas where year(ventas.fecha) = YEAR(NOW()) GROUP BY Mes");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -131,6 +154,13 @@ class ModeloEmpresas
     static public function listarVentaPorIdVenta($id)
     {
         $sql = DB::conexion()->prepare("SELECT ventas.id, fecha, id_cliente, clientes.nombre_completo as nombre_cliente FROM ventas inner join clientes on ventas.id_cliente = clientes.id  WHERE ventas.id ='$id'");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
+
+    static public function listarVentasDetalle($id)
+    {
+        $sql = DB::conexion()->prepare("SELECT detalle_ventas.id, nombre, precio FROM detalle_ventas inner join ventas on ventas.id = detalle_ventas.id_venta  WHERE ventas.id ='$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -144,11 +174,9 @@ class ModeloEmpresas
         return $sql->fetchAll();
     }
 
-    static public function listarBusquedaMatricula($matricula)
+    static public function ConsultarCantidadYPrecioDeProductos($id)
     {
-        $sql = DB::conexion()->prepare("SELECT servicios.idservicios,clientes.nombreEmpresa, clientes.rut, certificados.certificado, servicios.fecha, productos.productos, terrestre.matricula, terrestre.id as vueltafalsa FROM terrestre inner join productos on terrestre.id_producto_nombre = productos.id inner join servicios on terrestre.id_servicio = servicios.idservicios inner join certificados on terrestre.id = certificados.id_terrestre inner join servicio_cliente on servicios.idservicios = servicio_cliente.idservicio inner join clientes on servicio_cliente.idcliente = clientes.id where terrestre.matricula = '$matricula'
-        UNION 
-                                        SELECT  servicios.idservicios,clientes.nombreEmpresa, clientes.rut, certificados.certificado, servicios.fecha, objetomaritimo.nombre, objetomaritimo.matricula, maritimo.vueltafalsa FROM maritimo inner join objetomaritimo on maritimo.id_objetomaritimo = objetomaritimo.id inner join servicios on maritimo.idservicio = servicios.idservicios inner join certificados on maritimo.id = certificados.id_maritimo inner join servicio_cliente on servicios.idservicios = servicio_cliente.idservicio inner join clientes on servicio_cliente.idcliente = clientes.id where objetomaritimo.matricula = '$matricula'");
+        $sql = DB::conexion()->prepare("SELECT cantidad, precio, nombre from productos where id = '$id'");
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -406,4 +434,15 @@ class ModeloEmpresas
             return "error";
         }
     }
-}
+    static public function eliminarProductoDeDetalle($id_tabla)
+    {
+        $sql = DB::conexion()->prepare("update productos inner join detalle_ventas on productos.id = detalle_ventas.id_producto_elegido set cantidad = cantidad + 1 where detalle_ventas.id = $id_tabla; DELETE FROM detalle_ventas WHERE id = :id;");
+        $sql->bindParam(":id", $id_tabla, PDO::PARAM_INT);
+        if ($sql->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+} 
+

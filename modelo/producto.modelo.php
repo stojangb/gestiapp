@@ -20,19 +20,18 @@ class ModeloProductos
         $sql->execute();
         return $sql->fetchAll();
     }
-    static public function listarProductoMaritimoPanel()
+    static public function listarProductoMaritimoPanel()//maritimo ganancias
     {
-        $sql = DB::conexion()->prepare("SELECT id FROM maritimo");
+        $sql = DB::conexion()->prepare("SELECT sum(monto) as suma from ingreso_egreso where tipo = 1");
         $sql->execute();
         return $sql->fetchAll();
     }
     static public function listarProductoTerrestrePanel()
     {
-        $sql = DB::conexion()->prepare("SELECT id FROM terrestre");
+        $sql = DB::conexion()->prepare("SELECT sum(monto) as suma from ingreso_egreso where tipo = 0");
         $sql->execute();
         return $sql->fetchAll();
     }
-
     static public function listarProductoPorTipo($tabla, $datos)
     {
         $sql = DB::conexion()->prepare("SELECT id, productos FROM $tabla where (tipoproducto = '$datos')");

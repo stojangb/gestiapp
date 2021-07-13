@@ -141,10 +141,10 @@ $_SESSION['iid'] = $_POST["id"] ?>
                   </form>
                   <div class="row">
                     <div class="col-sm-4">
-                        <button id="guardar2" type="button" class="btn btn-outline-info">Guardar</button>
-                        <input type="button" name="editar" value="Editar" id="editar2" class="btn btn-outline-warning">
-                        <input type="button" value="Cancelar" name="cancelar" id="cancelar2" class="btn btn-outline-danger">
-                      
+                      <button id="guardar2" type="button" class="btn btn-outline-info">Guardar</button>
+                      <input type="button" name="editar" value="Editar" id="editar2" class="btn btn-outline-warning">
+                      <input type="button" value="Cancelar" name="cancelar" id="cancelar2" class="btn btn-outline-danger">
+
                     </div>
                     <div class="col-sm-4">
                     </div>

@@ -25,6 +25,17 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::InsertarVenta($datos);
 		echo $respuesta;
 	}
+	public function insertarDetalleVenta()
+	{
+		$datos = array(
+			"nombre" => $this->nombre,
+			"precio" => $this->precio,
+			"idventaactual" => $this->idventaactual,
+			"productoElegido" => $this->productoElegido,
+		);
+		$respuesta = ControllerEmpresas::insertarDetalleVenta($datos);
+		echo $respuesta;
+	}
 	public function insertarIngresoEgreso()
 	{
 		$datos = array(
@@ -47,16 +58,10 @@ class ajaxEmpresa
 		echo $respuesta;
 	}
 	//Listar
-	public function listarBusquedaCertificado()
+	public function ConsultarCantidadYPrecioDeProductos()
 	{
-		$certificado = $this->certificado;
-		$respuesta = ControllerEmpresas::listarBusquedaCertificado($certificado);
-		echo json_encode($respuesta);
-	}
-	public function listarBusquedaMatricula()
-	{
-		$matricula = $this->matricula;
-		$respuesta = ControllerEmpresas::listarBusquedaMatricula($matricula);
+		$id = $this->id;
+		$respuesta = ControllerEmpresas::ConsultarCantidadYPrecioDeProductos($id);
 		echo json_encode($respuesta);
 	}
 	public function listarIdServicioPorClienteYFechas()
@@ -129,6 +134,12 @@ class ajaxEmpresa
 		$respuesta = ControllerEmpresas::EliminarIngresoEgreso($id);
 		echo $respuesta;
 	}
+	public function eliminarProductoDeDetalle()
+	{
+		$id = $this->id;
+		$respuesta = ControllerEmpresas::eliminarProductoDeDetalle($id);
+		echo $respuesta;
+	}
 	public function eliminarVentas()
 	{
 		$id = $this->id;
@@ -153,6 +164,14 @@ if ($tipoOperacion == "insertarVenta") {
 	$crearNuevoServicio->idEmpresa        = $_POST["idEmpresa"];
 	$crearNuevoServicio->insertarVenta();
 }
+if ($tipoOperacion == "insertarDetalleVenta") {
+	$crearNuevoServicio = new ajaxEmpresa();
+	$crearNuevoServicio->nombre   = $_POST['nombre'];
+	$crearNuevoServicio->precio   = $_POST["precio"];
+	$crearNuevoServicio->idventaactual        = $_POST["idventaactual"];
+	$crearNuevoServicio->productoElegido        = $_POST["productoElegido"];
+	$crearNuevoServicio->insertarDetalleVenta();
+}
 if ($tipoOperacion == "insertarIngresoEgreso") {
 	$crearNuevoIngresoEgreso = new ajaxEmpresa();
 	$crearNuevoIngresoEgreso->nombreIngresoEgreso      = $_POST['nombreIngresoEgreso'];
@@ -172,16 +191,13 @@ if ($tipoOperacion == "editarVenta") {
 }
 
 //Listar
-if ($tipoOperacion == "listarBusquedaCertificado") {
+
+if ($tipoOperacion == "ConsultarCantidadYPrecioDeProductos") {
 	$listarProducto = new ajaxEmpresa();
-	$listarProducto->certificado = $_POST["certificado"];
-	$listarProducto->listarBusquedaCertificado();
+	$listarProducto->id= $_POST["id"];
+	$listarProducto->ConsultarCantidadYPrecioDeProductos();
 }
-if ($tipoOperacion == "listarBusquedaMatricula") {
-	$listarProducto = new ajaxEmpresa();
-	$listarProducto->matricula = $_POST["matricula"];
-	$listarProducto->listarBusquedaMatricula();
-}
+
 if ($tipoOperacion == "listarIdServicioPorClienteYFechas") {
 	$listarProducto = new ajaxEmpresa();
 	$listarProducto->fecha1 = $_POST["fechaInicio"];
@@ -243,4 +259,9 @@ if ($tipoOperacion == "eliminarIngresoEgreso") {
 	$eliminar = new ajaxEmpresa();
 	$eliminar->id = $_POST["id"];
 	$eliminar->eliminarIngresoEgreso();
+}
+if ($tipoOperacion == "eliminarProductoDeDetalle") {
+	$eliminar = new ajaxEmpresa();
+	$eliminar->id = $_POST["id"];
+	$eliminar->eliminarProductoDeDetalle();
 }

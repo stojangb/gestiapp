@@ -13,9 +13,17 @@ Class ControllerEmpresas{
 		$respuesta = ModeloEmpresas::InsertarIngresoEgreso($datos);
     	return $respuesta;
     }
+    public static function insertarDetalleVenta($datos) {
+		$respuesta = ModeloEmpresas::insertarDetalleVenta($datos);
+    	return $respuesta;
+    }
     //Listar
     public static function listarEmpresas(){
         $respuesta = ModeloEmpresas::listarEmpresa();
+        return $respuesta;
+    }
+    public static function listarNumeroVentas(){
+        $respuesta = ModeloEmpresas::listarNumeroVentas();
         return $respuesta;
     }
     public static function listarServiciosPorAñoPanel(){
@@ -26,13 +34,13 @@ Class ControllerEmpresas{
         $respuesta = ModeloEmpresas::listarVentaPorIdVenta($id);
         return $respuesta;
     }
-
-    public static function listarBusquedaCertificado($certificado){
-        $respuesta = ModeloEmpresas::listarBusquedaCertificado($certificado);
+    public static function listarVentasDetalle($id){
+        $respuesta = ModeloEmpresas::listarVentasDetalle($id);
         return $respuesta;
     }
-    public static function listarBusquedaMatricula($matricula){
-        $respuesta = ModeloEmpresas::listarBusquedaMatricula($matricula);
+
+    public static function ConsultarCantidadYPrecioDeProductos($id){
+        $respuesta = ModeloEmpresas::ConsultarCantidadYPrecioDeProductos($id);
         return $respuesta;
     }
     public static function listarIdServicioPorClienteYFechas($fecha1,$fecha2,$cliente){
@@ -152,6 +160,10 @@ Class ControllerEmpresas{
     }
     public static function EliminarIngresoEgreso($id) {
         $respuesta = ModeloEmpresas::EliminarIngresoEgreso($id);
+		return $respuesta;
+    }
+    public static function eliminarProductoDeDetalle($id) {
+        $respuesta = ModeloEmpresas::eliminarProductoDeDetalle($id);
 		return $respuesta;
     }
 

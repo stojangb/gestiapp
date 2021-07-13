@@ -43,10 +43,13 @@
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendientes, recordatorios, etc, compra, venta</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notas y recordatorios</div>
                             <!-- Controlador Vuelta falsa -->
-               
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="555">555</div>
+                            <?php
+                            $matriz = ControllerNotas::listarNotas();
+                            $numeroClientes = count($matriz);
+                            ?>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numeroClientes; ?>"><?php echo $numeroClientes; ?></div>
                           </div>
                           <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -81,13 +84,12 @@
                       <div class="card-body">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ganancias, perdidas, montos, etc</div>
-                           
-                   
-
-                            
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="555">555</div>
-
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ventas</div>
+                            <?php
+                            $matriz = ControllerEmpresas::listarNumeroVentas();
+                            $numeroClientes = count($matriz);
+                            ?>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numeroClientes; ?>"><?php echo $numeroClientes; ?></div>
                           </div>
                           <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -117,7 +119,7 @@
                           diciembre = 0;
                       </script>
                       <?php
-            //          $matriz3 = ControllerEmpresas::listarServiciosPorAñoPanel();
+                            $matriz3 = ControllerEmpresas::listarServiciosPorAñoPanel();
                       $enero = 0;
                       $febrero = 0;
                       $marzo = 0;
@@ -130,7 +132,7 @@
                       $octubre = 0;
                       $noviembre = 0;
                       $diciembre = 0;
-      /*                 foreach ($matriz3 as $registro1) {
+                                 foreach ($matriz3 as $registro1) {
                         $ho = $registro1["Mes"];
                         $h1 = $registro1["Total"];
                         //     echo $registro1["Total"];
@@ -171,7 +173,7 @@
                         if ($ho == "December") {
                           $diciembre = $h1;
                         }
-                      } */
+                      } 
                       ?>
 
                       <script>
@@ -191,7 +193,7 @@
                       </script>
                       <!-- Card Header - Dropdown -->
                       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Resumen de servicios realizados</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Resumen mensual de ventas</h6>
                       </div>
                       <!-- Card Body -->
                       <div class="card-body">
@@ -206,21 +208,24 @@
                     <div class="card shadow mb-4">
                       <br>
                       <?php
-               /*        $matriz1 = ControllerProductos::listarProductosMaritimosPanel();
-                      $cantidadMarit = count($matriz1);
-                      $matriz2 = ControllerProductos::listarProductosTerrestresPanel();
-                      $cantidadTerr = count($matriz2); */
+                      $matriz1= ControllerProductos::listarProductosMaritimosPanel();
+                      foreach ($matriz1 as $registro1) {
+                     $cantidadMarit =  $registro1["suma"];
+                      }
+                      // = $matriz1["suma"] ;
+                      $matriz2= ControllerProductos::listarProductosTerrestresPanel();
+                      foreach ($matriz2 as $registro2) {
+                      $cantidadTerr  =  $registro2["suma"];
+                         }
+                   //  = $matriz2["suma"] ;
 
-                 //     $sumaAmbos = $cantidadMarit + $cantidadTerr;
-                 $cantidadMarit = 20;
-                 $cantidadTerr = 20;
-                 $sumaAmbos = $cantidadMarit + $cantidadTerr;
+//maritimo = ganancias
                       ?>
                       <script>
                         var maritimos = <?php echo $cantidadMarit;  ?>;
                         var terrestres = <?php echo $cantidadTerr; ?>;
                       </script>
-                      <h6 class="m-0 font-weight-bold text-primary "> &nbsp; &nbsp; Barcazas y Camiones: <?php echo $sumaAmbos ?> </h6>
+                      <h6 class="m-0 font-weight-bold text-primary "> &nbsp; &nbsp; Ganancias y perdidas: (No incluye ventas)</h6>
                       <!-- Card Body -->
                       <div class="card-body">
                         <div class="chart-pie pt-4 pb-2">
@@ -229,10 +234,9 @@
                         </div>
                         <div class="mt-4 text-center small">
                           <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Barcazas: <?php echo $cantidadMarit ?>
-                          </span>
+                        <i class="fas fa-circle text-success"></i>Ganancias: <?php echo $cantidadMarit ?>        </span>
                           <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Camiones: <?php echo $cantidadTerr ?>
+                            <i class="fas fa-circle text-primary"></i>Perdidas: <?php echo $cantidadTerr ?> 
                           </span>
                         </div>
                       </div>
