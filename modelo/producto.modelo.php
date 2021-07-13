@@ -26,6 +26,12 @@ class ModeloProductos
         $sql->execute();
         return $sql->fetchAll();
     }
+    static public function listarProductoMaritimoPanel2($v)//maritimo ganancias
+    {
+        $sql = DB::conexion()->prepare("SELECT sum(precio) as suma from detalle_ventas where id_venta = $v");
+        $sql->execute();
+        return $sql->fetchAll();
+    }
     static public function listarProductoTerrestrePanel()
     {
         $sql = DB::conexion()->prepare("SELECT sum(monto) as suma from ingreso_egreso where tipo = 0");

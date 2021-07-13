@@ -114,6 +114,15 @@ require_once "./modelo/empresa.modelo.php";
               </div>
             </div>
           </div>
+          <?php
+          $matriz1 = ControllerProductos::listarProductosMaritimosPanel2($_POST["id"]);
+          foreach ($matriz1 as $registro1) {
+            $cantidad =  $registro1["suma"];
+          }
+          ?>
+
+          <h2>Total venta: <?php echo $cantidad; ?></h2>
+
           <script>
             $('#boton_agregar_producto_a_venta').click(function() {
               var nombre = $('#nombre').val();
@@ -149,23 +158,23 @@ require_once "./modelo/empresa.modelo.php";
               DdatosOtros.append("id", id);
               DdatosOtros.append("tipoOperacion", "ConsultarCantidadYPrecioDeProductos");
               $.ajax({
-                  url: 'ajax/ajaxEmpresas.php',
-                  type: 'POST',
-                  data: DdatosOtros,
-                  processData: false,
-                  contentType: false,
-                  success: function(res) {
-                    //   alert(res);
-                    var valor1 = JSON.parse(res);
-                    //cantidad  alert(valor1[0][0]);
-                    //precio  alert(valor1[0][1]);
-                    $("#cantidad").text(valor1[0][0]);
-                    $("#precio").val(valor1[0][1]);
-                    $("#nombre").val(valor1[0][2]);
+                url: 'ajax/ajaxEmpresas.php',
+                type: 'POST',
+                data: DdatosOtros,
+                processData: false,
+                contentType: false,
+                success: function(res) {
+                  //   alert(res);
+                  var valor1 = JSON.parse(res);
+                  //cantidad  alert(valor1[0][0]);
+                  //precio  alert(valor1[0][1]);
+                  $("#cantidad").text(valor1[0][0]);
+                  $("#precio").val(valor1[0][1]);
+                  $("#nombre").val(valor1[0][2]);
 
-                    if (valor1[0][0] < 1) {
-                      $("#boton_agregar_producto_a_venta").prop('disabled', true);
-                  }else{
+                  if (valor1[0][0] < 1) {
+                    $("#boton_agregar_producto_a_venta").prop('disabled', true);
+                  } else {
                     $("#boton_agregar_producto_a_venta").prop('disabled', false);
                   }
 

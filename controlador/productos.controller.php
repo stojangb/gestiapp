@@ -17,6 +17,10 @@ Class ControllerProductos{
         $respuesta = ModeloProductos::listarProductoMaritimoPanel();
         return $respuesta;
     }
+    public static function listarProductosMaritimosPanel2($v){
+        $respuesta = ModeloProductos::listarProductoMaritimoPanel2($v);
+        return $respuesta;
+    }
     public static function listarProductosTerrestresPanel(){
         $respuesta = ModeloProductos::listarProductoTerrestrePanel();
         return $respuesta;
