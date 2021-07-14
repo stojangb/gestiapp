@@ -3,40 +3,36 @@ require_once "conexion.php";
 class ModeloBusquedas
 {
     //Listar
-    static public function listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $tipotrabajo, $MaritimoOTerrestre)
+    static public function listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $idEmpresa)
     {
-        $sinTipoTrabajo = 0;
+        $sinEmpresa = 0;
         $sinCliente = 0;
-        $Terrestre = 0;
-        $Maritimo  = 0;
 
-        $conteoMaritimoOTerrestre =  count($MaritimoOTerrestre);
-
-        for ($i = 0; $i < $conteoMaritimoOTerrestre; $i++) {
-          //  var_dump($MaritimoOTerrestre[$i]);
-             if ($MaritimoOTerrestre[$i] == "trueMaritimo") {
-                // var_dump("Buscar en todos los tipos de trabajo.");
-                $Maritimo  = 1;
-            }  
-             if ($MaritimoOTerrestre[$i] == "trueTerrestre") {
-                // var_dump("Buscar en todos los tipos de trabajo.");
-
-                $Terrestre = 1;
-            }  
-        }
-
-        $conteoTipoTrabajo =  count($tipotrabajo);
-        for ($i = 0; $i < $conteoTipoTrabajo; $i++) {
-           // var_dump($tipotrabajo[$i]);
-            if ($tipotrabajo[$i] == "true") {
-                // var_dump("Buscar en todos los tipos de trabajo.");
-                $sinTipoTrabajo = 1;
-            }
-        }
         if ($idCliente == "All") {
             $sinCliente = 1;
         }
 
+        if ($idEmpresa == "All") {
+            $sinEmpresa = 1;
+        }
+
+        if ($sinEmpresa == 1 && $sinCliente == 1) {
+            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.id, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha from ventas inner JOIN
+            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id where ventas.fecha between '$fechaInicio' and '$fechaTermino'");
+            $sql->execute();
+            return $sql->fetchAll();
+        }
+
+
+
+    }
+        static public function listarBusq22uedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $idEmpresa,$tipotrabajo)
+        {
+            $sinCliente = 0;
+            $sinTipoTrabajo = 0;
+            $Maritimo = 0;
+            $Terrestre = 0;
+            $tipotrabajo[] = 0;
 
         if ($sinTipoTrabajo == 1 && $sinCliente == 1 && $Maritimo == 1 && $Terrestre == 1) {
 
@@ -138,6 +134,7 @@ class ModeloBusquedas
              return $sql->fetchAll();
          }
     }
+
     static public function listarBusquedaVueltaFalsa($fechaInicio, $fechaTermino, $idCliente)
     {
         if ($idCliente == "All") {
@@ -150,6 +147,7 @@ class ModeloBusquedas
             return $sql->fetchAll();
         }     
     }
+
     static public function listarBusquedaOtros($fechaInicio, $fechaTermino, $idCliente, $otros)
     {
         $sinCliente = 0;
@@ -167,9 +165,6 @@ class ModeloBusquedas
                 $sinOtros = 1;
             }
         }
-
-
-
 
         if ($sinCliente == 1 && $sinOtros == 1) {
             // Todos los objetos de todos los clientes

@@ -41,27 +41,53 @@
                 <br>
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Selección de cliente</label>
-                        <select id="idCliente" class="form-control" name="nameCliente">
-                          <option value="All">Todos</option>
-                          <?php
-                          $matrizClientes = ControllerClientes::listarClientes();
-                          foreach ($matrizClientes as $registro) {
-                          ?>
-                            <option value="<?php echo $registro["id"] ?>">
-                              <?php echo $registro["nombre_completo"];
-                              echo ' ';
-                              echo $registro["rut"]; ?> </option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Selección de cliente</label>
+                      <select id="idCliente" class="form-control" name="nameCliente">
+                        <option value="All">Todos</option>
+                        <?php
+                        $matrizClientes = ControllerClientes::listarClientes();
+                        foreach ($matrizClientes as $registro) {
+                        ?>
+                          <option value="<?php echo $registro["id"] ?>">
+                            <?php echo $registro["nombre_completo"];
+                            echo ' ';
+                            echo $registro["rut"]; ?> </option>
+                        <?php
+                        }
+                        ?>
+                      </select>
                     </div>
                   </div>
-                </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Selección de empresa</label>
+                      <select id="idEmpresa" class="form-control" name="nameCliente">
+                        <option value="All">Todos</option>
+                        <?php
+                        $matrizClientes = ControllerEmpresas::listarEmpresas();
+                        foreach ($matrizClientes as $registro) {
+                        ?>
+                          <option value="<?php echo $registro["id"] ?>">
+                            <?php echo $registro["nombre_abreviado"];
+                            echo ' ';
+                            echo $registro["rut"]; ?> </option>
+                        <?php
+                        }
+                        ?>
+                      </select>
+                    </div>
+
+                  </div>
+               
+                </div>  
+                
+                <div style="text-align: left;">
+                    <button id="busquedaBTN" type="button" class="btn btn-outline-success">Buscar</button>
+                  </div>
+
+                <br>
+                <br>
                 <h5>Ventas: </h5>
                 <div id="recargar1" class="card shadow mb-4 reload">
                   <div class="card-header py-3">
@@ -72,43 +98,17 @@
                       <table class="table table-bordered display" id="tablaproductos" width="100%" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Servicio</th>
+                            <th>ID compra</th>
                             <th>Cliente</th>
-                            <th>Certificado</th>
+                            <th>Empresa</th>
                             <th>Fecha</th>
-                            <th>Nombre</th>
-                            <th>Matrícula</th>
-                            <th>Vuelta Falsa</th>
+                            <th>Total</th>
                           </tr>
                         </thead>
                       </table>
                     </div>
                   </div>
                 </div>
-                <!-- INICIO TABLA Otros-->
-                <div id="recargar2" class="card shadow mb-4 reload">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado de objetos</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered display" id="tablaobjetos" width="100%" cellspacing="0">
-                        <thead>
-                          <tr>
-                            <th>Servicio</th>
-                            <th>Cliente</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Relación</th>
-                            <th>Fecha</th>
-                          </tr>
-                        </thead>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <!-- FIN TABLA -->
-
                 <?php include('estructura/footer.php'); ?>
               </div>
             </div>

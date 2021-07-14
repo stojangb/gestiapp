@@ -1,9 +1,9 @@
 <?php
 Class ControllerBusquedas{
     //Listar
-    public static function listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente,$tipotrabajo,$MaritimoOTerrestre)
+    public static function listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente,$idEmpresa)
     {
-        $respuesta = ModeloBusquedas::listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente,$tipotrabajo,$MaritimoOTerrestre);
+        $respuesta = ModeloBusquedas::listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $idEmpresa);
         return $respuesta;
     }
     public static function listarBusquedaOtros($fechaInicio, $fechaTermino, $idCliente,$otros)

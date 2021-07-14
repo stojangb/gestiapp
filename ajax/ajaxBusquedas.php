@@ -9,9 +9,8 @@ class ajaxBusquedas
 		$fechaInicio = $this->fechaInicio;
 		$fechaTermino = $this->fechaTermino;
 		$idCliente = $this->idCliente;
-		$tipotrabajo = $this->tipotrabajo;
-		$MaritimoOTerrestre = $this->MaritimoOTerrestre;
-		$respuesta = ControllerBusquedas::listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $tipotrabajo, $MaritimoOTerrestre);
+		$idEmpresa = $this->idEmpresa;
+		$respuesta = ControllerBusquedas::listarBusquedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $idEmpresa);
 		echo json_encode($respuesta);
 	}
 	public function listarBusquedaOtros()
@@ -53,9 +52,8 @@ if ($tipoOperacion == "listarBusquedaVueltaFalsa") {
 if ($tipoOperacion == "listarBusquedaMaritimoOTerrestre") {
 	$operacion = new ajaxBusquedas();
 	$operacion->idCliente = $_POST["idCliente"];
+	$operacion->idEmpresa = $_POST["idEmpresa"];
 	$operacion->fechaInicio = $_POST["fechaInicio"];
 	$operacion->fechaTermino = $_POST["fechaTermino"];
-	$operacion->tipotrabajo = $_POST["tipotrabajo"];
-	$operacion->MaritimoOTerrestre = $_POST["MaritimoOTerrestre"];
 	$operacion->listarBusquedaMaritimoOTerrestre();
 }
