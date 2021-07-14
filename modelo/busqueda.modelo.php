@@ -17,13 +17,32 @@ class ModeloBusquedas
         }
 
         if ($sinEmpresa == 1 && $sinCliente == 1) {
-            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.id, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha from ventas inner JOIN
-            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id where ventas.fecha between '$fechaInicio' and '$fechaTermino'");
+            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha, sum(detalle_ventas.precio) as monto_total from ventas inner JOIN
+            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id inner join detalle_ventas on detalle_ventas.id_venta = ventas.id where ventas.fecha between '$fechaInicio' and '$fechaTermino' GROUP by ventas.id");
             $sql->execute();
             return $sql->fetchAll();
         }
 
+        if ($sinEmpresa == 1 && $sinCliente == 0) {
+            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha, sum(detalle_ventas.precio) as monto_total from ventas inner JOIN
+            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id inner join detalle_ventas on detalle_ventas.id_venta = ventas.id where ventas.fecha between '$fechaInicio' and '$fechaTermino' and clientes.id='$idCliente' GROUP by ventas.id");
+            $sql->execute();
+            return $sql->fetchAll();
+        }
 
+        if ($sinEmpresa == 0 && $sinCliente == 1) {
+            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha, sum(detalle_ventas.precio) as monto_total from ventas inner JOIN
+            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id inner join detalle_ventas on detalle_ventas.id_venta = ventas.id where ventas.fecha between '$fechaInicio' and '$fechaTermino' and empresas_usuario.id='$idEmpresa' GROUP by ventas.id");
+            $sql->execute();
+            return $sql->fetchAll();
+        }
+
+        if ($sinEmpresa == 0 && $sinCliente == 0) {
+            $sql = DB::conexion()->prepare("select ventas.id, clientes.nombre_completo, clientes.rut, empresas_usuario.nombre_abreviado, empresas_usuario.rut, ventas.fecha, sum(detalle_ventas.precio) as monto_total from ventas inner JOIN
+            clientes on ventas.id_cliente = clientes.id inner join empresas_usuario on ventas.id_empresas_usuario = empresas_usuario.id inner join detalle_ventas on detalle_ventas.id_venta = ventas.id where ventas.fecha between '$fechaInicio' and '$fechaTermino' and empresas_usuario.id='$idEmpresa' and clientes.id='$idCliente' GROUP by ventas.id");
+            $sql->execute();
+            return $sql->fetchAll();
+        }
 
     }
         static public function listarBusq22uedaMaritimoOTerrestre($fechaInicio, $fechaTermino, $idCliente, $idEmpresa,$tipotrabajo)
