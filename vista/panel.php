@@ -68,6 +68,7 @@
                             <?php
                             $matriz = ControllerClientes::listarClientes();
                             $numeroClientes = count($matriz);
+                            $numeroClientes = $numeroClientes -1;
                             ?>
                             <div class="h5 mb-0 font-weight-bold text-gray-800 count" data-stop="<?php echo $numeroClientes; ?>"><?php echo $numeroClientes; ?></div>
                           </div>
